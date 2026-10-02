@@ -1,0 +1,562 @@
+/* ============================================================
+   HERO BANNER — vídeo/imagem fixado com informações por scroll
+   ============================================================ */
+
+/* Contraste do header sobre a campanha. */
+body:has(.hero-banner:first-of-type) .site-header {
+  color: #fff;
+}
+
+body:has(.hero-banner:first-of-type) .desktop-nav a::after {
+  background: #fff;
+}
+
+body:has(.hero-banner:first-of-type) .status-dot {
+  background: #fff;
+}
+
+body:has(.hero-banner:first-of-type) .menu-icon i {
+  background: #fff;
+}
+
+/* --- Seção e stage --- */
+.hero-banner {
+  position: relative;
+  height: calc(100svh * var(--hero-screens, 5));
+  background: #000;
+  color: #fff;
+}
+
+.hero-banner-anchor { position: absolute; top: 0; }
+body:has(.hero-banner) .mobile-nav { color: #000; }
+
+.hero-banner-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* The film is a dedicated fixed visual layer. HTML information lives above it. */
+.hero-banner-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background: #000;
+}
+
+/* --- Visual: fotos de fallback --- */
+.hero-banner-visual {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-banner-photo {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.hero-banner-photo img {
+  object-fit: var(--fallback-fit, contain);
+  object-position: var(--img-pos, 50% 46%);
+}
+
+.hero-banner-photo:first-child { opacity: 1; }
+
+.hero-banner-img-placeholder {
+  position: absolute;
+  inset: 15% 30%;
+  display: grid;
+  place-items: center;
+  background: #1a1a1a;
+  color: #555;
+  font-size: 12px;
+}
+
+/* --- Vídeo --- */
+.hero-banner-video {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--video-position, 50% 50%);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+
+.hero-banner-video[data-ready="true"] {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* --- Gradiente lateral --- */
+.hero-banner-shade {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.72) 0%,
+    transparent 38%,
+    transparent 62%,
+    rgba(0, 0, 0, 0.72) 100%
+  );
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0.6s;
+}
+
+.hero-banner-shade[data-visible="true"] {
+  opacity: 1;
+}
+
+/* Gradiente permanente no topo e na base */
+.hero-banner-stage::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    transparent 22%,
+    transparent 70%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  pointer-events: none;
+}
+
+/* Meta appears as the opening title leaves. */
+.hero-banner-meta {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px var(--gutter) 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-banner-brand {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 9px;
+}
+
+.hero-banner-year {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 9px;
+}
+
+/* Título grande SEA SKY */
+.hero-banner-title {
+  position: absolute;
+  z-index: 5;
+  bottom: 130px;
+  left: calc(var(--gutter) - 0.012em);
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(100px, 18vw, 310px);
+  font-weight: 480;
+  line-height: 0.76;
+  letter-spacing: -0.085em;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.hero-banner-title > span {
+  display: block;
+}
+
+.hero-banner-title > span + span {
+  margin-top: 0.07em;
+}
+
+/* --- Painéis de informação dos looks --- */
+.hero-banner-overlays {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-banner-info {
+  position: absolute;
+  top: 38%;
+  width: 22%;
+  max-width: 310px;
+  will-change: opacity, transform;
+  pointer-events: auto;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.hero-banner-info--left {
+  left: var(--gutter);
+}
+
+.hero-banner-info--right {
+  right: var(--gutter);
+}
+
+.hero-banner-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #d0d0d0;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.hero-banner-kicker-sep {
+  display: block;
+  width: 18px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+}
+
+.hero-banner-look-name {
+  font-size: clamp(30px, 4vw, 62px);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  margin: 20px 0 0;
+}
+
+.hero-banner-look-description {
+  font-size: 12px;
+  line-height: 1.75;
+  color: #dedede;
+  max-width: 210px;
+  margin-top: 16px;
+}
+
+.hero-banner-look-price {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 16px;
+  letter-spacing: 0.05em;
+}
+
+.hero-banner-look-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 148px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.38);
+  padding: 13px 0;
+  margin-top: 10px;
+  font-size: 11px;
+  color: #fff;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.hero-banner-look-cta:hover {
+  color: var(--neon);
+  border-color: var(--neon);
+}
+
+.hero-banner-cta-arrow {
+  font-size: 18px;
+}
+
+.hero-banner-placeholder-note {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bdbdbd;
+  margin-top: 14px;
+}
+
+/* --- Contador de look --- */
+.hero-banner-counter {
+  position: absolute;
+  z-index: 5;
+  right: var(--gutter);
+  bottom: 120px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.hero-banner-counter-num {
+  font-size: clamp(48px, 7vw, 100px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.065em;
+}
+
+.hero-banner-counter-total {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* --- Dots de progresso --- */
+.hero-banner-dots {
+  position: absolute;
+  z-index: 5;
+  left: var(--gutter);
+  bottom: 12px;
+  display: flex;
+  gap: 4px;
+}
+
+.hero-banner-dot {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: #c8c8c8;
+  background: transparent;
+  font-size: 10px;
+}
+
+.hero-banner-dot[aria-current="step"] {
+  color: var(--neon);
+  border-color: var(--neon);
+}
+
+.hero-banner-dot:hover { color: #fff; }
+.hero-banner-status { position: absolute; z-index: 5; bottom: 31px; right: var(--gutter); color: #d0d0d0; font-size: 9px; max-width: 220px; text-align: right; }
+
+/* --- Indicação de scroll --- */
+.hero-banner-scroll-cue {
+  position: absolute;
+  z-index: 5;
+  left: var(--gutter);
+  bottom: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  will-change: opacity;
+}
+
+.hero-banner-scroll-line {
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+@keyframes hero-scroll-pulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(0.65); }
+}
+
+.hero-banner-scroll-cue .eyebrow {
+  writing-mode: horizontal-tb;
+  font-size: 8px;
+  color: #ccc;
+  letter-spacing: 0.2em;
+}
+
+/* --- Barra de progresso na base --- */
+.hero-banner-track {
+  position: absolute;
+  z-index: 6;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hero-banner-track-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--neon);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+/* --- Link pular para experiência --- */
+.hero-banner-skip {
+  position: absolute;
+  z-index: 5;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: #ddd;
+  transition: color 0.2s;
+}
+
+.hero-banner-skip .eyebrow {
+  font-size: 8px;
+}
+
+.hero-banner-skip:hover {
+  color: var(--neon);
+}
+
+/* ============================================================
+   RESPONSIVIDADE
+   ============================================================ */
+
+@media (min-width: 1800px) {
+  .hero-banner-title { font-size: 17vw; }
+}
+
+@media (max-width: 1100px) {
+  .hero-banner-info { width: 26%; }
+  .hero-banner-look-name { font-size: 36px; }
+  .hero-banner-look-description { max-width: 175px; }
+}
+
+@media (max-width: 760px) {
+  .hero-banner-shade {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      transparent 20%,
+      transparent 55%,
+      rgba(0, 0, 0, 0.85) 82%
+    );
+  }
+
+  .hero-banner-title {
+    font-size: 28vw;
+    bottom: 145px;
+    line-height: 0.78;
+    letter-spacing: -0.08em;
+  }
+
+  .hero-banner-photo img {
+    object-position: var(--img-pos-mobile, 50% 50%);
+    object-fit: var(--fallback-fit-mobile, cover);
+  }
+
+  .hero-banner-video { object-position: var(--video-position-mobile, 50% 50%); }
+
+  /* Info no mobile: fica na base */
+  .hero-banner-info,
+  .hero-banner-info--left,
+  .hero-banner-info--right {
+    top: auto;
+    bottom: 80px;
+    left: var(--gutter);
+    right: var(--gutter);
+    width: auto;
+    max-width: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 16px;
+    align-items: start;
+  }
+
+  .hero-banner-kicker { grid-column: 1 / -1; font-size: 8px; }
+  .hero-banner-look-name {
+    font-size: 28px;
+    grid-column: 1;
+    letter-spacing: -0.045em;
+    margin-top: 10px;
+  }
+  .hero-banner-look-description { display: none; }
+  .hero-banner-look-price { font-size: 9px; grid-column: 1; margin-top: 0; }
+  .hero-banner-look-cta {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    width: 108px;
+    font-size: 10px;
+    align-self: center;
+    margin-top: 0;
+    padding: 10px 0;
+  }
+  .hero-banner-placeholder-note { grid-column: 1 / -1; font-size: 7px; margin-top: 10px; }
+
+  .hero-banner-counter {
+    right: var(--gutter);
+    top: 72px;
+    bottom: auto;
+    gap: 4px;
+  }
+  .hero-banner-counter-num { font-size: 38px; }
+  .hero-banner-counter-total { font-size: 8px; }
+
+  .hero-banner-dots { bottom: 12px; gap: 0; }
+  .hero-banner-dot { width: 38px; }
+  .hero-banner-status { bottom: 29px; max-width: 110px; font-size: 8px; }
+
+  .hero-banner-scroll-cue {
+    left: auto;
+    bottom: 82px;
+    right: var(--gutter);
+    flex-direction: row;
+    gap: 8px;
+  }
+  .hero-banner-scroll-line {
+    width: 32px;
+    height: 1px;
+    animation: none;
+  }
+  .hero-banner-scroll-cue .eyebrow {
+    writing-mode: horizontal-tb;
+    font-size: 7px;
+  }
+
+  .hero-banner-skip { top: 119px; bottom: auto; right: var(--gutter); left: auto; transform: none; flex-direction: row; gap: 12px; padding-block: 12px; }
+}
+
+@media (max-width: 360px) {
+  .hero-banner-look-name { font-size: 24px; }
+  .hero-banner-look-cta { width: 92px; }
+  .hero-banner-dot { width: 32px; }
+  .hero-banner-status { max-width: 90px; }
+}
+
+@media (max-height: 620px) and (min-width: 761px) {
+  .hero-banner-title { font-size: 170px; bottom: 100px; }
+  .hero-banner-info { top: 22%; }
+  .hero-banner-look-name { font-size: 28px; margin: 10px 0 0; }
+  .hero-banner-look-description { display: none; }
+  .hero-banner-counter { bottom: 95px; }
+  .hero-banner-counter-num { font-size: 56px; }
+  .hero-banner-scroll-cue { bottom: 95px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-banner { height: 100svh; }
+  .hero-banner-stage { position: relative; height: 100svh; }
+  .hero-banner-photo,
+  .hero-banner-info { will-change: auto; }
+  .hero-banner-scroll-line { animation: none; }
+}
+
+@media (max-height: 620px) {
+  .hero-banner-title { font-size: clamp(82px, 24svh, 150px); bottom: 80px; }
+  .hero-banner-info { top: 23%; }
+  .hero-banner-look-description { display: none; }
+  .hero-banner-look-name { font-size: 28px; margin-top: 10px; }
+  .hero-banner-counter { bottom: 85px; }
+  .hero-banner-scroll-cue { bottom: 85px; }
+  .hero-banner-scroll-line { height: 1px; }
+}
+@media (max-height: 620px) and (max-width: 760px) {
+  .hero-banner-info { top: auto; bottom: 78px; }
+  .hero-banner-counter { top: 70px; bottom: auto; }
+  .hero-banner-scroll-cue { bottom: 90px; }
+  .hero-banner-scroll-line { height: 1px; }
+}

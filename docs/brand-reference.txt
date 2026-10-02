@@ -1,0 +1,315 @@
+Happy Boy — Guia de Identidade Visual e Referência de Marca
+Documento consolidado a partir dos arquivos “Apresentação-Happy Boy-Identidade Visual.pdf” e “Logotipo.pdf”, com a referência digital atual da marca.
+
+Regra de atualização para redes sociais: ao utilizar o Instagram da Happy Boy como referência visual/conceitual, considerar somente a coleção mais recente informada: SEA SKY. Não utilizar coleções anteriores como referência.
+
+1. Fontes do documento
+Arquivos-base
+Apresentação-Happy Boy-Identidade Visual.pdf
+Logotipo.pdf
+Instagram oficial
+Perfil: https://www.instagram.com/happyboyoficial/
+Coleção de referência atual: SEA SKY
+Escopo: somente SEA SKY para referências de coleção, campanha, styling, fotografia, direção de arte e linguagem visual atual.
+2. Visão geral da marca
+A Happy Boy é apresentada no projeto original como uma marca de roupas com foco em moda masculina.
+
+O posicionamento descrito no material busca:
+
+presença em lojas multimarcas;
+ampliação de alcance por meio de influenciadores digitais;
+construção de uma marca visualmente reconhecível;
+criação de desejo por meio de uma identidade moderna e consistente.
+Observação: os dados estratégicos desta seção vêm do projeto de identidade de 2022. Para comunicação e campanhas atuais, a coleção SEA SKY deve ser a referência visual contemporânea.
+
+3. Personalidade da marca
+Os principais atributos definidos para a Happy Boy são:
+
+Qualidade
+Estilo
+Inovação
+Moderna
+Impactante
+Minimalista
+Esses atributos devem orientar a identidade visual, a apresentação dos produtos, a comunicação e a direção de arte da marca.
+
+4. Público e posicionamento original
+Público descrito no projeto
+Faixa etária: 18 a 35 anos
+Gênero predominante: masculino
+Classe social indicada no projeto: B e C
+Públicos comerciais:
+lojistas;
+cliente final.
+Concorrência
+O projeto considera como concorrentes outras marcas com foco em moda masculina.
+
+5. Pontos de contato da marca
+A identidade foi pensada para funcionar em diferentes ambientes e canais:
+
+Papelaria
+Google
+Fardamento
+Brindes
+Mídias sociais
+Outdoors
+Digital
+Website
+Para redes sociais, a referência atual deve seguir a estética da coleção SEA SKY publicada no Instagram oficial.
+
+6. Diretrizes estratégicas originais
+O projeto estabelece três desafios principais:
+
+Desenvolver uma identidade visual que dialogue com códigos reconhecíveis do segmento, mas que também se destaque dos concorrentes.
+Criar identidade visual, paleta de cores e texturas de apoio alinhadas aos princípios da Happy Boy.
+Construir uma identidade com apelo estético suficiente para fortalecer a Happy Boy como uma marca de desejo.
+7. Processo de construção da identidade
+O sistema visual foi desenvolvido a partir de:
+
+briefing;
+pesquisa;
+definição conceitual;
+símbolo;
+tipografia;
+logotipo;
+grafismos de apoio;
+aplicações da marca;
+testes em mockups.
+8. Moodboard e universo visual original
+O painel semântico do projeto foi construído com referências ligadas a:
+
+streetwear;
+moda masculina casual;
+moda masculina clássica;
+fotografia de moda;
+outras identidades visuais usadas como inspiração para definição da estética.
+Atualização de referência
+Para trabalhos atuais, campanhas, peças digitais ou novas explorações visuais, este universo original deve ser complementado pela direção de arte da coleção SEA SKY, sem incorporar coleções anteriores do Instagram.
+
+9. Princípio de design — Minimalismo
+O projeto adota o minimalismo como uma das bases da identidade.
+
+A lógica apresentada é que uma marca simples tende a:
+
+facilitar a compreensão;
+melhorar a primeira impressão;
+aumentar a memorização;
+permitir reprodução mais fácil;
+funcionar melhor em diferentes escalas e suportes;
+tornar o logotipo mais versátil.
+A simplicidade não significa falta de construção: o símbolo e o lettering foram desenvolvidos para manter personalidade mesmo com poucos elementos.
+
+10. Paleta de cores
+A paleta original foi pensada para transmitir modernidade, seriedade e comprometimento.
+
+Cor	HEX	RGB	CMYK	Função
+Preto	#000000	0, 0, 0	0, 0, 0, 100	Base sóbria / contraste
+Cinza	#969696	150, 150, 150	0, 0, 0, 41	Apoio / neutralidade
+Verde-amarelo neon	#EBF308	235, 243, 8	3, 0, 97, 5	Destaque moderno / inovador
+Branco	#FFFFFF	255, 255, 255	0, 0, 0, 0	Neutralidade / contraste
+Leitura conceitual das cores
+Preto: seriedade, força e contraste.
+Cinza: apoio neutro e composição intermediária.
+Neon #EBF308: elemento de destaque, energia e modernidade.
+Branco: respiro visual e contraste entre as demais tonalidades.
+11. Tipografia
+Fonte de apoio
+Roboto
+
+A Roboto foi definida como tipografia de apoio por sua versatilidade e compatibilidade com ambientes digitais.
+
+O projeto destaca o uso de diferentes pesos, do mais leve ao Bold, permitindo hierarquia em composições visuais.
+
+Alfabeto de referência
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+0123456789
+Logotipo tipográfico
+O lettering HAPPY BOY possui desenho próprio e cortes geométricos que ajudam a criar uma aparência:
+
+moderna;
+diferenciada;
+minimalista;
+reconhecível.
+12. Conceito do símbolo
+O símbolo da Happy Boy combina elementos das letras:
+
+H
+B
+A construção é apresentada como:
+
+abstrata;
+minimalista;
+geométrica;
+simétrica.
+O grid foi desenvolvido com uso de:
+
+formas geométricas;
+círculos;
+linhas-guia.
+A intenção é gerar:
+
+legibilidade;
+consistência;
+estabilidade;
+simetria.
+13. Sistema de logotipo
+O arquivo Logotipo.pdf reúne diversas variações da identidade em diferentes composições e fundos.
+
+Estruturas observadas
+13.1. Símbolo + wordmark horizontal
+Símbolo HB à esquerda e lettering HAPPY BOY à direita.
+
+13.2. Símbolo + wordmark vertical
+Símbolo centralizado acima do lettering.
+
+13.3. Símbolo + lettering em duas linhas
+Símbolo à esquerda e:
+
+HAPPY
+BOY
+à direita.
+
+13.4. Wordmark horizontal
+Uso isolado do lettering:
+
+HAPPY BOY
+13.5. Wordmark empilhado
+Uso do lettering em duas linhas:
+
+HAPPY
+BOY
+13.6. Símbolo isolado
+Uso apenas do monograma HB quando a aplicação exige maior síntese visual.
+
+14. Variações cromáticas do logotipo
+As versões apresentadas no arquivo de logotipo trabalham principalmente com as cores oficiais:
+
+Sobre fundo preto
+logotipo branco;
+logotipo cinza;
+logotipo neon.
+Sobre fundo cinza
+logotipo branco;
+logotipo preto;
+logotipo neon.
+Sobre fundo neon
+logotipo preto;
+logotipo cinza.
+Sobre fundo branco
+logotipo preto;
+logotipo cinza.
+Essas combinações reforçam o sistema de contraste da marca e mantêm a identidade dentro da paleta original.
+
+15. Aplicações apresentadas no projeto
+Os mockups do projeto demonstram a identidade funcionando em contextos físicos e digitais.
+
+Aplicações observadas
+cartões de visita;
+peças de imagem/editorial para moda;
+pulseiras/brindes;
+papelaria;
+embalagem / envelope de envio;
+ecobag / tote bag;
+polo / vestuário;
+painel publicitário vertical;
+outdoor horizontal;
+fachada / sinalização externa.
+Observação importante do projeto
+Os mockups são meramente ilustrativos e servem para demonstrar o sistema gráfico em contexto.
+
+Eles não devem ser tratados automaticamente como peças finais de produção, já que fornecedores, processos gráficos e materiais podem exigir adaptações.
+
+16. Referência digital atual — SEA SKY
+Instagram
+Happy Boy Oficial
+https://www.instagram.com/happyboyoficial/
+
+Coleção atual a considerar
+SEA SKY
+Para qualquer nova análise, briefing, prompt, campanha, conteúdo, mockup ou direção de arte baseado no Instagram da Happy Boy:
+
+USAR SOMENTE A COLEÇÃO SEA SKY COMO REFERÊNCIA DE COLEÇÃO ATUAL.
+
+Não usar como referência atual
+coleções anteriores;
+campanhas antigas;
+posts antigos que pertençam a outras coleções;
+estéticas temporárias de lançamentos anteriores.
+Pode continuar sendo usado
+O sistema institucional definido na identidade visual continua servindo como base:
+
+símbolo HB;
+lettering HAPPY BOY;
+paleta oficial;
+conceito minimalista;
+linguagem geométrica;
+estrutura de contraste;
+atributos de qualidade, estilo e inovação.
+A coleção SEA SKY funciona como a camada contemporânea para fotografia, styling, campanha e comunicação atual da marca.
+
+17. Hierarquia de referência para trabalhos futuros
+Ao criar qualquer material novo para a Happy Boy, usar esta ordem de prioridade:
+
+Coleção SEA SKY — direção visual atual de campanha e produto.
+Logotipo.pdf — versões oficiais do símbolo e wordmark.
+Identidade Visual 2022 — fundamentos de marca, cores, tipografia e conceito.
+Nunca substituir os elementos oficiais por versões redesenhadas ou improvisadas sem uma necessidade específica de projeto.
+18. Resumo rápido para IA / prompts
+brand:
+  name: "Happy Boy"
+  segment: "Moda masculina"
+  positioning:
+    - "Qualidade"
+    - "Estilo"
+    - "Inovação"
+    - "Moderna"
+    - "Impactante"
+    - "Minimalista"
+
+current_collection_reference:
+  name: "SEA SKY"
+  source: "https://www.instagram.com/happyboyoficial/"
+  rule: "Usar somente SEA SKY como referência de coleção atual; ignorar coleções anteriores."
+
+visual_identity:
+  symbol: "Monograma HB"
+  concept:
+    - "Geométrico"
+    - "Abstrato"
+    - "Minimalista"
+    - "Simétrico"
+
+colors:
+  black: "#000000"
+  gray: "#969696"
+  neon: "#EBF308"
+  white: "#FFFFFF"
+
+support_font:
+  family: "Roboto"
+
+logo_variants:
+  - "Símbolo + wordmark horizontal"
+  - "Símbolo + wordmark vertical"
+  - "Símbolo + lettering em duas linhas"
+  - "Wordmark horizontal"
+  - "Wordmark empilhado"
+  - "Símbolo isolado"
+
+applications:
+  - "Papelaria"
+  - "Embalagem"
+  - "Vestuário"
+  - "Brindes"
+  - "Mídias sociais"
+  - "Outdoors"
+  - "Fachada"
+  - "Website"
+19. Regra final
+A identidade institucional da Happy Boy deve preservar o sistema construído no projeto original.
+
+Para comunicar a marca no momento atual, qualquer referência de coleção retirada das redes sociais deve vir exclusivamente da:
+
+SEA SKY
+Instagram oficial: https://www.instagram.com/happyboyoficial/
