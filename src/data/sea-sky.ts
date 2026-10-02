@@ -46,8 +46,8 @@ export const campaign = {
   poster: referenceOne,
   // Main campaign film supplied for the first integration.
   // Use separate desktop/mobile exports here later when they are available.
-  videoDesktop: "/videos/background.mp4",
-  videoMobile: "/videos/background.mp4",
+  videoDesktop: "/videos/backgroud.mp4",
+  videoMobile: "/videos/backgroud.mp4",
   objectPositionDesktop: "50% 50%",
   objectPositionMobile: "50% 50%",
   // Portrait references retain the complete outfit on wide screens.
