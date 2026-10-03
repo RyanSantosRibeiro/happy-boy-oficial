@@ -19,6 +19,7 @@ export function useHeroTimeline(
     const media = gsap.matchMedia();
     const overlays = Array.from(element.querySelectorAll<HTMLElement>("[data-hero-overlay]"));
     const levels = Array.from(element.querySelectorAll<HTMLElement>("[data-hero-level]"));
+    const opening = document.querySelector<HTMLElement>("[data-sea-sky-opening]");
 
     const smoothstep = (value: number) => {
       const clamped = Math.max(0, Math.min(1, value));
@@ -28,8 +29,25 @@ export function useHeroTimeline(
     const render = (progress: number) => {
       const normalized = Math.max(0, Math.min(1, progress));
       const activeIndex = Math.min(2, Math.floor(Math.min(normalized, 0.999999) * 3));
+      const exitProgress = smoothstep((normalized - .985) / .015);
+      const handoffProgress = smoothstep((normalized - .997) / .003);
+      const markProgress = smoothstep((normalized - .994) / .006);
+      const inkProgress = smoothstep((normalized - .99) / .004);
+      const inkFocus = smoothstep((normalized - .985) / .006) * (1 - smoothstep((normalized - .992) / .006));
 
       seek(normalized);
+      element.style.setProperty("--hero-exit", String(exitProgress));
+      element.style.setProperty("--hero-mark", String(markProgress));
+      element.style.setProperty("--hero-ink", String(inkProgress));
+      element.style.setProperty("--hero-ink-focus", String(inkFocus));
+      frame.style.setProperty("--hero-exit", String(exitProgress));
+      frame.style.setProperty("--hero-handoff", String(handoffProgress));
+      frame.style.setProperty("--hero-mark", String(markProgress));
+      frame.style.setProperty("--hero-ink", String(inkProgress));
+      frame.style.setProperty("--hero-ink-focus", String(inkFocus));
+      opening?.style.setProperty("--hero-exit", String(exitProgress));
+      opening?.style.setProperty("--hero-handoff", String(handoffProgress));
+      opening?.style.setProperty("--hero-mark", String(markProgress));
       overlays.forEach((overlay, index) => {
         const start = index / 3;
         const end = (index + 1) / 3;
@@ -58,6 +76,9 @@ export function useHeroTimeline(
 
         if (reduced) {
           render(0.05);
+          opening?.style.setProperty("--hero-exit", "1");
+          opening?.style.setProperty("--hero-handoff", "1");
+          opening?.style.setProperty("--hero-mark", "1");
           return;
         }
 
@@ -86,6 +107,18 @@ export function useHeroTimeline(
             overlay.setAttribute("aria-hidden", "true");
           });
           levels.forEach((level) => level.removeAttribute("aria-current"));
+          element.style.removeProperty("--hero-exit");
+          element.style.removeProperty("--hero-mark");
+          element.style.removeProperty("--hero-ink");
+          element.style.removeProperty("--hero-ink-focus");
+          frame.style.removeProperty("--hero-exit");
+          frame.style.removeProperty("--hero-handoff");
+          frame.style.removeProperty("--hero-mark");
+          frame.style.removeProperty("--hero-ink");
+          frame.style.removeProperty("--hero-ink-focus");
+          opening?.style.removeProperty("--hero-exit");
+          opening?.style.removeProperty("--hero-handoff");
+          opening?.style.removeProperty("--hero-mark");
         };
       },
     );

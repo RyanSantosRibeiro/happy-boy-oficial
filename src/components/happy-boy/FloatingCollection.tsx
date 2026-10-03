@@ -49,7 +49,7 @@ export function FloatingCollection() {
       <span id="shop" className="floating-collection__anchor" aria-hidden="true" />
       <span id="about" className="floating-collection__anchor" aria-hidden="true" />
       <header className="floating-collection__intro">
-        <p className="eyebrow"><span aria-hidden="true" /> SEA SKY / 2026</p>
+        <Image className="floating-collection__brand" src="/images/happy-boy-logo-black.png" alt="Happy Boy" width={140} height={30} />
         <h2 id="collection-title">Peças para<br />dias sem pressa.</h2>
         <p>Uma seleção guiada pela luz, pelo toque e pela simplicidade das formas.</p>
       </header>

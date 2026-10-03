@@ -46,7 +46,6 @@ body:has(.hero-banner) .mobile-nav { color: #000; }
   z-index: 0;
   overflow: hidden;
   isolation: isolate;
-  background: #000;
 }
 
 /* --- Visual: fotos de fallback --- */
@@ -810,4 +809,77 @@ body:has(.hero-banner) main {
   .hero-banner-level i {
     transition: none;
   }
+}
+
+/* The final four percent of the scroll dissolves the film into the opening
+   that is already aligned beneath this sticky frame. */
+.hero-banner {
+  position: relative;
+  z-index: 2;
+  background: rgb(0 0 0 / calc(1 - var(--hero-exit, 0)));
+}
+
+.hero-banner-stage {
+  z-index: 2;
+  background: transparent;
+}
+
+.hero-banner-video {
+  z-index: 0;
+  transform: scale(calc(1 + var(--hero-ink-focus, 0) * .012));
+  will-change: opacity, transform;
+}
+
+.hero-banner-video[data-ready="true"] {
+  opacity: calc(1 - var(--hero-exit, 0));
+}
+
+.hero-banner-wash {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: #fdfdfb;
+  opacity: calc(var(--hero-exit, 0) * (1 - var(--hero-handoff, 0)));
+  pointer-events: none;
+}
+
+.hero-banner-transition {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.hero-banner-transition__signature {
+  position: absolute;
+  inset: 0;
+  background-color: currentColor;
+  -webkit-mask-image: url("/images/sea-sky-real-black.png");
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+  mask-image: url("/images/sea-sky-real-black.png");
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: cover;
+  transform: translate3d(0, calc((1 - var(--hero-mark, 0)) * 10px), 0) scale(calc(1 + var(--hero-mark, 0) * .1));
+  transform-origin: center;
+  will-change: opacity, transform;
+}
+
+.hero-banner-transition__signature--ink {
+  color: #080808;
+  opacity: calc(var(--hero-ink, 0) * (1 - var(--hero-mark, 0)) * (1 - var(--hero-handoff, 0)));
+}
+
+.hero-banner-transition__signature--blue {
+  color: #95b9c6;
+  opacity: calc(var(--hero-mark, 0) * (1 - var(--hero-handoff, 0)));
+}
+
+.hero-banner-ui {
+  opacity: calc(1 - var(--hero-exit, 0));
+  will-change: opacity;
 }

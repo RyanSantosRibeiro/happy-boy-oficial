@@ -39,6 +39,11 @@ export function HeroBanner() {
           aria-hidden="true"
           tabIndex={-1}
         />
+        <div className="hero-banner-wash" aria-hidden="true" />
+        <div className="hero-banner-transition" aria-hidden="true">
+          <span className="hero-banner-transition__signature hero-banner-transition__signature--ink" />
+          <span className="hero-banner-transition__signature hero-banner-transition__signature--blue" />
+        </div>
 
         <div className="hero-banner-ui">
           <Image

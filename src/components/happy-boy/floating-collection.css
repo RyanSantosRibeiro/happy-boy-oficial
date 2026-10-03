@@ -16,8 +16,7 @@
   padding-bottom: clamp(140px, 20vw, 310px);
 }
 
-.floating-collection__intro .eyebrow { display: flex; align-items: center; gap: 10px; color: #969696; }
-.floating-collection__intro .eyebrow span { width: 7px; height: 7px; background: #ebf308; }
+.floating-collection__brand { display: block; width: 118px; height: auto; }
 
 .floating-collection__intro h2 {
   font-size: clamp(50px, 7.4vw, 118px);
@@ -122,6 +121,7 @@
 @media (max-width: 760px) {
   .floating-collection { padding-top: 90px; padding-bottom: 100px; }
   .floating-collection__intro { display: block; padding-bottom: 140px; }
+  .floating-collection__brand { width: 102px; }
   .floating-collection__intro h2 { margin: 45px 0 28px; font-size: clamp(51px, 16vw, 74px); }
   .floating-collection__intro > p:last-child { max-width: 34ch; }
   .floating-collection__pieces { gap: 160px; }

@@ -1,0 +1,107 @@
+.sea-sky-opening {
+  display: grid;
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  margin-top: -100vh;
+  padding: clamp(44px, 5.5vw, 84px) var(--gutter);
+  overflow: clip;
+  background: #fdfdfb;
+  color: #000;
+}
+
+.sea-sky-opening__content {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: 100%;
+  min-height: 100%;
+}
+
+.sea-sky-opening__brand {
+  align-self: start;
+  opacity: var(--hero-handoff, 1);
+}
+
+.sea-sky-opening__brand img {
+  display: block;
+  width: clamp(104px, 8.6vw, 140px);
+  height: auto;
+}
+
+.sea-sky-opening__title {
+  display: grid;
+  width: min(88vw, 1380px);
+  margin: 0;
+  align-self: center;
+  justify-self: center;
+  color: #95b9c6;
+  opacity: var(--hero-mark, 1);
+  transform: translate3d(0, calc((1 - var(--hero-mark, 1)) * 16px), 0) scale(calc(.99 + var(--hero-mark, 1) * .07));
+  transform-origin: center;
+  will-change: opacity, transform;
+}
+
+.sea-sky-opening__signature {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #95b9c6;
+  -webkit-mask-image: url("/images/sea-sky-real-black.png");
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-image: url("/images/sea-sky-real-black.png");
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}
+
+.sea-sky-opening__foot {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  opacity: var(--hero-handoff, 1);
+}
+
+.sea-sky-opening__caption {
+  width: min(100%, 360px);
+  margin: 0;
+  color: #363636;
+  font-size: clamp(13px, 1.1vw, 16px);
+  font-weight: 400;
+  letter-spacing: .01em;
+  line-height: 1.55;
+}
+
+.sea-sky-opening__index {
+  flex: 0 0 auto;
+  margin: 0;
+  color: #4c5153;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .13em;
+  line-height: 1;
+  text-align: right;
+}
+
+@media (max-width: 760px) {
+  .sea-sky-opening {
+    min-height: 100svh;
+    margin-top: -100svh;
+    padding-top: 28px;
+    padding-bottom: 34px;
+  }
+
+  .sea-sky-opening__brand img { width: 102px; }
+  .sea-sky-opening__title { width: min(90vw, 590px); }
+  .sea-sky-opening__caption { max-width: 250px; font-size: 12px; }
+  .sea-sky-opening__index { font-size: 8px; }
+  .sea-sky-opening__foot { gap: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sea-sky-opening__brand,
+  .sea-sky-opening__title,
+  .sea-sky-opening__foot { opacity: 1; transform: none; }
+}
