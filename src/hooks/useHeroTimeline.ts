@@ -57,12 +57,15 @@ export function useHeroTimeline(
         const start = index / 3;
         const end = (index + 1) / 3;
         const fadeIn = smoothstep((normalized - Math.max(0, start - 0.025)) / 0.05);
-        const fadeOut = index === 2 ? 1 : 1 - smoothstep((normalized - (end - 0.025)) / 0.05);
+        const fadeOut = index === 2
+          ? 1 - smoothstep((normalized - 0.78) / 0.03)
+          : 1 - smoothstep((normalized - (end - 0.025)) / 0.05);
         const opacity = fadeIn * fadeOut;
+        const x = index === 2 ? (1 - fadeOut) * -28 : 0;
         const y = normalized < start ? (1 - opacity) * 12 : normalized > end ? (1 - opacity) * -8 : 0;
 
         overlay.style.opacity = String(opacity);
-        overlay.style.transform = `translate3d(0, ${y}px, 0)`;
+        overlay.style.transform = `translate3d(${x}px, ${y}px, 0)`;
         overlay.style.visibility = opacity > 0.01 ? "visible" : "hidden";
         overlay.setAttribute("aria-hidden", String(index !== activeIndex));
       });
