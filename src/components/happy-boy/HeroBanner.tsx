@@ -39,21 +39,22 @@ export function HeroBanner() {
           aria-hidden="true"
           tabIndex={-1}
         />
-        <div className="hero-banner-wash" aria-hidden="true" />
-        <div className="hero-banner-transition" aria-hidden="true">
+        <div className="hero-banner-last" aria-hidden="true" />
+        {/* <div className="hero-banner-wash" aria-hidden="true" /> */}
+        {/* <div className="hero-banner-transition" aria-hidden="true">
           <span className="hero-banner-transition__signature hero-banner-transition__signature--ink" />
           <span className="hero-banner-transition__signature hero-banner-transition__signature--blue" />
-        </div>
+        </div> */}
 
         <div className="hero-banner-ui">
-          <Image
+          {/* <Image
             className="hero-banner-logo"
             src="/images/happy-boy-logo-black.png"
             alt="Happy Boy"
             width={140}
             height={30}
             priority
-          />
+          /> */}
 
           <div className="hero-banner-editorial" aria-live="polite">
             <article className="hero-banner-editorial__panel hero-banner-editorial__panel--left" data-hero-overlay="0">

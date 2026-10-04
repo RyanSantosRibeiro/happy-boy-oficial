@@ -834,6 +834,23 @@ body:has(.hero-banner) main {
   opacity: calc(1 - var(--hero-exit, 0));
 }
 
+.hero-banner-last {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  /* camadas (de cima p/ baixo): fade branco na base, imagem, gradiente de fundo cor atual -> branco */
+  background-image:
+    linear-gradient(to bottom, rgb(255 255 255 / 0) 70%, #fff 100%),
+    url("/images/last-image.png"),
+    linear-gradient(to bottom, #afcddf 0%, #fff 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%, 83% 100%, 100% 100%;
+  background-position: 0 0, 101px -45px, 0 0;
+  opacity: var(--hero-last, 0);
+  pointer-events: none;
+  will-change: opacity;
+}
+
 .hero-banner-wash {
   position: absolute;
   z-index: 1;
@@ -856,13 +873,13 @@ body:has(.hero-banner) main {
   position: absolute;
   inset: 0;
   background-color: currentColor;
-  -webkit-mask-image: url("/images/sea-sky-real-black.png");
-  -webkit-mask-position: center;
+  /* -webkit-mask-image: url("/images/sea-sky-real-black.png"); */
+  /* -webkit-mask-position: center;
   -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: cover;
-  mask-image: url("/images/sea-sky-real-black.png");
+  -webkit-mask-size: cover; */
+  /* mask-image: url("/images/sea-sky-real-black.png");
   mask-position: center;
-  mask-repeat: no-repeat;
+  mask-repeat: no-repeat; */
   mask-size: cover;
   transform: translate3d(0, calc((1 - var(--hero-mark, 0)) * 10px), 0) scale(calc(1 + var(--hero-mark, 0) * .1));
   transform-origin: center;

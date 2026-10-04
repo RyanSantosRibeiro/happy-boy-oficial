@@ -15,7 +15,7 @@ export default function Home() {
     <Header />
     <main id="main">
       <HeroBanner />
-      <SeaSkyOpening />
+      {/* <SeaSkyOpening /> */}
       <FloatingCollection />
     </main>
     <Footer />

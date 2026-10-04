@@ -27,15 +27,20 @@ export function useHeroTimeline(
     };
 
     const render = (progress: number) => {
-      const normalized = Math.max(0, Math.min(1, progress));
+      const scroll = Math.max(0, Math.min(1, progress));
+      // The video ends at VIDEO_END; the remaining scroll is a pause + image fade-in.
+      const VIDEO_END = 0.82;
+      const normalized = Math.min(1, scroll / VIDEO_END);
+      const lastImage = smoothstep((scroll - 0.85) / 0.1);
       const activeIndex = Math.min(2, Math.floor(Math.min(normalized, 0.999999) * 3));
-      const exitProgress = smoothstep((normalized - .985) / .015);
-      const handoffProgress = smoothstep((normalized - .997) / .003);
-      const markProgress = smoothstep((normalized - .994) / .006);
-      const inkProgress = smoothstep((normalized - .99) / .004);
-      const inkFocus = smoothstep((normalized - .985) / .006) * (1 - smoothstep((normalized - .992) / .006));
+      const exitProgress = smoothstep((scroll - .985) / .015);
+      const handoffProgress = smoothstep((scroll - .997) / .003);
+      const markProgress = smoothstep((scroll - .994) / .006);
+      const inkProgress = smoothstep((scroll - .99) / .004);
+      const inkFocus = smoothstep((scroll - .985) / .006) * (1 - smoothstep((scroll - .992) / .006));
 
       seek(normalized);
+      frame.style.setProperty("--hero-last", String(lastImage));
       element.style.setProperty("--hero-exit", String(exitProgress));
       element.style.setProperty("--hero-mark", String(markProgress));
       element.style.setProperty("--hero-ink", String(inkProgress));
