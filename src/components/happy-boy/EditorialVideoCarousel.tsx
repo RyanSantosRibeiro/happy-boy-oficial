@@ -12,7 +12,7 @@ const videos = [
   "/videos/editorial/05.mp4",
 ];
 
-const marqueeItems = Array.from({ length: 4 }, () => benefitItems).flat();
+const marqueeItems = Array.from({ length: 6 }, () => benefitItems).flat();
 
 export function EditorialVideoCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -87,10 +87,14 @@ export function EditorialVideoCarousel() {
         <span className="sr-only">Happy Boy. Sea Sky. Nova coleção.</span>
         <div className="editorial-reel__marquee" aria-hidden="true">
           <div className="editorial-reel__marquee-track">
-            {marqueeItems.map((item, index) => (
-              <span className="editorial-reel__marquee-item" key={`${item}-${index}`}>
-                {item}<i aria-hidden="true" />
-              </span>
+            {[0, 1].map((sequence) => (
+              <div className="editorial-reel__marquee-sequence" key={sequence}>
+                {marqueeItems.map((item, index) => (
+                  <span className="editorial-reel__marquee-item" key={`${sequence}-${item}-${index}`}>
+                    {item}<i aria-hidden="true" />
+                  </span>
+                ))}
+              </div>
             ))}
           </div>
         </div>

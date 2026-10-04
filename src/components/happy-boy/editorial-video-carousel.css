@@ -20,9 +20,14 @@
 .editorial-reel__marquee-track {
   display: flex;
   width: max-content;
-  min-width: 200%;
   height: 100%;
   animation: editorial-reel-marquee 48s linear infinite;
+}
+
+.editorial-reel__marquee-sequence {
+  display: flex;
+  flex: 0 0 auto;
+  height: 100%;
 }
 
 .editorial-reel__marquee-item {
@@ -42,7 +47,7 @@
 
 .editorial-reel__marquee-item i { width: 4px; height: 4px; border-radius: 50%; background: #000; }
 .editorial-reel__benefits:hover .editorial-reel__marquee-track { animation-play-state: paused; }
-@keyframes editorial-reel-marquee { to { transform: translate3d(-25%, 0, 0); } }
+@keyframes editorial-reel-marquee { to { transform: translate3d(-50%, 0, 0); } }
 
 .editorial-reel__carousel { position: relative; margin-top: clamp(30px, 3vw, 48px); }
 
