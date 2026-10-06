@@ -1,0 +1,31 @@
+.collection-grid{background:#fff;padding:clamp(76px,10vw,160px) var(--gutter) clamp(100px,12vw,180px)}
+/* Reuses the existing brand asset as a quiet, persistent identity layer. */
+body:has(.collection-grid) .site-header{display:flex!important;position:fixed;pointer-events:none;color:#fff;mix-blend-mode:difference}
+body:has(.collection-grid) .site-header .brand-link{pointer-events:auto}
+body:has(.collection-grid) .site-header .brand-asset{filter:invert(1)}
+body:has(.collection-grid) .site-header .desktop-nav,body:has(.collection-grid) .site-header .header-edition,body:has(.collection-grid) .site-header .menu-button,body:has(.collection-grid) .site-header .mobile-nav{display:none!important}
+.collection-grid__heading{display:flex;align-items:baseline;justify-content:space-between;gap:32px;margin:0 0 clamp(36px,5vw,72px)}
+.collection-grid__heading h1{font-size:clamp(30px,4vw,64px);font-weight:400;letter-spacing:-.055em;line-height:.96}
+.collection-grid__cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(38px,5vw,80px) clamp(14px,1.5vw,26px)}
+.collection-grid__card{display:block;min-width:0;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.collection-grid__image{position:relative;aspect-ratio:4 / 5;overflow:hidden;background:#ecece8}
+.collection-grid__image img{height:100%;width:100%;object-fit:cover;transition:transform .9s cubic-bezier(.22,1,.36,1)}
+.collection-grid__meta{display:flex;align-items:center;justify-content:space-between;padding-top:13px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.collection-grid__meta span:last-child{font-size:15px;line-height:1;transition:transform .45s cubic-bezier(.22,1,.36,1)}
+@media (hover:hover){.collection-grid__card:hover{transform:translateY(-7px)}.collection-grid__card:hover .collection-grid__image img{transform:scale(1.035)}.collection-grid__card:hover .collection-grid__meta span:last-child{transform:translate(3px,-3px)}}
+
+.collection-gallery{min-height:100svh;background:#fff;color:#000;padding:clamp(22px,4vw,64px);padding-top:clamp(24px,3vw,48px)}
+.collection-gallery__header{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:clamp(28px,4vw,56px)}
+.collection-gallery__brand{display:block;width:132px}.collection-gallery__brand img{height:auto;width:100%}
+.collection-gallery__back{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;transition:opacity .25s ease}.collection-gallery__back:hover{opacity:.52}
+.collection-gallery__content{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(240px,.72fr);gap:clamp(20px,4vw,64px);align-items:start;max-width:1680px;margin:auto}
+.collection-gallery__main-image{position:relative;aspect-ratio:4 / 5;overflow:hidden;background:#ecece8}
+.collection-gallery__selected-image{object-fit:cover;animation:collection-gallery-fade .55s cubic-bezier(.22,1,.36,1)}
+.collection-gallery__details{display:grid;gap:clamp(24px,4vw,50px);padding-top:4px}
+.collection-gallery__title-row{display:flex;justify-content:space-between;align-items:baseline;gap:24px;border-bottom:1px solid #d9d9d5;padding-bottom:12px}
+.collection-gallery__title-row h1{font-size:clamp(24px,2.6vw,42px);font-weight:400;letter-spacing:-.055em}.collection-gallery__title-row span{font-size:10px;letter-spacing:.11em;white-space:nowrap}
+.collection-gallery__thumbnails{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.collection-gallery__thumbnail{position:relative;aspect-ratio:4 / 5;overflow:hidden;border:0;background:#ecece8;padding:0;opacity:.55;transition:opacity .3s ease,transform .3s cubic-bezier(.22,1,.36,1)}
+.collection-gallery__thumbnail[aria-pressed=true]{opacity:1}.collection-gallery__thumbnail img{height:100%;width:100%;object-fit:cover}.collection-gallery__thumbnail:hover{opacity:1;transform:translateY(-3px)}
+@keyframes collection-gallery-fade{from{opacity:0;transform:scale(1.012)}to{opacity:1;transform:scale(1)}}
+@media(max-width:720px){.collection-grid{padding-block:72px 100px}.collection-grid__heading{display:block;margin-bottom:36px}.collection-grid__heading .eyebrow{margin-bottom:12px}.collection-grid__cards{grid-template-columns:1fr;gap:42px}.collection-grid__image{aspect-ratio:4 / 5}.collection-gallery{padding:20px}.collection-gallery__header{margin-bottom:30px}.collection-gallery__brand{width:118px}.collection-gallery__content{display:block}.collection-gallery__main-image{aspect-ratio:4 / 5}.collection-gallery__details{gap:22px;padding-top:18px}.collection-gallery__thumbnails{display:flex;gap:9px;overflow-x:auto;padding-bottom:5px;scroll-snap-type:x proximity;-ms-overflow-style:none;scrollbar-width:none}.collection-gallery__thumbnails::-webkit-scrollbar{display:none}.collection-gallery__thumbnail{flex:0 0 25%;scroll-snap-align:start}}

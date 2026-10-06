@@ -32,8 +32,7 @@ export const collectionLooks: CollectionLook[] = [
 
 export const brand = {
   name: "Happy Boy",
-  // Set to an official SVG/PNG in /public; never recreate the official lettering.
-  logoSrc: null as string | null,
+  logoSrc: "/images/happy-boy-logo-black.png",
   instagram: "https://www.instagram.com/happyboyoficial/",
   shopHref: null as string | null,
   contactHref: null as string | null,
