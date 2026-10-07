@@ -4,11 +4,11 @@ import "./globals.css";
 import { campaign } from "@/data/sea-sky";
 
 export const metadata: Metadata = {
-  title: "Happy Boy — SEA SKY",
-  description: "Explore SEA SKY, a coleção Happy Boy, em uma experiência editorial interativa.",
+  title: "Happy Boy — Moda masculina | Coleção SEA SKY",
+  description: "Conheça a Happy Boy e a coleção SEA SKY. Explore polos, camisetas, camisas, calças e bermudas de moda masculina e fale com a nossa equipe.",
   openGraph: {
     title: "Happy Boy — SEA SKY",
-    description: "Uma coleção. Cinco perspectivas. Explore a prévia editorial SEA SKY.",
+    description: "Conheça a coleção SEA SKY e explore a seleção de moda masculina da Happy Boy.",
     locale: "pt_BR",
     type: "website",
   },

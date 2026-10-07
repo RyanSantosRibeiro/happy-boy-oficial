@@ -1,5 +1,7 @@
 # SEA SKY — guia de implementação
 
+> Histórico da experiência de scroll. Em 6 de outubro de 2026, o `<HeroBanner />` foi comentado por solicitação do usuário e substituído pelo hero em loop. Para a página atual e suas configurações, consulte [storefront.md](storefront.md).
+
 ## Estado da prévia
 
 O projeto apresenta uma campanha editorial com um único hero cinematográfico, introdução da coleção, conceito provisório, índice assimétrico dos cinco looks, convite para conhecer a marca e rodapé. O `HeroBanner` reúne abertura e experiência dos looks, sem repetir a sequência em outra seção.

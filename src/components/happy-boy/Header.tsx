@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { BrandMark } from "./BrandMark";
 
-const links = [{ href: "#experience", label: "Collection" }, { href: "#shop", label: "Shop" }, { href: "#about", label: "About" }];
+const links = [{ href: "/#collection", label: "Coleção" }, { href: "/#shop", label: "Peças" }, { href: "/#about", label: "Sobre nós" }];
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -20,14 +21,14 @@ export function Header() {
     return () => { document.removeEventListener("pointerdown", onPointer); document.removeEventListener("keydown", onKey); media.removeEventListener("change", close); };
   }, [open]);
   return <header className="site-header" ref={header}>
-    <a href="#top" aria-label="Happy Boy — início" className="brand-link" onClick={() => setOpen(false)}><BrandMark /></a>
-    <nav className="desktop-nav" aria-label="Navegação principal">{links.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}</nav>
-    <a className="header-edition" href="#looks"><span className="status-dot" /> SEA SKY / 26</a>
+    <Link href="/#top" aria-label="Happy Boy — início" className="brand-link" onClick={() => setOpen(false)}><BrandMark /></Link>
+    <nav className="desktop-nav" aria-label="Navegação principal">{links.map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}</nav>
+    <Link className="header-edition" href="/#contact"><span className="status-dot" /> Fale com a gente</Link>
     <button className="menu-button" aria-controls="mobile-navigation" aria-expanded={open} aria-label={open ? "Fechar menu" : "Abrir menu"} onClick={() => setOpen(!open)} ref={trigger}>
       <span>{open ? "Fechar" : "Menu"}</span><span className="menu-icon" data-open={open}><i /><i /></span>
     </button>
     <nav id="mobile-navigation" className="mobile-nav" aria-label="Navegação mobile" hidden={!open} onBlur={(event) => { if (!header.current?.contains(event.relatedTarget as Node | null)) setOpen(false); }}>
-      {links.map((link) => <a key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}<span aria-hidden="true">↗</span></a>)}
+      {links.map((link) => <Link key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}<span aria-hidden="true">↗</span></Link>)}
       <span className="eyebrow">Happy Boy / SEA SKY / 2026</span>
     </nav>
   </header>;

@@ -1,12 +1,7 @@
 .collection-grid{background:#fff;padding:clamp(76px,10vw,160px) var(--gutter) clamp(100px,12vw,180px)}
-/* Reuses the existing brand asset as a quiet, persistent identity layer. */
-body:has(.collection-grid) .site-header{display:flex!important;position:fixed;pointer-events:none;color:#fff;mix-blend-mode:difference}
-body:has(.collection-grid) .site-header .brand-link{pointer-events:auto}
-body:has(.collection-grid) .site-header .brand-asset{filter:invert(1)}
-body:has(.collection-grid) .site-header .desktop-nav,body:has(.collection-grid) .site-header .header-edition,body:has(.collection-grid) .site-header .menu-button,body:has(.collection-grid) .site-header .mobile-nav{display:none!important}
 .collection-grid__heading{display:flex;align-items:baseline;justify-content:space-between;gap:32px;margin:0 0 clamp(36px,5vw,72px)}
-.collection-grid__heading h1{font-size:clamp(30px,4vw,64px);font-weight:400;letter-spacing:-.055em;line-height:.96}
-.collection-grid__cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(38px,5vw,80px) clamp(14px,1.5vw,26px)}
+.collection-grid__heading h2{font-size:clamp(30px,4vw,64px);font-weight:400;letter-spacing:-.055em;line-height:.96}
+.collection-grid__cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(38px,5vw,80px) clamp(14px,1.5vw,26px)}
 .collection-grid__card{display:block;min-width:0;transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .collection-grid__image{position:relative;aspect-ratio:4 / 5;overflow:hidden;background:#ecece8}
 .collection-grid__image img{height:100%;width:100%;object-fit:cover;transition:transform .9s cubic-bezier(.22,1,.36,1)}

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRef, type CSSProperties } from "react";
 import { campaign } from "@/data/sea-sky";
 import { useVideoScrub } from "@/hooks/useVideoScrub";

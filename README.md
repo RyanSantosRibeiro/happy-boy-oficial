@@ -1,10 +1,10 @@
 # Happy Boy — SEA SKY
 
-Prévia editorial da coleção SEA SKY em Next.js, TypeScript, React e GSAP. O scroll controla a sequência de cinco looks; títulos e informações continuam em HTML.
+Site editorial da coleção SEA SKY em Next.js, TypeScript e React, com Roboto local e identidade preto, branco e neon.
 
-Um único `HeroBanner` ocupa `100svh × 5 looks` (500svh no total). A tela de 100svh fica presa durante o percurso; as quatro transformações estão incluídas nessa sequência. Depois do quinto look, a página continua pelas seções editoriais.
+O novo `CampaignHero` ocupa uma tela e reproduz o vídeo local em loop. Header e textos aparecem após 2,5 segundos. O antigo `<HeroBanner />` permanece comentado em `src/app/page.tsx`.
 
-O projeto inclui uma prévia de movimento feita com as duas fotografias de referência fornecidas e transições suaves entre imagens. O filme final do Google Flow poderá substituir os dois arquivos sem alterar a lógica do scroll. Os nomes e textos são provisórios, três looks repetem as referências e nenhum preço comercial foi inventado.
+A página inclui duas vitrines com dois produtos por vez, banners alternados, o grid de coleções existente, cinco imagens do Instagram, sobre nós, WhatsApp e rodapé. Os banners e produtos usam agora as fotos locais da coleção; as seções ainda sem fotos próprias permanecem com placeholders dimensionados. Dados comerciais são ilustrativos; preços não publicados permanecem vazios.
 
 ## Executar
 
@@ -15,7 +15,7 @@ pnpm install
 pnpm dev
 ```
 
-Abra `http://localhost:3000`. Se a porta estiver ocupada, use a URL informada pelo Next.js.
+Abra `http://localhost:3001`, porta configurada no script de desenvolvimento. A versão de produção usa a porta padrão 3000.
 
 ## Verificar e gerar a versão de produção
 
@@ -31,11 +31,11 @@ Esses comandos são instruções de verificação, não um registro de resultado
 
 ## Editar a coleção
 
-- **Conteúdo, fotos e links:** `src/data/sea-sky.ts`.
-- **Vídeo:** o hero usa `public/videos/background.mp4` como filme de fundo. Para criar versões específicas por dispositivo, altere `campaign.videoDesktop` e `campaign.videoMobile` em `src/data/sea-sky.ts`.
-- **Ritmo, poses e textos:** `collectionTimeline` em `src/data/sea-sky.ts` e padrões de `src/lib/collection-timeline.ts`.
-- **Altura do hero:** `campaign.heroViewportHeightsPerLook` (padrão 1) multiplicado pela quantidade de looks.
-- **Protótipo com dois looks:** defina `campaign.prototypeLookCount: 2`.
-- **Logo:** forneça o asset oficial e preencha `brand.logoSrc`. O marcador atual apenas reserva seu espaço.
+- **Vídeo, atraso de entrada, banners, logo, Instagram e WhatsApp:** `src/data/storefront.ts`.
+- **Produtos completos, fotos, preços, tamanhos e descrições:** `src/data/products.ts`.
+- **Coleções por cor e suas galerias:** `src/data/collection.ts`.
+- **Texto institucional:** `src/components/happy-boy/AboutSection.tsx`.
+- **Ordem das seções:** `src/app/page.tsx`.
+- **Indexação:** `campaign.isPreview` em `src/data/sea-sky.ts`; mantém `noindex` enquanto os dados são provisórios.
 
-Leia o [guia de implementação](docs/implementation.md) para arquitetura, inventário, preparo de vídeo e revisão. A [referência institucional](docs/brand-reference.txt) preserva as orientações da marca; somente SEA SKY orienta a campanha atual.
+Leia o [guia atual da vitrine](docs/storefront.md). O [guia anterior](docs/implementation.md) documenta a experiência de scroll preservada no código, atualmente desativada. A [referência institucional](docs/brand-reference.txt) preserva as orientações da marca; somente SEA SKY orienta a campanha atual.

@@ -9,55 +9,49 @@ export type Collection = {
   images: readonly string[];
 };
 
+export type CollectionAsset = {
+  src: string;
+  width: number;
+  height: number;
+};
+
+// Temporary campaign mapping: the same supplied image may be reused until the full set arrives.
+export const collectionAssets: Record<CollectionSlug, CollectionAsset> = {
+  preto: { src: "/images/collection/black/RAY_9090.jpg", width: 3883, height: 5824 },
+  verde: { src: "/images/collection/green/RAY_8966.jpg", width: 3883, height: 5824 },
+  branco: { src: "/images/collection/white/RAY_8954.jpg", width: 3883, height: 5824 },
+  azul: { src: "/images/collection/blue/RAY_9029.jpg", width: 3889, height: 5833 },
+};
+
 export const collections: Record<CollectionSlug, Collection> = {
   preto: {
     slug: "preto",
     name: "Preto",
-    cover: "/images/collection/black/RAY_9101.jpg",
-    images: [
-      "/images/collection/black/RAY_9101.jpg",
-      "/images/collection/black/RAY_9094.jpg",
-      "/images/collection/black/RAY_9093.jpg",
-      "/images/collection/black/RAY_9090.jpg",
-    ],
+    cover: collectionAssets.preto.src,
+    images: Array.from({ length: 4 }, () => collectionAssets.preto.src),
   },
   verde: {
     slug: "verde",
     name: "Verde",
-    cover: "/images/collection/green/RAY_8966.jpg",
-    images: [
-      "/images/collection/green/RAY_8966.jpg",
-      "/images/collection/green/RAY_9016.jpg",
-      "/images/collection/green/RAY_8976.jpg",
-      "/images/collection/green/RAY_8982.jpg",
-    ],
+    cover: collectionAssets.verde.src,
+    images: Array.from({ length: 4 }, () => collectionAssets.verde.src),
   },
   branco: {
     slug: "branco",
     name: "Branco",
-    cover: "/images/collection/white/RAY_8954.jpg",
-    images: [
-      "/images/collection/white/RAY_8954.jpg",
-      "/images/collection/white/RAY_8934.jpg",
-      "/images/collection/white/RAY_8943.jpg",
-      "/images/collection/white/RAY_8945.jpg",
-    ],
+    cover: collectionAssets.branco.src,
+    images: Array.from({ length: 4 }, () => collectionAssets.branco.src),
   },
   azul: {
     slug: "azul",
     name: "Azul",
-    cover: "/images/collection/blue/RAY_9029.jpg",
-    images: [
-      "/images/collection/blue/RAY_9029.jpg",
-      "/images/collection/blue/RAY_9077.jpg",
-      "/images/collection/blue/RAY_9046.jpg",
-      "/images/collection/blue/RAY_9041.jpg",
-    ],
+    cover: collectionAssets.azul.src,
+    images: Array.from({ length: 4 }, () => collectionAssets.azul.src),
   },
 };
 
 export const collectionItems = collectionOrder.map((slug) => collections[slug]);
 
 export function isCollectionSlug(value: string): value is CollectionSlug {
-  return value in collections;
+  return Object.hasOwn(collections, value);
 }
