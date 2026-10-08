@@ -34,8 +34,8 @@
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: clamp(16px, 2.1vw, 34px);
-  padding-inline: clamp(16px, 2.1vw, 34px);
+  gap: clamp(24px, 3.15vw, 51px);
+  padding-inline: clamp(24px, 3.15vw, 51px) 0;
   color: #151515;
   font-size: 9px;
   font-weight: 500;
@@ -59,7 +59,7 @@
   scroll-behavior: smooth;
   scroll-snap-type: x proximity;
   scrollbar-width: none;
-  touch-action: pan-y;
+  touch-action: pan-x pan-y;
   cursor: grab;
 }
 

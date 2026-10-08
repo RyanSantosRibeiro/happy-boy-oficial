@@ -29,7 +29,7 @@ export function Header() {
     </button>
     <nav id="mobile-navigation" className="mobile-nav" aria-label="Navegação mobile" hidden={!open} onBlur={(event) => { if (!header.current?.contains(event.relatedTarget as Node | null)) setOpen(false); }}>
       {links.map((link) => <Link key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}<span aria-hidden="true">↗</span></Link>)}
-      <span className="eyebrow">Happy Boy / SEA SKY / 2026</span>
+      <span className="eyebrow">Happy Boy / Travel Edition / 2026</span>
     </nav>
   </header>;
 }

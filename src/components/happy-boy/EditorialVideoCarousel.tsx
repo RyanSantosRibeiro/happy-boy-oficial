@@ -2,14 +2,13 @@
 
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 
-const benefitItems = ["Happy Boy", "Sea Sky", "Nova coleção"];
+const benefitItems = ["Happy Boy", "Travel Edition", "Nova coleção"];
 
 const videos = [
-  "/videos/editorial/01.mp4",
-  "/videos/editorial/02.mp4",
-  "/videos/editorial/03.mp4",
-  "/videos/editorial/04.mp4",
-  "/videos/editorial/05.mp4",
+  { file: "01-happyboy-travel-branco", color: "branco" },
+  { file: "02-happyboy-travel-verde", color: "verde" },
+  { file: "03-happyboy-travel-azul", color: "azul" },
+  { file: "04-happyboy-travel-preto", color: "preto" },
 ];
 
 const marqueeItems = Array.from({ length: 6 }, () => benefitItems).flat();
@@ -36,11 +35,13 @@ export function EditorialVideoCarousel() {
       (entries) => {
         entries.forEach((entry) => {
           const video = entry.target as HTMLVideoElement;
-          if (entry.isIntersecting) void video.play().catch(() => undefined);
-          else video.pause();
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+            if (!video.getAttribute("src") && video.dataset.src) video.src = video.dataset.src;
+            void video.play().catch(() => undefined);
+          } else video.pause();
         });
       },
-      { root: track, threshold: 0.35 },
+      { threshold: 0.35 },
     );
 
     const media = Array.from(track.querySelectorAll("video"));
@@ -84,7 +85,7 @@ export function EditorialVideoCarousel() {
   return (
     <section className="editorial-reel" aria-label="Vídeos da coleção">
       <div className="editorial-reel__benefits" aria-label="Informações da coleção">
-        <span className="sr-only">Happy Boy. Sea Sky. Nova coleção.</span>
+        <span className="sr-only">Happy Boy. Travel Edition. Nova coleção.</span>
         <div className="editorial-reel__marquee" aria-hidden="true">
           <div className="editorial-reel__marquee-track">
             {[0, 1].map((sequence) => (
@@ -105,9 +106,9 @@ export function EditorialVideoCarousel() {
           <span aria-hidden="true">←</span>
         </button>
         <div className="editorial-reel__track" ref={trackRef} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={endDrag} onPointerCancel={endDrag} onPointerLeave={endDrag}>
-          {videos.map((src, index) => (
-            <article className="editorial-reel__card" key={src}>
-              <video src={src} muted loop playsInline preload="metadata" disablePictureInPicture disableRemotePlayback aria-label={`Vídeo editorial ${index + 1}`} />
+          {videos.map(({ file, color }) => (
+            <article className="editorial-reel__card" key={file}>
+              <video data-src={`/videos/travel-edition/${file}.mp4`} poster={`/videos/travel-edition/${file}-capa.jpg`} autoPlay muted loop playsInline preload="none" disablePictureInPicture disableRemotePlayback aria-label={`Travel Edition — conjunto ${color}`} />
             </article>
           ))}
         </div>

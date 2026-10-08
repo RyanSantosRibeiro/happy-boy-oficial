@@ -9,10 +9,10 @@ export const storefront = {
     videoSrc: "/videos/backgroud.mp4" as string | null,
     poster: placeholder(1920, 1080, "Vídeo da campanha"),
     revealDelaySeconds: 2.5,
-    title: "SEA SKY",
-    subtitle: "Uma nova perspectiva sobre o vestir.",
+    title: "TRAVEL EDITION",
+    subtitle: "Do cotidiano ao destino, com estilo em cada caminho",
   },
-  logo: brandProfileImage,
+  logo: "/images/happy-boy-logo-black.png",
   whatsapp: {
     // International digits only, including country and area code. No fake number.
     phone: "558589634064",

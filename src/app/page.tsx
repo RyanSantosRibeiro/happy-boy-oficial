@@ -2,12 +2,9 @@
 import { CampaignHero } from "@/components/happy-boy/CampaignHero";
 import { EditorialVideoCarousel } from "@/components/happy-boy/EditorialVideoCarousel";
 import { CollectionGrid } from "@/components/happy-boy/CollectionGrid";
-import { ProductShowcase } from "@/components/happy-boy/ProductShowcase";
-import { InstagramSection } from "@/components/happy-boy/InstagramSection";
 import { AboutSection } from "@/components/happy-boy/AboutSection";
-import { WhatsAppButton } from "@/components/happy-boy/WhatsAppButton";
 import { Footer } from "@/components/happy-boy/Footer";
-import { storefront } from "@/data/storefront";
+import { WhatsAppButton } from "@/components/happy-boy/WhatsAppButton";
 import "@/components/happy-boy/campaign.css";
 import "@/components/happy-boy/editorial.css";
 import "@/components/happy-boy/collection.css";
@@ -21,10 +18,7 @@ export default function Home() {
       {/* <HeroBanner /> */}
       <CampaignHero />
       <EditorialVideoCarousel />
-      <ProductShowcase {...storefront.showcases[0]} />
       <CollectionGrid />
-      <ProductShowcase {...storefront.showcases[1]} />
-      <InstagramSection />
       <AboutSection />
     </main>
     <Footer />

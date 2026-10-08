@@ -7,11 +7,12 @@
 .campaign-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg,#0006,transparent 34%,#0008); pointer-events: none; }
 .campaign-hero__header { position: absolute; top: 0; inset-inline: 0; z-index: 30; }
 .campaign-hero .site-header { color: #fff; }
+.campaign-hero .brand-asset { filter: invert(1); }
 .campaign-hero .desktop-nav a::after, .campaign-hero .status-dot, .campaign-hero .menu-icon i { background: currentColor; }
 .campaign-hero .mobile-nav { color: #000; }
 .campaign-hero__copy { position: absolute; inset-inline: var(--gutter); bottom: clamp(70px,10vh,120px); }
 .campaign-hero__edition { font-size: 12px; margin-bottom: 24px; }
-.campaign-hero h1 { font-size: clamp(76px,18vw,300px); font-weight: 450; letter-spacing: -.075em; line-height: .84; white-space: nowrap; }
+.campaign-hero h1 { font-size: clamp(52px,9vw,170px); font-weight: 450; letter-spacing: -.075em; line-height: .84; white-space: nowrap; }
 .campaign-hero__bottom { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-top: 40px; }
 .campaign-hero__bottom p { max-width: 290px; font-size: clamp(14px,1.3vw,20px); line-height: 1.5; }
 .campaign-hero__bottom a { display: inline-flex; align-items: center; gap: 40px; border-bottom: 1px solid #ffffff80; padding-block: 14px; font-size: 12px; }
@@ -80,6 +81,7 @@
 .store-footer__columns nav, .store-footer__contact { display: flex; flex-direction: column; align-items: flex-start; }
 .store-footer__columns a { font-size: 12px; line-height: 1.6; padding-block: 5px; }
 .store-footer__brand p { max-width: 240px; margin-block: 24px 14px; }
+.store-footer__brand .brand-asset { width: min(100%, 320px); height: auto; max-height: none; filter: invert(1); }
 .store-footer__columns p { color: #bcbcbc; font-size: 12px; line-height: 1.8; }
 .store-footer__contact p { margin-bottom: 16px; }
 .store-footer a:hover { color: var(--neon); }
@@ -115,7 +117,7 @@
 }
 @media (max-width: 760px) {
   .campaign-hero { min-height: 400px; }
-  .campaign-hero h1 { font-size: 20vw; }
+  .campaign-hero h1 { font-size: clamp(42px,11.2vw,72px); }
   .campaign-hero__edition { font-size: 11px; }
   .campaign-hero__bottom { align-items: flex-start; flex-direction: column; gap: 20px; margin-top: 28px; }
   .campaign-hero__bottom p { max-width: 220px; }

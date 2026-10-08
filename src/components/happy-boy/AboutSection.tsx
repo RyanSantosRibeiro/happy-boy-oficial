@@ -1,4 +1,3 @@
-import { storefront } from "@/data/storefront";
 import { SiteImage } from "./SiteImage";
 
 export function AboutSection() {
@@ -10,6 +9,6 @@ export function AboutSection() {
       <p>Na coleção SEA SKY, esse olhar se traduz em uma seleção de polos, camisetas, camisas, calças e bermudas. Explore as peças e descubra possibilidades para combinar cores e construir seu próprio estilo.</p>
       <a className="storefront-link" href="#collection">Conheça a coleção <span aria-hidden="true">↗</span></a>
     </div>
-    <div className="about-section__image"><SiteImage src={storefront.aboutImage} alt="Imagem de perfil da Happy Boy" fill sizes="(max-width: 760px) 100vw, 45vw" unoptimized /></div>
+    <div className="about-section__image" style={{ background: "#000" }}><SiteImage src="/images/hb-monogram-official.png" alt="Monograma oficial HB branco sobre fundo preto" fill sizes="(max-width: 760px) 100vw, 45vw" style={{ objectFit: "contain" }} unoptimized /></div>
   </section>;
 }
