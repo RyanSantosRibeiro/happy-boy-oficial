@@ -1,4 +1,5 @@
-import { lifestyleEditorialLooks } from "./editorial-looks";
+import { lifestyleEditorialLooks, shirtShortEditorialLook } from "./editorial-looks";
+import { collectionFamilies, collectionVariantHref } from "./collection-families";
 
 export type LifestyleSlug = typeof lifestyleEditorialLooks[number]["slug"];
 export type LookPhoto = { id: string; src: string; original: string; alt: string };
@@ -9,6 +10,8 @@ export type LifestyleGalleryData = {
   cover: string;
   photos: LookPhoto[];
   color?: string;
+  consultationMessage?: string;
+  returnHref?: string;
   variants?: LookVariantLink[];
 };
 
@@ -44,14 +47,26 @@ const photo = ({ id, alt }: { id: string; alt: string }): LookPhoto => ({
   original: `/images/travel-edition/lifestyle/originals/RAY_${id}.jpg`,
 });
 
-export const lifestyleGalleries: LifestyleGalleryData[] = lifestyleEditorialLooks.map((look) => ({
+export const lifestyleGalleries: LifestyleGalleryData[] = [...lifestyleEditorialLooks.map((look) => ({
   id: look.id,
   slug: look.slug,
   name: look.label,
   cover: look.src,
   photos: [photo(look), ...additionalPhotos[look.slug].map(photo)],
-}));
+})), {
+  id: shirtShortEditorialLook.id, slug: shirtShortEditorialLook.slug,
+  name: shirtShortEditorialLook.label, cover: shirtShortEditorialLook.src,
+  photos: [photo(shirtShortEditorialLook),
+    photo({ id: "8873", alt: "Vista frontal da camisa clara aberta e do short preto próximo ao veículo" }),
+    photo({ id: "8876", alt: "Detalhe do tecido, dos botões e do acabamento da camisa clara Happy Boy" })],
+}];
 
 export function getLifestyleGallery(slug: string) {
-  return lifestyleGalleries.find((look) => look.slug === slug);
+  const look = lifestyleGalleries.find((look) => look.slug === slug);
+  if (slug === "camisa-clara" && look) return { ...look, returnHref: "/#about" };
+  if (slug !== "camiseta-bermuda" || !look) return look;
+  const family = collectionFamilies.find(item => item.slug === "camiseta-contrast")!;
+  return { ...look, color: "Branca / bermuda bege", variants: family.variants.map(item => ({
+    color: item.color, name: item.name, swatch: item.swatch, href: collectionVariantHref(family.slug, item),
+  })) };
 }

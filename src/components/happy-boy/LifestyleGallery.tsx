@@ -8,6 +8,7 @@ import { SiteImage } from "./SiteImage";
 import { ProductConsultationButton } from "./ProductConsultationButton";
 
 export function LifestyleGallery({ look }: { look: LifestyleGalleryData }) {
+  const returnHref = look.returnHref ?? "/#collection";
   const [selected, setSelected] = useState(0);
   const stage = useRef<HTMLDivElement>(null);
   const request = useRef(0);
@@ -41,7 +42,7 @@ export function LifestyleGallery({ look }: { look: LifestyleGalleryData }) {
   return <main className="look-gallery lifestyle-gallery">
     <header className="look-gallery__header">
       <Link href="/" className="look-gallery__brand" aria-label="Happy Boy — início"><BrandMark /></Link>
-      <Link href="/#collection" className="look-gallery__back">← Voltar à coleção</Link>
+      <Link href={returnHref} className="look-gallery__back">← Voltar à coleção</Link>
     </header>
     <div className="look-gallery__layout">
       <section className="look-gallery__media" aria-label={`Fotografias de ${look.name.toLowerCase()}`}>
@@ -97,14 +98,14 @@ export function LifestyleGallery({ look }: { look: LifestyleGalleryData }) {
             <span>{variant.name}</span>
           </Link>)}
         </nav>}
-        <ProductConsultationButton name={look.name} color={look.color} />
+        <ProductConsultationButton name={look.name} color={look.color} message={look.consultationMessage} />
         <div className="lifestyle-gallery__navigation" aria-label="Navegar entre fotografias">
           <button type="button" aria-label="Fotografia anterior" disabled={selected === 0} onClick={() => void select(selected - 1)}>←</button>
           <p className="look-gallery__count" aria-live="polite">{String(selected + 1).padStart(2, "0")} <span>/ {String(look.photos.length).padStart(2, "0")}</span></p>
           <button type="button" aria-label="Próxima fotografia" disabled={selected === look.photos.length - 1} onClick={() => void select(selected + 1)}>→</button>
         </div>
         <a className="lifestyle-gallery__original" href={look.photos[selected].original} target="_blank" rel="noopener noreferrer">Ver em resolução original ↗</a>
-        <Link href="/#collection" className="look-gallery__back lifestyle-gallery__return">← Voltar à coleção</Link>
+        <Link href={returnHref} className="look-gallery__back lifestyle-gallery__return">← Voltar à coleção</Link>
       </section>
     </div>
   </main>;

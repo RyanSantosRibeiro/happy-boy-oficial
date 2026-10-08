@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { lifestyleEditorialLooks } from "@/data/editorial-looks";
+import { lifestyleEditorialLooks, shirtShortEditorialLook } from "@/data/editorial-looks";
 import { SiteImage } from "./SiteImage";
 import { CollectionReveal } from "./CollectionReveal";
 import { DryFitEditorialSection } from "./DryFitEditorialSection";
@@ -16,7 +16,7 @@ export function CollectionGrid() {
       </div>
       <div className="collection-selection__looks">
         {[0, 1, 2, 3].map((index) => {
-          const look = lifestyleEditorialLooks[index];
+          const look = index === 0 ? shirtShortEditorialLook : lifestyleEditorialLooks[index];
           const familySlug = index === 1 ? "polo-essential" : index === 2 ? "polo-short" : index === 3 ? "camiseta-contrast" : undefined;
           const family = collectionFamilies.find(item => item.slug === familySlug);
           return <div className="collection-selection__reveal" data-collection-reveal data-look={String(index + 1).padStart(2, "0")} key={look.id}>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { LifestyleGallery } from "@/components/happy-boy/LifestyleGallery";
 import { collectionFamilies, getColorGallery, resolveColorFamily, variantHref } from "@/data/collection-families";
+import { poloCaneladoColors, poloCaneladoSlug } from "@/data/polo-canelado";
 import "@/components/happy-boy/collection.css";
 import "@/components/happy-boy/lifestyle-gallery.css";
 import "@/components/happy-boy/gallery-art-direction.css";
@@ -9,10 +10,10 @@ import "@/components/happy-boy/gallery-art-direction.css";
 type VariantParams = { params: Promise<{ cor: string; variacao: string }> };
 
 export function generateStaticParams() {
-  return collectionFamilies.flatMap(family => family.variants.flatMap(variant => [
+  return [...collectionFamilies.flatMap(family => family.variants.filter(variant => !variant.gallerySlug).flatMap(variant => [
     { cor: family.slug, variacao: variant.color },
     ...(family.slug === "polo-short" ? [{ cor: "polo-essential", variacao: variant.color }] : []),
-  ]));
+  ])), ...poloCaneladoColors.map(color => ({ cor: poloCaneladoSlug, variacao: color.slug }))];
 }
 
 export async function generateMetadata({ params }: VariantParams): Promise<Metadata> {

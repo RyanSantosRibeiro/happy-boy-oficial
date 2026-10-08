@@ -1,6 +1,7 @@
 import type { LifestyleGalleryData, LookVariantLink } from "./lifestyle-galleries";
+import { getPoloCaneladoGallery, poloCaneladoSlug } from "./polo-canelado";
 
-export type CollectionVariant = { color: string; name: string; swatch: string; cover: string; photos: Array<{ id: string; alt: string }> };
+export type CollectionVariant = { color: string; name: string; swatch: string; cover: string; photos: Array<{ id: string; alt: string }>; gallerySlug?: string; label?: string };
 export type CollectionFamily = { slug: string; name: string; variants: CollectionVariant[] };
 
 // Provisional editorial names; photographs were grouped by garment construction.
@@ -281,7 +282,15 @@ export const collectionFamilies: CollectionFamily[] = [
   }
 ];
 
+// This existing look joins the last carousel while keeping its own gallery URL.
+collectionFamilies.find(family => family.slug === "camiseta-contrast")!.variants.push({
+  color: "branca-bermuda-bege", name: "Branca / bermuda bege", swatch: "#f1efeb", cover: "8882",
+  label: "Camiseta e bermuda", gallerySlug: "camiseta-bermuda",
+  photos: [{ id: "8882", alt: "Modelo usando camiseta branca e bermuda bege Happy Boy próximo ao veículo" }],
+});
+
 export const variantHref = (family: string, color: string) => `/colecao/${family}/${color}`;
+export const collectionVariantHref = (family: string, variant: CollectionVariant) => variant.gallerySlug ? `/colecao/${variant.gallerySlug}` : variantHref(family, variant.color);
 export const variantPhoto = (id: string) => `/images/travel-edition/lifestyle/RAY_${id}.webp`;
 
 // Keep the previous mixed-polo URLs pointing to the same complete looks.
@@ -291,10 +300,12 @@ export function resolveColorFamily(familySlug: string, color: string) {
 }
 
 export function getColorGallery(familySlug: string, color: string): LifestyleGalleryData | undefined {
+  if (familySlug === poloCaneladoSlug) return getPoloCaneladoGallery(color);
   const family = collectionFamilies.find(item => item.slug === familySlug);
   const variant = family?.variants.find(item => item.color === color);
   if (!family || !variant) return undefined;
-  const variants: LookVariantLink[] = family.variants.map(item => ({ color: item.color, name: item.name, swatch: item.swatch, href: variantHref(family.slug, item.color) }));
+  if (variant.gallerySlug) return undefined;
+  const variants: LookVariantLink[] = family.variants.map(item => ({ color: item.color, name: item.name, swatch: item.swatch, href: collectionVariantHref(family.slug, item) }));
   return { id: `${family.slug}-${variant.color}`, slug: family.slug, name: family.name, cover: variantPhoto(variant.cover), color: variant.name, variants,
     photos: variant.photos.map(photo => ({ ...photo, src: variantPhoto(photo.id), original: `/images/travel-edition/lifestyle/originals/RAY_${photo.id}.jpg` })) };
 }

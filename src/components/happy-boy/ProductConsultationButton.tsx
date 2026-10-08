@@ -2,8 +2,8 @@ import { getWhatsAppHref } from "@/data/storefront";
 import { productConsultationMessage } from "@/lib/product-consultation";
 import "./product-consultation.css";
 
-export function ProductConsultationButton({ name, color }: { name: string; color?: string }) {
-  const href = getWhatsAppHref(productConsultationMessage(name, color));
+export function ProductConsultationButton({ name, color, message }: { name: string; color?: string; message?: string }) {
+  const href = getWhatsAppHref(message ?? productConsultationMessage(name, color));
   if (!href) return null;
 
   return <a className="product-consultation" href={href} target="_blank" rel="noopener noreferrer"

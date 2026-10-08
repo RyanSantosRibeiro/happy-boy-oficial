@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRef, useState, type CSSProperties, type PointerEvent } from "react";
-import { variantHref, variantPhoto, type CollectionFamily } from "@/data/collection-families";
+import { collectionVariantHref, variantPhoto, type CollectionFamily } from "@/data/collection-families";
 import { SiteImage } from "./SiteImage";
 import "./family-color-card.css";
 
@@ -97,9 +97,9 @@ export function FamilyColorCard({ family }: { family: CollectionFamily }) {
           }}>
           {slides.map((variant, index) => {
             const selected = index === active + 1;
-            return <Link key={`${variant.color}-${index}`} href={variantHref(family.slug, variant.color)} prefetch={false}
+            return <Link key={`${variant.color}-${index}`} href={collectionVariantHref(family.slug, variant)} prefetch={false}
               className="family-color-card__slide" data-color-slide={index} aria-hidden={!selected} tabIndex={selected ? 0 : -1}
-              aria-label={`Ver ${family.name} — ${variant.name}`} draggable={false}>
+              aria-label={`Ver ${variant.label ?? family.name} — ${variant.name}`} draggable={false}>
               <SiteImage src={variantPhoto(variant.cover)} alt={variant.photos[0].alt} fill sizes="(max-width: 700px) 92vw, (max-width: 1100px) 44vw, 23vw" loading="lazy" draggable={false} />
             </Link>;
           })}
@@ -107,7 +107,7 @@ export function FamilyColorCard({ family }: { family: CollectionFamily }) {
       </div>
     </figure>
     <div className="family-color-card__caption">
-      <p className="collection-look__label family-color-card__label">{family.name}<span aria-live="polite">{looks[active].name}</span></p>
+      <p className="collection-look__label family-color-card__label">{looks[active].label ?? family.name}<span aria-live="polite">{looks[active].name}</span></p>
       <div className="family-color-card__controls" aria-label={`Navegação de cores — ${family.name}`}>
       <button type="button" disabled={busy} className="family-color-card__arrow family-color-card__arrow--previous" aria-label={`Cor anterior — ${family.name}`} onClick={() => void move(-1)}>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg>

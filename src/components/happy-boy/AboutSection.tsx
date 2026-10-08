@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SiteImage } from "./SiteImage";
 
 export function AboutSection() {
@@ -9,6 +10,8 @@ export function AboutSection() {
       <p>Uma identidade feita para estar presente em diferentes momentos, caminhos e escolhas.</p>
       <a className="storefront-link" href="#collection">Explore os looks <span aria-hidden="true">↗</span></a>
     </div>
-    <div className="about-section__image"><SiteImage src="/images/travel-edition/lifestyle/RAY_8808.webp" alt="Editorial Happy Boy: modelo com polo marrom e calça bege no cenário de dunas" fill sizes="(max-width: 760px) 90vw, 42vw" style={{ objectPosition: "50% 65%" }} /></div>
+    <Link href="/colecao/camisa-clara" prefetch={false} className="about-section__image" aria-label="Ver galeria de camisa clara e calça clara">
+      <SiteImage src="/images/travel-edition/lifestyle/RAY_8832.webp" alt="Editorial Happy Boy: modelo com camisa clara de botões e calça clara sob o céu azul" fill sizes="(max-width: 760px) 90vw, 42vw" style={{ objectPosition: "50% 65%" }} />
+    </Link>
   </section>;
 }
