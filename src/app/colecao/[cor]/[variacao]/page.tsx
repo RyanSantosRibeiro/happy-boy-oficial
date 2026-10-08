@@ -4,6 +4,7 @@ import { LifestyleGallery } from "@/components/happy-boy/LifestyleGallery";
 import { collectionFamilies, getColorGallery, resolveColorFamily, variantHref } from "@/data/collection-families";
 import "@/components/happy-boy/collection.css";
 import "@/components/happy-boy/lifestyle-gallery.css";
+import "@/components/happy-boy/gallery-art-direction.css";
 
 type VariantParams = { params: Promise<{ cor: string; variacao: string }> };
 

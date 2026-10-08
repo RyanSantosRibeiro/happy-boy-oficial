@@ -10,6 +10,7 @@ import "@/components/happy-boy/editorial.css";
 import "@/components/happy-boy/collection.css";
 import "@/components/happy-boy/editorial-video-carousel.css";
 import "@/components/happy-boy/storefront.css";
+import "@/components/happy-boy/post-collection.css";
 
 export default function Home() {
   return <>
@@ -21,7 +22,7 @@ export default function Home() {
       <CollectionGrid />
       <AboutSection />
     </main>
-    <Footer />
+    <Footer campaignClosing />
     <WhatsAppButton />
   </>;
 }

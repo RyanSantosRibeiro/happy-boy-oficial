@@ -1,25 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState, type CSSProperties, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
+import type { CollectionSlug } from "@/data/collection";
 import { dryFitEditorialLooks as looks } from "@/data/editorial-looks";
 import { SiteImage } from "./SiteImage";
 
 const slides = [looks[looks.length - 1], ...looks, looks[0]];
 
-export function DryFitEditorialCarousel() {
+export function DryFitEditorialCarousel({ onLookChange }: { onLookChange?: (slug: CollectionSlug) => void }) {
   const [position, setPosition] = useState(1);
   const [animated, setAnimated] = useState(true);
+  const [busy, setBusy] = useState(false);
   const viewport = useRef<HTMLDivElement>(null);
   const moving = useRef(false);
   const suppressClick = useRef(false);
   const gesture = useRef<{ x: number; y: number; dx: number; horizontal: boolean } | null>(null);
   const active = (position - 1 + looks.length) % looks.length;
+  useEffect(() => { onLookChange?.(looks[active].slug); }, [active, onLookChange]);
 
   const move = async (direction: -1 | 1) => {
     const element = viewport.current;
     if (!element || moving.current) return;
     moving.current = true;
+    setBusy(true);
     const next = position + direction;
     const image = element.querySelector<HTMLImageElement>(`[data-slide="${next}"] img`);
     if (image && (!image.complete || !image.naturalWidth)) {
@@ -30,7 +34,7 @@ export function DryFitEditorialCarousel() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     setAnimated(!reduced);
     setPosition(reduced ? ((next - 1 + looks.length) % looks.length) + 1 : next);
-    if (reduced) moving.current = false;
+    if (reduced) { moving.current = false; setBusy(false); }
   };
 
   const resetGesture = (element: HTMLDivElement) => {
@@ -45,7 +49,7 @@ export function DryFitEditorialCarousel() {
     gesture.current = { x: event.clientX, y: event.clientY, dx: 0, horizontal: false };
   };
 
-  return <div className="editorial-photo-carousel" role="region" aria-roledescription="carrossel" aria-label="Conjuntos Dry Fit Happy Boy" tabIndex={0}
+  return <div className="editorial-photo-carousel" role="region" aria-roledescription="carrossel" aria-label="Conjuntos Dry Fit Happy Boy" aria-busy={busy} tabIndex={0}
     onKeyDown={(event) => {
       if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
         event.preventDefault();
@@ -76,7 +80,7 @@ export function DryFitEditorialCarousel() {
       }}
       onPointerCancel={(event) => resetGesture(event.currentTarget)}
       onClickCapture={(event) => {
-        if (!suppressClick.current) return;
+        if (!suppressClick.current && !moving.current) return;
         event.preventDefault();
         event.stopPropagation();
         suppressClick.current = false;
@@ -89,21 +93,22 @@ export function DryFitEditorialCarousel() {
             setPosition(position === 0 ? looks.length : 1);
           }
           moving.current = false;
+          setBusy(false);
         }}>
         {slides.map((look, index) => {
           const clone = index === 0 || index === slides.length - 1;
           const selected = !clone && index === active + 1;
           return <Link key={`${look.slug}-${index}`} className="editorial-photo-carousel__slide" href={`/colecao/${look.slug}`} prefetch={false} draggable={false}
             data-slide={index} aria-hidden={!selected} tabIndex={selected ? 0 : -1} aria-label={`Ver conjunto ${look.name.toLowerCase()}`}>
-            <SiteImage src={look.src} alt={look.alt} fill sizes="(max-width: 700px) 80vw, 54vw" preload={index === 1} loading={index === 1 ? undefined : Math.abs(index - position) <= 1 ? "eager" : "lazy"} draggable={false} />
+            <SiteImage src={look.src} alt={look.alt} fill sizes="(max-width: 760px) 90vw, (max-width: 1100px) 44vw, 600px" preload={index === 1} loading={index === 1 ? undefined : Math.abs(index - position) <= 1 ? "eager" : "lazy"} draggable={false} />
           </Link>;
         })}
       </div>
     </div>
-    <button className="editorial-photo-carousel__arrow editorial-photo-carousel__arrow--previous" type="button" aria-label="Anterior — conjunto Dry Fit" onClick={() => void move(-1)}>
+    <button className="editorial-photo-carousel__arrow editorial-photo-carousel__arrow--previous" type="button" disabled={busy} aria-label="Anterior — conjunto Dry Fit" onClick={() => void move(-1)}>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg>
     </button>
-    <button className="editorial-photo-carousel__arrow editorial-photo-carousel__arrow--next" type="button" aria-label="Próximo — conjunto Dry Fit" onClick={() => void move(1)}>
+    <button className="editorial-photo-carousel__arrow editorial-photo-carousel__arrow--next" type="button" disabled={busy} aria-label="Próximo — conjunto Dry Fit" onClick={() => void move(1)}>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
     </button>
     <span className="sr-only" aria-live="polite">Conjunto {looks[active].name.toLowerCase()}, {active + 1} de {looks.length}</span>

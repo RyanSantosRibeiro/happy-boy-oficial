@@ -2,34 +2,24 @@ import Link from "next/link";
 import { lifestyleEditorialLooks } from "@/data/editorial-looks";
 import { SiteImage } from "./SiteImage";
 import { CollectionReveal } from "./CollectionReveal";
-import { DryFitEditorialCarousel } from "./DryFitEditorialCarousel";
+import { DryFitEditorialSection } from "./DryFitEditorialSection";
 import { FamilyColorCard } from "./FamilyColorCard";
 import { collectionFamilies } from "@/data/collection-families";
 
 export function CollectionGrid() {
   return <CollectionReveal>
-    <section className="collection-editorial" aria-labelledby="collection-editorial-title">
-      <figure className="collection-editorial__photo" data-collection-reveal>
-        <DryFitEditorialCarousel />
-        <figcaption>Happy Boy — Travel Edition</figcaption>
-      </figure>
-      <div className="collection-editorial__copy" data-collection-reveal>
-        <p className="collection-eyebrow">Nova coleção</p>
-        <h2 id="collection-editorial-title">Feito para acompanhar o movimento.</h2>
-        <a href="#collection" className="collection-editorial__link">Conheça os conjuntos <span aria-hidden="true">↓</span></a>
-      </div>
-    </section>
+    <DryFitEditorialSection />
     <section className="collection-selection" id="collection" aria-labelledby="collection-title">
       <div className="collection-selection__heading" id="shop" data-collection-reveal>
-        <h2 className="collection-eyebrow" id="collection-title">Outros looks da coleção.</h2>
-        <span>01 — 04</span>
+        <div><p className="collection-selection__chapter">02 / Seleção editorial</p><h2 id="collection-title">Outros looks da coleção.</h2></div>
+        <span>Happy Boy / 04 looks</span>
       </div>
       <div className="collection-selection__looks">
         {[0, 1, 2, 3].map((index) => {
           const look = lifestyleEditorialLooks[index];
           const familySlug = index === 1 ? "polo-essential" : index === 2 ? "polo-short" : index === 3 ? "camiseta-contrast" : undefined;
           const family = collectionFamilies.find(item => item.slug === familySlug);
-          return <div className="collection-selection__reveal" data-collection-reveal key={look.id}>
+          return <div className="collection-selection__reveal" data-collection-reveal data-look={String(index + 1).padStart(2, "0")} key={look.id}>
           {family ? <FamilyColorCard family={family} /> :
           <Link href={`/colecao/${look.slug}`} prefetch={false} className="collection-look collection-look--editorial">
             <figure className="collection-look__photo">

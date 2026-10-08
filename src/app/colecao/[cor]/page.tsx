@@ -4,6 +4,7 @@ import { CollectionGallery } from "@/components/happy-boy/CollectionGallery";
 import { LifestyleGallery } from "@/components/happy-boy/LifestyleGallery";
 import "@/components/happy-boy/collection.css";
 import "@/components/happy-boy/lifestyle-gallery.css";
+import "@/components/happy-boy/gallery-art-direction.css";
 import { collectionItems, collections, isCollectionSlug } from "@/data/collection";
 import { getLifestyleGallery, lifestyleGalleries } from "@/data/lifestyle-galleries";
 

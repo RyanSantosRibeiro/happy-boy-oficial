@@ -5,6 +5,7 @@ import { useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import type { LifestyleGalleryData } from "@/data/lifestyle-galleries";
 import { BrandMark } from "./BrandMark";
 import { SiteImage } from "./SiteImage";
+import { ProductConsultationButton } from "./ProductConsultationButton";
 
 export function LifestyleGallery({ look }: { look: LifestyleGalleryData }) {
   const [selected, setSelected] = useState(0);
@@ -96,6 +97,7 @@ export function LifestyleGallery({ look }: { look: LifestyleGalleryData }) {
             <span>{variant.name}</span>
           </Link>)}
         </nav>}
+        <ProductConsultationButton name={look.name} color={look.color} />
         <div className="lifestyle-gallery__navigation" aria-label="Navegar entre fotografias">
           <button type="button" aria-label="Fotografia anterior" disabled={selected === 0} onClick={() => void select(selected - 1)}>←</button>
           <p className="look-gallery__count" aria-live="polite">{String(selected + 1).padStart(2, "0")} <span>/ {String(look.photos.length).padStart(2, "0")}</span></p>

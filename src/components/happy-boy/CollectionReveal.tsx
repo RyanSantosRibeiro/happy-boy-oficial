@@ -16,8 +16,8 @@ export function CollectionReveal({ children }: { children: ReactNode }) {
         const stagger = element.parentElement?.classList.contains("collection-selection__looks")
           ? Array.from(element.parentElement.children).indexOf(element) * 55 : 0;
         if (!motion.matches) element.animate(
-          [{ opacity: 0, transform: "translateY(24px)" }, { opacity: 1, transform: "translateY(0)" }],
-          { duration: 650, delay: stagger, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "backwards" },
+          [{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "translateY(0)" }],
+          { duration: 480, delay: stagger, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "backwards" },
         );
         observer.unobserve(element);
       });

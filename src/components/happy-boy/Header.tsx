@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { BrandMark } from "./BrandMark";
 
-const links = [{ href: "/#collection", label: "Coleção" }, { href: "/#shop", label: "Peças" }, { href: "/#about", label: "Sobre nós" }];
+const links = [{ href: "/#dry-fit", label: "Coleção" }, { href: "/#collection", label: "Outros looks" }, { href: "/#about", label: "Sobre nós" }, { href: "/#contact", label: "Contato" }];
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -21,9 +21,9 @@ export function Header() {
     return () => { document.removeEventListener("pointerdown", onPointer); document.removeEventListener("keydown", onKey); media.removeEventListener("change", close); };
   }, [open]);
   return <header className="site-header" ref={header}>
-    <Link href="/#top" aria-label="Happy Boy — início" className="brand-link" onClick={() => setOpen(false)}><BrandMark /></Link>
-    <nav className="desktop-nav" aria-label="Navegação principal">{links.map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}</nav>
-    <Link className="header-edition" href="/#contact"><span className="status-dot" /> Fale com a gente</Link>
+    <Link href="/#top" aria-label="Happy Boy — início" className="brand-link" onClick={() => setOpen(false)}><BrandMark tone="light" /></Link>
+    <nav className="desktop-nav" aria-label="Navegação principal">{links.slice(0, 3).map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}</nav>
+    <Link className="header-edition" href="/#contact"><span className="status-dot" aria-hidden="true" /> Contato</Link>
     <button className="menu-button" aria-controls="mobile-navigation" aria-expanded={open} aria-label={open ? "Fechar menu" : "Abrir menu"} onClick={() => setOpen(!open)} ref={trigger}>
       <span>{open ? "Fechar" : "Menu"}</span><span className="menu-icon" data-open={open}><i /><i /></span>
     </button>

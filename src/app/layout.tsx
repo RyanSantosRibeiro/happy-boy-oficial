@@ -4,11 +4,12 @@ import "./globals.css";
 import { campaign } from "@/data/sea-sky";
 
 export const metadata: Metadata = {
-  title: "Happy Boy — Moda masculina | Coleção SEA SKY",
-  description: "Conheça a Happy Boy e a coleção SEA SKY. Explore polos, camisetas, camisas, calças e bermudas de moda masculina e fale com a nossa equipe.",
+  metadataBase: new URL("https://happy-boy-oficial.vercel.app"),
+  title: "Happy Boy — Moda masculina | Travel Edition",
+  description: "Conheça a Happy Boy e a coleção Travel Edition. Explore os looks de moda masculina e fale com a nossa equipe.",
   openGraph: {
-    title: "Happy Boy — SEA SKY",
-    description: "Conheça a coleção SEA SKY e explore a seleção de moda masculina da Happy Boy.",
+    title: "Happy Boy — Travel Edition",
+    description: "Conheça a coleção Travel Edition e explore a seleção de moda masculina da Happy Boy.",
     locale: "pt_BR",
     type: "website",
   },

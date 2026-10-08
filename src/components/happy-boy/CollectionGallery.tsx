@@ -5,6 +5,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { collectionItems, type Collection } from "@/data/collection";
 import { SiteImage } from "./SiteImage";
 import { BrandMark } from "./BrandMark";
+import { ProductConsultationButton } from "./ProductConsultationButton";
 
 export function CollectionGallery({ collection }: { collection: Collection }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -73,6 +74,7 @@ export function CollectionGallery({ collection }: { collection: Collection }) {
             <span>{name}</span>
           </Link>)}
         </nav>
+        <ProductConsultationButton name="Conjunto Dry Fit" color={collection.name} />
         <p className="look-gallery__count" aria-live="polite">{String(currentIndex + 1).padStart(2, "0")} <span>/ {String(collection.images.length).padStart(2, "0")}</span></p>
       </section>
     </div>
