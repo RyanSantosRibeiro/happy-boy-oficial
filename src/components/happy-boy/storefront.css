@@ -5,7 +5,10 @@
 .campaign-hero__video { position: absolute; inset: 0; opacity: 0; transition: opacity .6s; }
 .campaign-hero__video[data-ready=true] { opacity: 1; }
 .campaign-hero__poster { position: absolute; inset: 0; }
-.campaign-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg,#0006,transparent 34%,#0008); pointer-events: none; }
+.campaign-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg,#0006,transparent 34%,#0008); pointer-events: none; transition: opacity .3s; }
+.campaign-hero__edition, .campaign-hero h1, .campaign-hero__bottom p { transition: opacity .3s; }
+.campaign-hero[data-closing=true]::after, .campaign-hero[data-closing=true] .campaign-hero__edition, .campaign-hero[data-closing=true] h1, .campaign-hero[data-closing=true] .campaign-hero__bottom p { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .campaign-hero::after, .campaign-hero__edition, .campaign-hero h1, .campaign-hero__bottom p { transition: none; } }
 .campaign-hero__header { position: absolute; top: 0; inset-inline: 0; z-index: 30; }
 .campaign-hero .site-header { color: #fff; text-shadow: 0 1px 3px #0009; }
 .campaign-hero .desktop-nav a::after, .campaign-hero .status-dot { background: var(--neon); }

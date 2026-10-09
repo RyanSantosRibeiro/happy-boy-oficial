@@ -61,6 +61,34 @@ export function CampaignHero() {
     };
   }, [hero.videoSrc, hero.mobileVideoSrc, hero.poster, hero.mobilePoster]);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    const root = rootRef.current;
+    if (!video || !root) return;
+    let frame: number | undefined;
+    let disposed = false;
+    // Keep the editorial copy clear of the film's own closing titles.
+    // Media time also handles seeking, pauses, source changes and loop restarts.
+    const syncClosing = () => {
+      const closing = String(!video.error && video.readyState >= 2 && video.currentTime >= hero.closingStartsAt);
+      if (root.dataset.closing !== closing) root.dataset.closing = closing;
+    };
+    const onFrame = () => {
+      if (disposed) return;
+      syncClosing();
+      frame = video.requestVideoFrameCallback(onFrame);
+    };
+    const events = ["timeupdate", "seeking", "seeked", "loadeddata", "emptied", "error"];
+    events.forEach((event) => video.addEventListener(event, syncClosing));
+    syncClosing();
+    if (typeof video.requestVideoFrameCallback === "function") frame = video.requestVideoFrameCallback(onFrame);
+    return () => {
+      disposed = true;
+      events.forEach((event) => video.removeEventListener(event, syncClosing));
+      if (frame !== undefined) video.cancelVideoFrameCallback(frame);
+    };
+  }, [hero.closingStartsAt]);
+
   const toggleVideo = () => {
     const video = videoRef.current;
     if (!video) return;
