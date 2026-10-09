@@ -1,4 +1,3 @@
-import { placeholder } from "@/lib/placeholder";
 import { collectionAssets } from "./collection";
 
 const brandProfileImage = "https://scontent-gig4-2.cdninstagram.com/v/t51.82787-19/830612433_18369901312214025_7224926867452500189_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=103&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=zvEQ8tUAD_0Q7kNvwHuaAu9&_nc_oc=AdplJn71hkyI8pB6uGJo9dY-SkXBXyo6IO5MaFl7G9Whf7REQB0b5AsfahIiD5X8uK0W8oExfL69-helhNPyAPSY&_nc_zt=24&_nc_ht=scontent-gig4-2.cdninstagram.com&_nc_gid=duvZry8L4b4_wlwfSfkt2w&_nc_ss=7b6a8&oh=00_AQOS-hy73ZFUgKD61fuM7G6PfLMlYt9Cnw43zPpkDoGVPw&oe=6ACB74B4";
@@ -6,8 +5,10 @@ const brandProfileImage = "https://scontent-gig4-2.cdninstagram.com/v/t51.82787-
 export const storefront = {
   hero: {
     // Paste a direct MP4/WebM URL or a /videos/file.mp4 path here.
-    videoSrc: "/videos/backgroud.mp4" as string | null,
-    poster: placeholder(1920, 1080, "Vídeo da campanha"),
+    videoSrc: "/videos/travel-edition/happyboy-travel-hero-desktop-refined.mp4" as string | null,
+    mobileVideoSrc: "/videos/travel-edition/happyboy-travel-hero-mobile-refined.mp4",
+    poster: "/videos/travel-edition/happyboy-travel-hero-desktop-poster.jpg",
+    mobilePoster: "/videos/travel-edition/happyboy-travel-hero-mobile-poster.jpg",
     revealDelaySeconds: 2.5,
     title: "TRAVEL EDITION",
     subtitle: "Do cotidiano ao destino, com estilo em cada caminho",

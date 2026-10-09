@@ -20,28 +20,46 @@ export function CampaignHero() {
     const root = rootRef.current;
     if (!video || !root || !hero.videoSrc) return;
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mobile = window.matchMedia("(max-width: 760px)");
     let visible = true;
     let disposed = false;
     const reconcile = () => {
       if (disposed) return;
-      if (visible && !document.hidden && !motion.matches && !pausedByUser.current) {
+      const shouldPlay = visible && !document.hidden && !motion.matches && !pausedByUser.current;
+      video.autoplay = shouldPlay;
+      if (shouldPlay) {
         void video.play().then(() => {
           if (!disposed && video.readyState >= 2) { setReady(true); setFailed(false); }
         }).catch(() => { /* The play control remains available. */ });
       } else video.pause();
     };
+    // Select before loading so mobile does not also download the desktop film.
+    const updateSource = () => {
+      const source = mobile.matches ? hero.mobileVideoSrc : hero.videoSrc;
+      video.poster = mobile.matches ? hero.mobilePoster : hero.poster;
+      if (source && video.getAttribute("src") !== source) {
+        video.src = source;
+        video.load();
+        reconcile();
+      }
+    };
+    updateSource();
+    mobile.addEventListener("change", updateSource);
     const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; reconcile(); }, { threshold: 0.05 });
     observer.observe(root);
     document.addEventListener("visibilitychange", reconcile);
+    video.addEventListener("loadeddata", reconcile);
     motion.addEventListener("change", reconcile);
     return () => {
       disposed = true;
       observer.disconnect();
       document.removeEventListener("visibilitychange", reconcile);
+      video.removeEventListener("loadeddata", reconcile);
       motion.removeEventListener("change", reconcile);
+      mobile.removeEventListener("change", updateSource);
       video.pause();
     };
-  }, [hero.videoSrc]);
+  }, [hero.videoSrc, hero.mobileVideoSrc, hero.poster, hero.mobilePoster]);
 
   const toggleVideo = () => {
     const video = videoRef.current;
@@ -54,14 +72,16 @@ export function CampaignHero() {
   return (
     <section id="top" className="campaign-hero" ref={rootRef} aria-labelledby="campaign-heading" style={{ "--hero-reveal-delay": `${hero.revealDelaySeconds}s` } as CSSProperties}>
       <div className="campaign-hero__media" aria-hidden="true">
-        <SiteImage src={hero.poster} alt="" fill sizes="100vw" preload />
+        <picture className="campaign-hero__poster">
+          <source media="(max-width: 760px)" srcSet={hero.mobilePoster} />
+          <SiteImage src={hero.poster} alt="" fill sizes="100vw" loading="eager" fetchPriority="high" unoptimized />
+        </picture>
         {hero.videoSrc && <video
           ref={videoRef}
-          src={hero.videoSrc}
           poster={hero.poster}
           className="campaign-hero__video"
           data-ready={ready && !failed}
-          muted loop playsInline preload="metadata" tabIndex={-1}
+          autoPlay muted loop playsInline controls={false} preload="metadata" tabIndex={-1}
           onLoadStart={() => { setFailed(false); setReady(false); }}
           onLoadedData={() => setReady(true)}
           onPlaying={() => { setReady(true); setFailed(false); }}

@@ -4,6 +4,7 @@
 .campaign-hero__media img, .campaign-hero__video { width: 100%; height: 100%; object-fit: cover; }
 .campaign-hero__video { position: absolute; inset: 0; opacity: 0; transition: opacity .6s; }
 .campaign-hero__video[data-ready=true] { opacity: 1; }
+.campaign-hero__poster { position: absolute; inset: 0; }
 .campaign-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg,#0006,transparent 34%,#0008); pointer-events: none; }
 .campaign-hero__header { position: absolute; top: 0; inset-inline: 0; z-index: 30; }
 .campaign-hero .site-header { color: #fff; text-shadow: 0 1px 3px #0009; }
