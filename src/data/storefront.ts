@@ -5,11 +5,11 @@ const brandProfileImage = "https://scontent-gig4-2.cdninstagram.com/v/t51.82787-
 export const storefront = {
   hero: {
     // Paste a direct MP4/WebM URL or a /videos/file.mp4 path here.
-    videoSrc: "/videos/travel-edition/happyboy-beyond-limits-v4-desktop.mp4" as string | null,
-    mobileVideoSrc: "/videos/travel-edition/happyboy-beyond-limits-v4-mobile.mp4",
-    poster: "/videos/travel-edition/happyboy-beyond-limits-v4-desktop-poster.jpg",
-    mobilePoster: "/videos/travel-edition/happyboy-beyond-limits-v4-mobile-poster.jpg",
-    closingStartsAt: 26.45,
+    videoSrc: "/videos/travel-edition/happyboy-beyond-limits-v7-desktop.mp4" as string | null,
+    mobileVideoSrc: "/videos/travel-edition/happyboy-beyond-limits-v7-mobile.mp4",
+    poster: "/videos/travel-edition/happyboy-beyond-limits-v7-desktop-poster.jpg",
+    mobilePoster: "/videos/travel-edition/happyboy-beyond-limits-v7-mobile-poster.jpg",
+    closingStartsAt: 35.24,
     revealDelaySeconds: 2.5,
     title: "TRAVEL EDITION",
     subtitle: "Do cotidiano ao destino, com estilo em cada caminho",
