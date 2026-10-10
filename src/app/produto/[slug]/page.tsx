@@ -29,7 +29,7 @@ export default async function ProductPage({ params }: Props) {
   if (!product) notFound();
   return <>
     <main className="product-page" id="top">
-      <header className="product-page__header"><Link href="/" aria-label="Happy Boy — início"><BrandMark /></Link><Link href="/#shop">Voltar à seleção ↗</Link></header>
+      <header className="product-page__header"><Link href="/#top" aria-label="Happy Boy — início"><BrandMark /></Link><Link href="/#shop">Voltar à seleção ↗</Link></header>
       <nav className="product-page__breadcrumb" aria-label="Caminho de navegação"><Link href="/">Início</Link><span aria-hidden="true">/</span><Link href={`/colecao/${product.collectionSlug}`}>{product.collection}</Link><span aria-hidden="true">/</span><span aria-current="page">{product.name}</span></nav>
       <div className="product-page__layout">
         <div className="product-page__images">{product.images.map((image, index) => <SiteImage key={image.src} {...image} preload={index === 0} sizes="(max-width: 760px) 90vw, 48vw" />)}</div>

@@ -105,9 +105,6 @@ export function FamilyColorCard({ family }: { family: CollectionFamily }) {
           })}
         </div>
       </div>
-    </figure>
-    <div className="family-color-card__caption">
-      <p className="collection-look__label family-color-card__label">{looks[active].label ?? family.name}<span aria-live="polite">{looks[active].name}</span></p>
       <div className="family-color-card__controls" aria-label={`Navegação de cores — ${family.name}`}>
       <button type="button" disabled={busy} className="family-color-card__arrow family-color-card__arrow--previous" aria-label={`Cor anterior — ${family.name}`} onClick={() => void move(-1)}>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg>
@@ -116,6 +113,9 @@ export function FamilyColorCard({ family }: { family: CollectionFamily }) {
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
       </button>
       </div>
+    </figure>
+    <div className="family-color-card__caption">
+      <p className="collection-look__label family-color-card__label">{looks[active].label ?? family.name}<span aria-live="polite">{looks[active].name}</span></p>
     </div>
   </div>;
 }

@@ -135,7 +135,7 @@ export function EditorialVideoCarousel() {
           {videos.map(({ file, color }, index) => (
             <Link className="editorial-reel__card" key={file} href={`/colecao/${color}`} prefetch={false} draggable={false} aria-label={`Ver galeria do conjunto ${color} — Travel Edition`}>
               <video data-src={`/videos/travel-edition/${file}.mp4`} poster={`/videos/travel-edition/${file}-capa.jpg`} autoPlay muted loop playsInline preload="none" disablePictureInPicture disableRemotePlayback draggable={false} aria-label={`Travel Edition — conjunto ${color}`} />
-              <span className="editorial-reel__caption"><span>{String(index + 1).padStart(2, "0")} / {color}</span><span aria-hidden="true">↗</span></span>
+              <span className="editorial-reel__caption"><span>{String(index + 1).padStart(2, "0")} / {color}</span></span>
             </Link>
           ))}
         </div>

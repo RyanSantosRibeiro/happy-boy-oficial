@@ -41,7 +41,7 @@ export function LifestyleGallery({ look }: { look: LifestyleGalleryData }) {
 
   return <main className="look-gallery lifestyle-gallery">
     <header className="look-gallery__header">
-      <Link href="/" className="look-gallery__brand" aria-label="Happy Boy — início"><BrandMark /></Link>
+      <Link href="/#top" className="look-gallery__brand" aria-label="Happy Boy — início"><BrandMark /></Link>
       <Link href={returnHref} className="look-gallery__back">← Voltar à coleção</Link>
     </header>
     <div className="look-gallery__layout">

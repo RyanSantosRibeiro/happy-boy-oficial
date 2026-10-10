@@ -43,7 +43,7 @@ export function CollectionGallery({ collection }: { collection: Collection }) {
 
   return <main className="look-gallery">
     <header className="look-gallery__header">
-      <Link href="/" className="look-gallery__brand" aria-label="Happy Boy — início"><BrandMark /></Link>
+      <Link href="/#top" className="look-gallery__brand" aria-label="Happy Boy — início"><BrandMark /></Link>
       <Link href="/#collection" className="look-gallery__back">← Voltar à coleção</Link>
     </header>
     <div className="look-gallery__layout">
