@@ -12,12 +12,13 @@ import "@/components/happy-boy/collection.css";
 import "@/components/happy-boy/editorial-video-carousel.css";
 import "@/components/happy-boy/storefront.css";
 import "@/components/happy-boy/post-collection.css";
+import "@/components/happy-boy/mobile-editorial.css";
 
 export default function Home() {
   const collection = getFeaturedCollection();
   return <>
     <a className="skip-link" href="#main">Pular para o conteúdo</a>
-    <main id="main">
+    <main id="main" className="happy-boy-home">
       {/* <HeroBanner /> */}
       <CampaignHero hero={collection.presentation.hero} />
       <EditorialVideoCarousel collection={collection} beforeVideos={<WeeklyLaunches collectionId={collection.id} />} />

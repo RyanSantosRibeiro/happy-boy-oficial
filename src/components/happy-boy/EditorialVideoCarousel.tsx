@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from "react";
 import type { CatalogCollection } from "@/data/catalog";
+import { MobileEditorialArrow } from "./MobileEditorialArrow";
 
 export function EditorialVideoCarousel({ collection, beforeVideos }: { collection: CatalogCollection; beforeVideos?: ReactNode }) {
   const videos = collection.presentation.films;
@@ -129,7 +130,7 @@ export function EditorialVideoCarousel({ collection, beforeVideos }: { collectio
           {videos.map(({ src, poster, color, href }, index) => (
             <Link className="editorial-reel__card" key={src} href={href} prefetch={false} draggable={false} aria-label={`Ver galeria do conjunto ${color} — ${collection.name}`}>
               <video data-src={src} poster={poster} autoPlay muted loop playsInline preload="none" disablePictureInPicture disableRemotePlayback draggable={false} aria-label={`${collection.name} — conjunto ${color}`} />
-              <span className="editorial-reel__caption"><span>{String(index + 1).padStart(2, "0")} / {color}</span><span className="editorial-reel__open-page">Ver fotos e detalhes <span aria-hidden="true">→</span></span></span>
+              <span className="editorial-reel__caption"><span>{String(index + 1).padStart(2, "0")} / {color}</span><span className="editorial-reel__open-page">Ver fotos e detalhes <span aria-hidden="true">→</span><MobileEditorialArrow direction="right" /></span></span>
             </Link>
           ))}
         </div>

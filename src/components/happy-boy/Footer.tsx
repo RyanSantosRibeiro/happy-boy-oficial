@@ -6,6 +6,7 @@ import { BrandMark } from "./BrandMark";
 import { SiteImage } from "./SiteImage";
 import { institutionalCopy } from "@/data/commercial";
 import { getFeaturedCollection } from "@/data/catalog";
+import { MobileEditorialArrow } from "./MobileEditorialArrow";
 import "./catalog.css";
 
 export function Footer({ campaignClosing = false }: { campaignClosing?: boolean }) {
@@ -23,9 +24,9 @@ export function Footer({ campaignClosing = false }: { campaignClosing?: boolean 
             <h3>04 / Atendimento comercial</h3>
             <h2>Vamos conversar?</h2>
             <p>Converse com a nossa equipe sobre coleções, linhas e condições de atacado.</p>
-            <a className="store-footer__contact-action" href={whatsapp ?? brand.instagram} target="_blank" rel="noopener noreferrer">Fale pelo WhatsApp <span aria-hidden="true">↗</span></a>
+            <a className="store-footer__contact-action" href={whatsapp ?? brand.instagram} target="_blank" rel="noopener noreferrer">Fale pelo WhatsApp <span aria-hidden="true">↗</span><MobileEditorialArrow /></a>
           </> : <><h3>Atendimento</h3><p>Fale com a equipe comercial sobre coleções e compras no atacado.</p>{whatsapp && <a href={whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>}</>}
-          <a href={brand.instagram} target="_blank" rel="noopener noreferrer">@happyboyoficial ↗</a>{brand.contactHref && <a href={brand.contactHref}>Contato</a>}
+          <a href={brand.instagram} target="_blank" rel="noopener noreferrer">@happyboyoficial<span className="desktop-link-symbol"> ↗</span><MobileEditorialArrow /></a>{brand.contactHref && <a href={brand.contactHref}>Contato</a>}
           <small className="store-footer__external-note">WhatsApp e Instagram abrem em outra aba ou no aplicativo.</small>
         </div>
       </div>
@@ -33,7 +34,7 @@ export function Footer({ campaignClosing = false }: { campaignClosing?: boolean 
         <div><h2 id="institutional-title">{institutionalCopy.title}</h2>{institutionalCopy.provisional && <span className="store-footer__provisional">Texto institucional provisório</span>}</div>
         <p>{institutionalCopy.text}</p>
       </section>
-      <div className="store-footer__bottom"><p>© {campaign.year} Happy Boy. Todos os direitos reservados.</p><span className="store-footer__signature"><SiteImage src="/images/brand/hb-white.svg" width={26} height={32} alt="Monograma oficial HB" unoptimized /><span>{getFeaturedCollection().name}</span></span><Link href="/#top">Voltar ao topo ↑</Link></div>
+      <div className="store-footer__bottom"><p>© {campaign.year} Happy Boy. Todos os direitos reservados.</p><span className="store-footer__signature"><SiteImage src="/images/brand/hb-white.svg" width={26} height={32} alt="Monograma oficial HB" unoptimized /><span>{getFeaturedCollection().name}</span></span><Link href="/#top">Voltar ao topo<span className="desktop-link-symbol"> ↑</span><MobileEditorialArrow direction="up" /></Link></div>
     </footer>
   );
 }

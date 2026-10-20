@@ -1,0 +1,118 @@
+/* Only the homepage below the hero is art-directed here. Desktop keeps its rules. */
+@media (max-width: 760px) {
+  .happy-boy-home {
+    --mobile-editorial-gutter: 20px;
+    --mobile-editorial-paper: #f3f1ec;
+    --mobile-editorial-sand: #e6e0d3;
+    --mobile-editorial-ink: #172c32;
+  }
+
+  /* A single atmospheric teaser, rather than a photograph and a separate text block. */
+  .happy-boy-home .weekly-launches { margin: 0 var(--mobile-editorial-gutter); padding-top: 28px; }
+  .happy-boy-home .collection-preview { position: relative; isolation: isolate; display: block; overflow: hidden; padding: 24px 20px 30px; border: 0; background: #172c32; }
+  .happy-boy-home .collection-preview__image { position: absolute; inset: 0; z-index: -1; min-height: 0; aspect-ratio: auto; border-radius: 0; }
+  .happy-boy-home .collection-preview__image::after { background: linear-gradient(110deg, #172c32e0, #172c32b3 65%, #172c3280); }
+  .happy-boy-home .collection-preview__lock { inset: 20px 18px auto auto; }
+  .happy-boy-home .collection-preview__lock svg { width: 24px; height: 24px; }
+  .happy-boy-home .collection-preview__lock > span { display: none; }
+  .happy-boy-home .collection-preview__placeholder { bottom: 8px; font-size: 9px; color: #d0d9d5; }
+  .happy-boy-home .collection-preview__copy { padding: 0; color: #f3f0e8; }
+  .happy-boy-home .collection-preview__kicker { max-width: calc(100% - 36px); font-size: 9px; color: #d0d9d5; }
+  .happy-boy-home .collection-preview h2 { max-width: 250px; margin-top: 14px; font-size: 27px; line-height: 1.08; letter-spacing: -.035em; text-wrap: balance; }
+  .happy-boy-home .collection-preview__description { max-width: 260px; margin-top: 12px; color: #e0e4df; font-size: 12px; line-height: 1.6; }
+  .happy-boy-home .collection-preview__date { gap: 4px 12px; margin-top: 18px; font-size: 12px; }
+  .happy-boy-home .collection-preview__date > span { color: #c1cbcc; font-size: 10px; }
+  .happy-boy-home .collection-preview__timer { gap: 24px; margin-top: 18px; }
+  .happy-boy-home .collection-preview__timer > span { min-width: 32px; }
+  .happy-boy-home .collection-preview__timer strong { font-size: 28px; }
+  .happy-boy-home .collection-preview__timer small { color: #d0d9d5; font-size: 10px; }
+  .happy-boy-home .collection-preview__status { color: #e0e4df; }
+
+  /* The video opening, film and navigation share a continuous editorial frame. */
+  .happy-boy-home .editorial-reel { padding-bottom: 0; background: var(--mobile-editorial-paper); }
+  .happy-boy-home .editorial-reel__heading { display: block; margin: 32px var(--mobile-editorial-gutter) 0; padding: 23px 20px 12px; background: var(--mobile-editorial-ink); color: #f3f0e8; text-align: left; }
+  .happy-boy-home .editorial-reel__heading p { font-size: 9px; letter-spacing: .12em; color: #c1cbcc; }
+  .happy-boy-home .editorial-reel__heading h2 { max-width: 280px; margin: 14px 0 0; font-size: clamp(28px, 8vw, 33px); line-height: 1.05; letter-spacing: -.04em; font-weight: 400; text-wrap: balance; }
+  .happy-boy-home .editorial-reel > .navigation-help { margin: 0 var(--mobile-editorial-gutter); padding: 0 20px 20px; max-width: none; background: var(--mobile-editorial-ink); color: #d0d9d5; font-size: 12px; line-height: 1.55; text-align: left; }
+  .happy-boy-home .editorial-reel__carousel { margin-top: 0; padding-inline: var(--mobile-editorial-gutter); }
+  .happy-boy-home .editorial-reel__track { gap: 12px; }
+  .happy-boy-home .editorial-reel__card { background: var(--mobile-editorial-ink); color: #f3f0e8; }
+  .happy-boy-home .editorial-reel__card video { object-fit: cover; }
+  .happy-boy-home .editorial-reel__caption { padding: 12px 16px; min-height: 48px; border-color: #c1cbcc33; gap: 12px; }
+  .happy-boy-home .editorial-reel__caption > span:first-child { font-size: 9px; letter-spacing: .07em; }
+  .happy-boy-home .editorial-reel__open-page { font-size: 12px; gap: 9px; }
+  .happy-boy-home .editorial-reel__open-page > span[aria-hidden] { display: none; }
+  .happy-boy-home .editorial-reel__navigation { margin: 0; padding: 8px 16px; background: var(--mobile-editorial-ink); color: #f3f0e8; }
+  .happy-boy-home .editorial-reel__navigation > span > span { color: #c1cbcc; }
+  .happy-boy-home .editorial-reel__navigation button span { background: #c1cbcc66; }
+  .happy-boy-home .editorial-reel__navigation button[aria-pressed=true] span { background: #ebf308; box-shadow: none; }
+
+  /* Headline above the photograph, then a connected caption and current-look CTA. */
+  .happy-boy-home .collection-story { margin: 0; padding: 36px var(--mobile-editorial-gutter) 0; background: var(--mobile-editorial-paper); }
+  .happy-boy-home .collection-story .collection-editorial { grid-template-columns: minmax(0, 1fr); gap: 0; background: var(--mobile-editorial-sand); align-items: stretch; }
+  .happy-boy-home .collection-story .collection-editorial__copy { display: contents; }
+  .happy-boy-home .collection-story .collection-editorial__copy .collection-eyebrow { grid-row: 1; margin: 0; padding: 24px 20px 12px; font-size: 9px; line-height: 1.5; letter-spacing: .12em; }
+  .happy-boy-home .collection-story .collection-editorial__copy h2 { grid-row: 2; margin: 0; padding: 0 20px 24px; max-width: 335px; font-size: clamp(30px, 8.5vw, 36px); font-weight: 400; line-height: 1.05; letter-spacing: -.045em; text-wrap: balance; }
+  .happy-boy-home .collection-story .collection-editorial__photo { grid-row: 3; width: 100%; min-width: 0; margin: 0; }
+  .happy-boy-home .collection-story .collection-editorial__photo figcaption { margin: 0; padding: 13px 16px; background: var(--mobile-editorial-ink); color: #d0d9d5; border: 0; font-size: 8px; }
+  .happy-boy-home .collection-story .collection-editorial__position { color: #f3f0e8; }
+  .happy-boy-home .collection-story .collection-editorial__look { grid-row: 4; min-height: 0; margin: 0; padding: 19px 20px 0; color: #536165; font-size: 12px; line-height: 1.55; }
+  .happy-boy-home .collection-story .collection-editorial__link { grid-row: 5; justify-content: space-between; gap: 16px; margin: 0 20px; min-height: 62px; padding: 13px 0; font-size: 13px; color: #172c32; border-color: #172c3240; }
+  .happy-boy-home .collection-story .collection-editorial__link > span[aria-hidden] { display: none; }
+  .happy-boy-home .collection-story .collection-editorial__copy > .navigation-help { grid-row: 6; max-width: none; margin: 0; padding: 13px 20px 23px; color: #536165; font-size: 12px; line-height: 1.6; }
+  .happy-boy-home .collection-story .collection-editorial__link > .mobile-editorial-arrow { width: 30px; height: 30px; padding: 6px; background: #172c32; color: #ebf308; }
+  .happy-boy-home .collection-editorial__photo .photo-page-hint { padding: 8px 10px; font-size: 11px; }
+
+  /* Magazine-style sequence: an opening directly attached to the first look. */
+  .happy-boy-home .collection-story .collection-selection { margin: 36px 0 0; padding: 22px 0 32px; background: var(--mobile-editorial-paper); border-top: 1px solid #172c3233; }
+  .happy-boy-home .collection-story .collection-selection__heading { display: flex; align-items: flex-end; gap: 12px; padding: 0; margin-bottom: 14px; }
+  .happy-boy-home .collection-selection__chapter { margin-bottom: 12px; font-size: 9px; line-height: 1.5; letter-spacing: .1em; color: #536165; }
+  .happy-boy-home .collection-story .collection-selection__heading h2 { font-size: clamp(28px, 7.7vw, 33px); max-width: 235px; line-height: 1.05; letter-spacing: -.04em; text-wrap: balance; }
+  .happy-boy-home .collection-story .collection-selection__heading > span { max-width: 74px; flex-shrink: 0; text-align: right; font-size: 8px; line-height: 1.6; color: #536165; }
+  .happy-boy-home .collection-selection > .navigation-help { margin: 0 0 20px; max-width: 360px; font-size: 12px; line-height: 1.6; }
+  .happy-boy-home .collection-story .collection-selection__looks { gap: 28px; }
+  .happy-boy-home .collection-story .collection-selection__reveal::before { margin-bottom: 8px; color: #536165; font-size: 9px; }
+  .happy-boy-home .collection-story .collection-look { transform: none; }
+  .happy-boy-home .collection-story .collection-look__label { font-size: 11px; line-height: 1.5; letter-spacing: .07em; }
+  .happy-boy-home .collection-story .family-color-card__caption { min-height: 64px; padding-block: 12px; }
+  .happy-boy-home .collection-story .collection-look--editorial > .collection-look__label { min-height: 64px; padding-block: 12px; }
+  .happy-boy-home .collection-story .photo-page-hint { font-size: 11px; padding: 8px 10px; }
+
+  /* The closing editorial starts with the full photograph and finishes in campaign ink. */
+  .happy-boy-home .about-section { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; padding: 0; background: var(--mobile-editorial-ink); color: #f3f0e8; }
+  .happy-boy-home .about-section .about-section__image { grid-row: 1; width: 100%; max-width: none; aspect-ratio: 2 / 3; justify-self: stretch; }
+  .happy-boy-home .about-section .about-section__image img { object-fit: contain; }
+  .happy-boy-home .about-section__copy { grid-row: 2; padding: 28px var(--mobile-editorial-gutter) 36px; }
+  .happy-boy-home .about-section .about-section__label { margin-bottom: 18px; color: #c1cbcc; font-size: 9px; letter-spacing: .12em; }
+  .happy-boy-home .about-section .about-section__signature { margin-bottom: 20px; }
+  .happy-boy-home .about-section .about-section__signature img { width: 112px; }
+  .happy-boy-home .about-section h2 { max-width: 330px; margin-bottom: 20px; font-size: clamp(32px, 8.8vw, 38px); line-height: 1.04; letter-spacing: -.04em; text-wrap: balance; }
+  .happy-boy-home .about-section .about-section__copy > p:not(.about-section__label) { max-width: 330px; color: #d0d9d5; font-size: 14px; line-height: 1.65; }
+  .happy-boy-home .about-section .storefront-link { justify-content: space-between; gap: 24px; min-height: 48px; margin-top: 22px; font-size: 13px; border-color: #c1cbcc66; color: #f3f0e8; }
+  .happy-boy-home .about-section .storefront-link > span[aria-hidden] { display: none; }
+  .happy-boy-home .about-section .about-section__copy > .navigation-help { margin-top: 14px; font-size: 12px; line-height: 1.6; }
+
+  /* The homepage footer continues the editorial without affecting product-page footers. */
+  .happy-boy-home + .store-footer { padding: 0 var(--mobile-editorial-gutter, 20px) 104px; }
+  .happy-boy-home + .store-footer .store-footer__columns { padding-block: 32px; border-top: 1px solid #c1cbcc33; gap: 26px 20px; }
+  .happy-boy-home + .store-footer .store-footer__brand .brand-asset { width: 190px; }
+  .happy-boy-home + .store-footer .store-footer__brand p { margin-block: 16px 0; font-size: 12px; }
+  .happy-boy-home + .store-footer .store-footer__columns h3 { margin-bottom: 10px; font-size: 10px; }
+  .happy-boy-home + .store-footer .store-footer__columns nav a { font-size: 13px; min-height: 44px; }
+  .happy-boy-home + .store-footer .store-footer__contact { max-width: none; padding: 26px 0 0; border-top: 1px solid #c1cbcc33; }
+  .happy-boy-home + .store-footer .store-footer__contact h2 { margin: 6px 0 15px; font-size: 32px; line-height: 1.05; }
+  .happy-boy-home + .store-footer .store-footer__contact p { max-width: 320px; margin-bottom: 0; font-size: 14px; line-height: 1.65; }
+  .happy-boy-home + .store-footer .store-footer__contact .store-footer__contact-action { width: 100%; min-height: 54px; margin: 20px 0 8px; padding: 12px 15px; font-size: 13px; }
+  .happy-boy-home + .store-footer .store-footer__contact-action > span { display: none; }
+  .happy-boy-home + .store-footer .store-footer__contact-action > .mobile-editorial-arrow { width: 28px; height: 28px; padding: 5px; background: #ebf308; color: #172c32; }
+  .happy-boy-home + .store-footer .store-footer__contact a:not(.store-footer__contact-action) { gap: 12px; font-size: 13px; }
+  .happy-boy-home + .store-footer .store-footer__external-note { font-size: 12px; line-height: 1.6; }
+  .happy-boy-home + .store-footer .store-footer__institutional { gap: 18px; padding-block: 28px; }
+  .happy-boy-home + .store-footer .store-footer__institutional > p { font-size: 13px; line-height: 1.8; }
+  .happy-boy-home + .store-footer .store-footer__bottom { gap: 16px; padding-right: 0; }
+  .happy-boy-home + .store-footer .store-footer__bottom > a { gap: 12px; font-size: 12px; }
+
+  .happy-boy-home .mobile-editorial-arrow,
+  .happy-boy-home + .store-footer .mobile-editorial-arrow { display: inline-block; width: 19px; height: 19px; flex: none; }
+  .happy-boy-home + .store-footer .desktop-link-symbol { display: none; }
+}

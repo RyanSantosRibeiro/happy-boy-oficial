@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { CatalogCollection } from "@/data/catalog";
 import { DryFitEditorialCarousel } from "./DryFitEditorialCarousel";
+import { MobileEditorialArrow } from "./MobileEditorialArrow";
 
 export function DryFitEditorialSection({ collection }: { collection: CatalogCollection }) {
   const looks = collection.presentation.editorialLooks;
@@ -20,7 +21,7 @@ export function DryFitEditorialSection({ collection }: { collection: CatalogColl
       <p className="collection-eyebrow">01 / Nova coleção</p>
       <h2 id="collection-editorial-title">Feito para acompanhar o movimento.</h2>
       <p className="collection-editorial__look">{look.label}</p>
-      <Link href={look.href} prefetch={false} className="collection-editorial__link" aria-label={`Conheça ${look.label}`}>Conheça o conjunto <span aria-hidden="true">↗</span></Link>
+      <Link href={look.href} prefetch={false} className="collection-editorial__link" aria-label={`Conheça ${look.label}`}>Conheça o conjunto <span aria-hidden="true">↗</span><MobileEditorialArrow /></Link>
       <p className="navigation-help">Clique na foto ou em “Conheça o conjunto” para abrir a página com mais fotos da peça.</p>
     </div>
   </section>;
