@@ -1,3 +1,4 @@
+import { travelCollectionId } from "./commercial.ts";
 import type { LifestyleGalleryData } from "./lifestyle-galleries";
 
 export const poloCaneladoSlug = "conjunto-polo-dry-fit-canelado";
@@ -35,10 +36,10 @@ export function getPoloCaneladoGallery(color: string): LifestyleGalleryData | un
   if (!selected) return undefined;
   const root = `/images/polo-dry-fit-canelado/${selected.slug}`;
   return {
+    collectionId: travelCollectionId, commercialFamilyId: "polo-canelado",
     id: `${poloCaneladoSlug}-${selected.slug}`, slug: poloCaneladoSlug,
     name: poloCaneladoName, color: selected.name, returnHref: "/#dry-fit",
     cover: `${root}/RAY_${selected.ids[0]}.webp`,
-    consultationMessage: `Olá! Gostei do ${poloCaneladoName} / ${selected.name} e queria saber mais informações, disponibilidade e valor.`,
     photos: selected.ids.map(id => ({ id, src: `${root}/RAY_${id}.webp`, original: `${root}/originals/RAY_${id}.jpg`, alt: descriptions[id] })),
     variants: poloCaneladoColors.map(item => ({ color: item.slug, name: item.name, swatch: item.swatch, href: `/colecao/${poloCaneladoSlug}/${item.slug}` })),
   };

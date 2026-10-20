@@ -1,6 +1,9 @@
-import { collectionAssets, type CollectionSlug } from "./collection";
+import { collectionAssets, type CollectionSlug } from "./collection.ts";
+import type { CommercialFamilyId } from "./commercial.ts";
 
 export type Product = {
+  commercialFamilyId: CommercialFamilyId;
+  collectionId: string | null;
   id: string;
   slug: string;
   sku: string;
@@ -24,7 +27,7 @@ export type Product = {
 };
 
 // Sample catalog: replace copy, dimensions, specifications and prices before launch.
-type ProductEntry = Pick<Product, "id" | "name" | "category"> &
+type ProductEntry = Pick<Product, "id" | "name" | "category" | "commercialFamilyId"> &
   Partial<Omit<Product, "id" | "name" | "category">> & {
     color: CollectionSlug;
     hex: string;
@@ -32,14 +35,14 @@ type ProductEntry = Pick<Product, "id" | "name" | "category"> &
 
 // Each entry can override any full product field (price, images, sizes, SEO, etc.).
 const entries: ProductEntry[] = [
-  { id: "polo-essencial", name: "Polo essencial", category: "Polos", color: "branco", hex: "#e9e6de" },
-  { id: "camisa-leve", name: "Camisa leve", category: "Camisas", color: "azul", hex: "#91a6b7" },
-  { id: "camiseta-regular", name: "Camiseta regular", category: "Camisetas", color: "preto", hex: "#171717" },
-  { id: "polo-textura", name: "Polo com textura", category: "Polos", color: "verde", hex: "#7b8470" },
-  { id: "calca-reta", name: "Calça reta", category: "Calças", color: "branco", hex: "#e9e6de" },
-  { id: "bermuda-casual", name: "Bermuda casual", category: "Bermudas", color: "preto", hex: "#171717" },
-  { id: "camisa-manga-curta", name: "Camisa de manga curta", category: "Camisas", color: "verde", hex: "#7b8470" },
-  { id: "camiseta-ampla", name: "Camiseta ampla", category: "Camisetas", color: "azul", hex: "#91a6b7" },
+  { id: "polo-essencial", name: "Polo essencial", category: "Polos", commercialFamilyId: "polos", color: "branco", hex: "#e9e6de" },
+  { id: "camisa-leve", name: "Camisa leve", category: "Camisas", commercialFamilyId: "camisas", color: "azul", hex: "#91a6b7" },
+  { id: "camiseta-regular", name: "Camiseta regular", category: "Camisetas", commercialFamilyId: "camisetas", color: "preto", hex: "#171717" },
+  { id: "polo-textura", name: "Polo com textura", category: "Polos", commercialFamilyId: "polos", color: "verde", hex: "#7b8470" },
+  { id: "calca-reta", name: "Calça reta", category: "Calças", commercialFamilyId: "calcas", color: "branco", hex: "#e9e6de" },
+  { id: "bermuda-casual", name: "Bermuda casual", category: "Bermudas", commercialFamilyId: "bermudas", color: "preto", hex: "#171717" },
+  { id: "camisa-manga-curta", name: "Camisa de manga curta", category: "Camisas", commercialFamilyId: "camisas", color: "verde", hex: "#7b8470" },
+  { id: "camiseta-ampla", name: "Camiseta ampla", category: "Camisetas", commercialFamilyId: "camisetas", color: "azul", hex: "#91a6b7" },
 ];
 
 export const products: Product[] = entries.map(({ color, hex, ...entry }, index) => {
@@ -49,6 +52,7 @@ export const products: Product[] = entries.map(({ color, hex, ...entry }, index)
     sku: `HB-PREVIA-${String(index + 1).padStart(3, "0")}`,
     description: `${entry.name} da seleção SEA SKY. Nome, imagens e descrição de referência; a ficha definitiva será apresentada com o lançamento.`,
     collection: "SEA SKY",
+    collectionId: null, // Unconfirmed legacy previews are not a published collection.
     collectionSlug: color,
     price: null,
     compareAtPrice: null,

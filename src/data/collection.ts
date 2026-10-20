@@ -1,7 +1,11 @@
+import { travelCollectionId, type CommercialFamilyId } from "./commercial.ts";
+
 export const collectionOrder = ["preto", "verde", "branco", "azul"] as const;
 export type CollectionSlug = (typeof collectionOrder)[number];
 
 export type Collection = {
+  collectionId: string;
+  commercialFamilyId: CommercialFamilyId;
   slug: CollectionSlug;
   name: string;
   swatch: string;
@@ -30,6 +34,7 @@ const blueImages = images("azul", ["9029", "9046", "9041", "9077"]);
 
 export const collections: Record<CollectionSlug, Collection> = {
   preto: {
+    collectionId: travelCollectionId, commercialFamilyId: "dry-fit",
     slug: "preto", name: "Preto", swatch: "#252525", cover: blackImages[0], images: blackImages,
     altTexts: [
       "Modelo usando conjunto preto Happy Boy nas dunas ao pôr do sol",
@@ -39,6 +44,7 @@ export const collections: Record<CollectionSlug, Collection> = {
     ],
   },
   verde: {
+    collectionId: travelCollectionId, commercialFamilyId: "dry-fit",
     slug: "verde", name: "Verde", swatch: "#96916b", cover: greenImages[0], images: greenImages,
     altTexts: [
       "Modelo usando camiseta e short verdes Happy Boy em um caminho de areia",
@@ -48,6 +54,7 @@ export const collections: Record<CollectionSlug, Collection> = {
     ],
   },
   branco: {
+    collectionId: travelCollectionId, commercialFamilyId: "dry-fit",
     slug: "branco", name: "Branco", swatch: "#eeeeda", cover: whiteImages[0], images: whiteImages,
     altTexts: [
       "Modelo usando conjunto branco Happy Boy com céu e nuvens ao fundo",
@@ -57,6 +64,7 @@ export const collections: Record<CollectionSlug, Collection> = {
     ],
   },
   azul: {
+    collectionId: travelCollectionId, commercialFamilyId: "dry-fit",
     slug: "azul", name: "Azul", swatch: "#536477", cover: blueImages[0], images: blueImages,
     altTexts: [
       "Modelo usando conjunto azul Happy Boy com a mão no boné nas dunas",

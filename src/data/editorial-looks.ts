@@ -1,4 +1,4 @@
-import { getPoloCaneladoGallery, poloCaneladoColors } from "./polo-canelado";
+import { getPoloCaneladoGallery, poloCaneladoColors } from "./polo-canelado.ts";
 
 export const collectionEditorialLooks = [
   ...poloCaneladoColors.map(color => {

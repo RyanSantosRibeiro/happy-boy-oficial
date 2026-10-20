@@ -1,0 +1,24 @@
+.collection-preview { display: grid; grid-template-columns: minmax(180px, 260px) minmax(0, 1fr); align-items: center; gap: clamp(28px, 4vw, 64px); padding-block: 32px; border-bottom: 1px solid #172c3229; }
+.collection-preview__image { position: relative; min-height: 260px; overflow: hidden; border-radius: 3px; background: #172c32; isolation: isolate; }
+.collection-preview__image img { object-fit: cover; filter: blur(24px) brightness(.65); transform: scale(1.22); }
+.collection-preview__image::after { content: ""; position: absolute; inset: 0; background: #172c3233; z-index: 0; }
+.collection-preview__lock { position: absolute; z-index: 1; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: #f3f0e8; }
+.collection-preview__lock svg { width: 36px; height: 36px; color: #ebf308; }
+.collection-preview__lock > span { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+.collection-preview__placeholder { position: absolute; bottom: 12px; left: 0; right: 0; text-align: center; z-index: 1; color: #f3f0e8; font-size: 11px; }
+.collection-preview__copy { color: #172c32; }
+.collection-preview__kicker { font-size: 10px; line-height: 1.5; letter-spacing: .13em; text-transform: uppercase; }
+.collection-preview h2 { margin-top: 14px; font-size: clamp(26px, 2.6vw, 38px); line-height: 1.15; letter-spacing: -.04em; font-weight: 450; }
+.collection-preview__description { max-width: 480px; margin-top: 12px; color: #536165; font-size: 14px; line-height: 1.6; }
+.collection-preview__date { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; margin-top: 18px; font-size: 13px; line-height: 1.5; }
+.collection-preview__date > span { font-size: 11px; color: #536165; }
+.collection-preview__timer { display: flex; flex-wrap: wrap; gap: clamp(18px, 3vw, 36px); margin-top: 17px; }
+.collection-preview__timer > span { min-width: 44px; }
+.collection-preview__timer strong { display: block; font-size: clamp(28px, 3vw, 40px); font-weight: 400; line-height: 1.1; letter-spacing: -.025em; font-variant-numeric: tabular-nums; }
+.collection-preview__timer small { display: block; margin-top: 7px; color: #536165; font-size: 11px; line-height: 1.4; }
+.collection-preview__status { margin-top: 14px; color: #536165; font-size: 13px; line-height: 1.6; }
+@media (max-width: 760px) {
+  .collection-preview { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 24px 32px; }
+  .collection-preview__image { min-height: 180px; aspect-ratio: 16 / 9; }
+  .collection-preview__copy { padding-inline: 2px; }
+}

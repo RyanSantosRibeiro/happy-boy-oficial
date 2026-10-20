@@ -19,8 +19,6 @@
 .campaign-hero h1 { font-size: clamp(52px,9vw,170px); font-weight: 450; letter-spacing: -.075em; line-height: .84; white-space: nowrap; }
 .campaign-hero__bottom { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-top: 40px; }
 .campaign-hero__bottom p { max-width: 290px; font-size: clamp(14px,1.3vw,20px); line-height: 1.5; }
-.campaign-hero__bottom a { display: inline-flex; align-items: center; gap: 40px; border-bottom: 1px solid #ffffff80; padding-block: 14px; font-size: 12px; }
-.campaign-hero__bottom a:hover { color: var(--neon); }
 .campaign-hero__reveal { animation: campaign-arrival .9s ease var(--hero-reveal-delay,2.5s) both; }
 @keyframes campaign-arrival { from { opacity: 0; visibility: hidden; } to { opacity: 1; visibility: visible; } }
 .campaign-hero__play { position: absolute; right: var(--gutter); bottom: 22px; display: flex; align-items: center; gap: 12px; border: 1px solid #ffffff80; background: #0005; color: #fff; min-height: 40px; padding: 8px 16px; font-size: 11px; }
@@ -95,10 +93,6 @@
 .store-footer__signature { display: inline-flex; align-items: center; gap: 14px; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
 .store-footer__signature img { width: 26px; height: 32px; }
 .store-footer__bottom>a { min-height: 44px; display: inline-flex; align-items: center; }
-.whatsapp-button { position: fixed !important; z-index: 1000 !important; right: max(20px,env(safe-area-inset-right)); bottom: max(20px,env(safe-area-inset-bottom)); display: inline-flex !important; visibility: visible !important; opacity: 1 !important; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 12px 17px; color: #000; background: var(--neon); border: 1px solid #0002; border-radius: 30px; font-size: 12px; }
-.whatsapp-button svg { width: 25px; height: 25px; }
-.whatsapp-button__arrow { font-size: 17px; }
-.whatsapp-button:hover { background: #fff; }
 
 .product-page { background: #fff; padding: 32px var(--gutter) 90px; }
 .product-page__header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; font-size: 12px; }
@@ -152,8 +146,6 @@
   .store-footer__contact { grid-column: 1/-1; max-width: 340px; padding-right: 58px; }
   .store-footer__bottom { align-items: flex-start; flex-direction: column; padding-right: 0; gap: 14px; }
   .store-footer__bottom>p { padding-right: 58px; }
-  .whatsapp-button { padding: 12px; min-width: 50px; right: 16px; }
-  .whatsapp-button>span { display: none; }
   .product-page__layout { grid-template-columns: minmax(0,1fr); }
   .product-page__info { position: static; }
   .product-page__images { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; }

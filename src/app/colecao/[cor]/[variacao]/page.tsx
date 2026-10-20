@@ -3,6 +3,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { LifestyleGallery } from "@/components/happy-boy/LifestyleGallery";
 import { collectionFamilies, getColorGallery, resolveColorFamily, variantHref } from "@/data/collection-families";
 import { poloCaneladoColors, poloCaneladoSlug } from "@/data/polo-canelado";
+import { isPublishedCatalogEntry } from "@/data/catalog";
 import "@/components/happy-boy/collection.css";
 import "@/components/happy-boy/lifestyle-gallery.css";
 import "@/components/happy-boy/gallery-art-direction.css";
@@ -10,16 +11,19 @@ import "@/components/happy-boy/gallery-art-direction.css";
 type VariantParams = { params: Promise<{ cor: string; variacao: string }> };
 
 export function generateStaticParams() {
-  return [...collectionFamilies.flatMap(family => family.variants.filter(variant => !variant.gallerySlug).flatMap(variant => [
+  return [...collectionFamilies.filter(family => isPublishedCatalogEntry(family)).flatMap(family => family.variants.filter(variant => !variant.gallerySlug).flatMap(variant => [
     { cor: family.slug, variacao: variant.color },
     ...(family.slug === "polo-short" ? [{ cor: "polo-essential", variacao: variant.color }] : []),
-  ])), ...poloCaneladoColors.map(color => ({ cor: poloCaneladoSlug, variacao: color.slug }))];
+  ])), ...poloCaneladoColors.filter(color => {
+    const look = getColorGallery(poloCaneladoSlug, color.slug);
+    return !!look && isPublishedCatalogEntry(look);
+  }).map(color => ({ cor: poloCaneladoSlug, variacao: color.slug }))];
 }
 
 export async function generateMetadata({ params }: VariantParams): Promise<Metadata> {
   const { cor, variacao } = await params;
   const look = getColorGallery(resolveColorFamily(cor, variacao), variacao);
-  if (!look) notFound();
+  if (!look || !isPublishedCatalogEntry(look)) notFound();
   const title = `${look.name} — ${look.color} | Happy Boy`;
   return { title, description: `Fotografias oficiais de ${look.name}, na cor ${look.color?.toLowerCase()}, da Happy Boy.`,
     openGraph: { title, images: [{ url: look.cover, alt: look.photos[0].alt }] } };
@@ -30,6 +34,6 @@ export default async function ColorGalleryPage({ params }: VariantParams) {
   const family = resolveColorFamily(cor, variacao);
   if (family !== cor) permanentRedirect(variantHref(family, variacao));
   const look = getColorGallery(cor, variacao);
-  if (!look) notFound();
+  if (!look || !isPublishedCatalogEntry(look)) notFound();
   return <LifestyleGallery key={`${cor}/${variacao}`} look={look} />;
 }

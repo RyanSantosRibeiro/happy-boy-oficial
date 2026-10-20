@@ -6,6 +6,7 @@ import { collectionItems, type Collection } from "@/data/collection";
 import { SiteImage } from "./SiteImage";
 import { BrandMark } from "./BrandMark";
 import { ProductConsultationButton } from "./ProductConsultationButton";
+import { collectionReturnHref, getPublishedCollection } from "@/data/catalog";
 
 export function CollectionGallery({ collection }: { collection: Collection }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -44,7 +45,7 @@ export function CollectionGallery({ collection }: { collection: Collection }) {
   return <main className="look-gallery">
     <header className="look-gallery__header">
       <Link href="/#top" className="look-gallery__brand" aria-label="Happy Boy — início"><BrandMark /></Link>
-      <Link href="/#collection" className="look-gallery__back">← Voltar à coleção</Link>
+      <Link href={collectionReturnHref(collection.collectionId, "/#collection")} className="look-gallery__back">← Voltar à coleção</Link>
     </header>
     <div className="look-gallery__layout">
       <section className="look-gallery__media" aria-label={`Fotografias do conjunto ${collection.name.toLowerCase()}`}>
@@ -63,9 +64,10 @@ export function CollectionGallery({ collection }: { collection: Collection }) {
             <SiteImage src={image} alt="" width={120} height={180} sizes="(max-width: 700px) 18vw, 64px" />
           </button>)}
         </div>
+        <p className="navigation-help">Clique nas fotos pequenas para ver outros ângulos do conjunto.</p>
       </section>
       <section className="look-gallery__information" aria-labelledby="look-title">
-        <p className="collection-eyebrow">Happy Boy / Travel Edition</p>
+        <p className="collection-eyebrow">Happy Boy / {getPublishedCollection(collection.collectionId)?.name}</p>
         <h1 id="look-title">Conjunto {collection.name.toLowerCase()}</h1>
         <p className="look-gallery__caption">Entre caminhos, movimento e presença.</p>
         <nav className="look-gallery__colors" aria-label="Explorar outras cores">
@@ -74,7 +76,8 @@ export function CollectionGallery({ collection }: { collection: Collection }) {
             <span>{name}</span>
           </Link>)}
         </nav>
-        <ProductConsultationButton name="Conjunto Dry Fit" color={collection.name} />
+        <p className="navigation-help">Clique em uma cor para abrir a página com as fotos dessa opção.</p>
+        <ProductConsultationButton familyId={collection.commercialFamilyId} collectionId={collection.collectionId} />
         <p className="look-gallery__count" aria-live="polite">{String(currentIndex + 1).padStart(2, "0")} <span>/ {String(collection.images.length).padStart(2, "0")}</span></p>
       </section>
     </div>

@@ -1,0 +1,62 @@
+.whatsapp-contact-trigger { position: fixed; z-index: 1000; right: max(20px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom)); display: inline-flex; align-items: center; gap: 11px; min-height: 60px; padding: 12px 20px; border: 1px solid #172c3229; border-radius: 32px; background: #ebf308; color: #172c32; box-shadow: 0 3px 18px #0002; text-align: left; transition: background .2s ease; }
+.whatsapp-contact-trigger > svg { width: 27px; height: 27px; flex: none; }
+.whatsapp-contact-trigger strong, .whatsapp-contact-trigger small { display: block; }
+.whatsapp-contact-trigger strong { font-size: 14px; line-height: 1.3; font-weight: 600; }
+.whatsapp-contact-trigger small { margin-top: 3px; font-size: 11px; line-height: 1.3; }
+.whatsapp-contact-trigger:hover { background: #f5fa7a; }
+.whatsapp-contact-trigger:focus-visible { outline: 3px solid #172c32; outline-offset: 3px; box-shadow: 0 0 0 7px #ebf308; }
+
+.campaign-hero__contact { position: absolute; z-index: 2; top: 108px; left: var(--gutter); max-width: 250px; color: #fff; }
+.campaign-hero .campaign-hero__play { left: var(--gutter); right: auto; }
+.campaign-hero__contact > button { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 5px 18px 5px 5px; background: #f3f0e8; border: 1px solid #fff6; border-radius: 28px; color: #172c32; box-shadow: 0 3px 16px #0002; font-size: 14px; line-height: 1.3; font-weight: 550; transition: background .2s ease, box-shadow .2s ease; }
+.campaign-hero__contact > button:hover { background: #fff; box-shadow: 0 4px 20px #0003; }
+.campaign-hero__contact > button > span { text-align: left; }
+.campaign-hero__contact > button small { display: block; margin-top: 3px; font-size: 11px; line-height: 1.4; font-weight: 400; }
+.campaign-hero__contact > button:focus-visible { outline: 2px solid #ebf308; outline-offset: 4px; box-shadow: 0 0 0 5px #172c32; }
+.campaign-hero__contact svg { width: 36px; height: 36px; padding: 7px; flex: none; background: #ebf308; border-radius: 50%; }
+
+.whatsapp-contact-panel { position: fixed; inset: auto max(20px, env(safe-area-inset-right)) max(94px, calc(env(safe-area-inset-bottom) + 74px)) auto; width: 390px; max-width: calc(100% - 40px); max-height: calc(100dvh - 120px); margin: 0; padding: 0; border: 1px solid #172c3230; border-radius: 12px; background: #f3f0e8; color: #172c32; box-shadow: 0 12px 48px #0003; overflow-y: auto; overscroll-behavior: contain; }
+.whatsapp-contact-panel[open] { animation: contact-arrival .2s ease-out; }
+.whatsapp-contact-panel::backdrop { background: #0c20252e; }
+.whatsapp-contact-panel__header { position: sticky; top: 0; z-index: 1; padding: 24px 22px 19px; background: #172c32; color: #f3f0e8; }
+.whatsapp-contact-panel__header > p:first-child { max-width: calc(100% - 80px); font-size: 10px; line-height: 1.6; color: #d1d9d8; }
+.whatsapp-contact-panel__header h2 { margin: 23px 0 10px; font-size: 25px; line-height: 1.15; letter-spacing: -.035em; font-weight: 450; }
+.whatsapp-contact-panel__header > p:last-child { font-size: 14px; line-height: 1.5; color: #e0e5e2; }
+.whatsapp-contact-panel__close { position: absolute; top: 12px; right: 10px; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 10px; border: 1px solid #c1cbcc66; border-radius: 4px; background: transparent; color: #f3f0e8; font-size: 12px; }
+.whatsapp-contact-panel__close svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.whatsapp-contact-panel__close:hover { background: #ffffff15; }
+.whatsapp-contact-panel__options { padding: 8px 14px; }
+.whatsapp-contact-panel__options a { display: flex; align-items: center; gap: 13px; min-height: 85px; padding: 17px 9px; border-bottom: 1px solid #172c3229; text-decoration: none; transition: background .2s ease; }
+.whatsapp-contact-panel__options a:last-child { border-bottom: 0; }
+.whatsapp-contact-panel__options a > svg { width: 24px; height: 24px; flex: none; }
+.whatsapp-contact-panel__options a > span:not(.whatsapp-contact-panel__arrow) { flex: 1; min-width: 0; }
+.whatsapp-contact-panel__options strong { display: block; font-size: 15px; line-height: 1.4; font-weight: 550; }
+.whatsapp-contact-panel__options small { display: block; margin-top: 5px; color: #536165; font-size: 12px; line-height: 1.5; }
+.whatsapp-contact-panel__options a:hover { background: #e6e5da; }
+.whatsapp-contact-panel__options a:focus-visible { outline: 2px solid #172c32; outline-offset: 2px; box-shadow: none; background: #ebf30833; }
+.whatsapp-contact-panel__arrow { color: #172c32; flex: none; font-size: 18px; }
+.whatsapp-contact-panel__note { display: flex; align-items: center; gap: 7px; padding: 12px 22px 19px; color: #536165; font-size: 12px; line-height: 1.5; }
+.whatsapp-contact-panel__note svg { width: 18px; height: 18px; flex: none; }
+@keyframes contact-arrival { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 760px) {
+  .whatsapp-contact-trigger { right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); max-width: calc(100vw - 32px); padding: 11px 16px; }
+  .campaign-hero__contact { top: 86px; }
+  .whatsapp-contact-panel { right: max(16px, env(safe-area-inset-right)); bottom: max(90px, calc(env(safe-area-inset-bottom) + 74px)); width: 390px; max-width: calc(100% - 32px); max-height: calc(100dvh - 110px); }
+  .whatsapp-contact-panel__header { padding: 22px 18px 17px; }
+  .whatsapp-contact-panel__options { padding-inline: 10px; }
+}
+@media (max-width: 380px) {
+  .whatsapp-contact-trigger { padding: 11px 12px; gap: 8px; }
+  .whatsapp-contact-trigger > svg { width: 24px; height: 24px; }
+  .whatsapp-contact-trigger strong { font-size: 13px; }
+  .whatsapp-contact-trigger small { font-size: 10px; }
+  .campaign-hero .campaign-hero__play { gap: 6px; padding-inline: 8px; font-size: 10px; }
+}
+@media (max-height: 560px) {
+  .campaign-hero__contact { top: 86px; }
+  .whatsapp-contact-panel { bottom: 16px; max-height: calc(100dvh - 32px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-contact-panel[open] { animation: none; }
+  .whatsapp-contact-trigger, .campaign-hero__contact > button, .whatsapp-contact-panel__options a { transition: none; }
+}

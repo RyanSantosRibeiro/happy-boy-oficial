@@ -1,13 +1,15 @@
+import { travelCollectionId, type CommercialFamilyId } from "./commercial.ts";
 import type { LifestyleGalleryData, LookVariantLink } from "./lifestyle-galleries";
-import { getPoloCaneladoGallery, poloCaneladoSlug } from "./polo-canelado";
+import { getPoloCaneladoGallery, poloCaneladoSlug } from "./polo-canelado.ts";
 
 export type CollectionVariant = { color: string; name: string; swatch: string; cover: string; photos: Array<{ id: string; alt: string }>; gallerySlug?: string; label?: string };
-export type CollectionFamily = { slug: string; name: string; variants: CollectionVariant[] };
+export type CollectionFamily = { slug: string; name: string; collectionId: string; commercialFamilyId: CommercialFamilyId; variants: CollectionVariant[] };
 
 // Provisional editorial names; photographs were grouped by garment construction.
 export const collectionFamilies: CollectionFamily[] = [
   {
     "slug": "polo-essential",
+    collectionId: travelCollectionId, commercialFamilyId: "polo-calca",
     "name": "Polo Essential",
     "variants": [
       {
@@ -86,6 +88,7 @@ export const collectionFamilies: CollectionFamily[] = [
   },
   {
     "slug": "camiseta-contrast",
+    collectionId: travelCollectionId, commercialFamilyId: "camiseta-contrast",
     "name": "Camiseta Contrast",
     "variants": [
       {
@@ -152,6 +155,7 @@ export const collectionFamilies: CollectionFamily[] = [
   },
   {
     "slug": "polo-short",
+    collectionId: travelCollectionId, commercialFamilyId: "polo-short",
     "name": "Polo e short",
     "variants": [
       {
@@ -306,6 +310,6 @@ export function getColorGallery(familySlug: string, color: string): LifestyleGal
   if (!family || !variant) return undefined;
   if (variant.gallerySlug) return undefined;
   const variants: LookVariantLink[] = family.variants.map(item => ({ color: item.color, name: item.name, swatch: item.swatch, href: collectionVariantHref(family.slug, item) }));
-  return { id: `${family.slug}-${variant.color}`, slug: family.slug, name: family.name, cover: variantPhoto(variant.cover), color: variant.name, variants,
+  return { collectionId: family.collectionId, commercialFamilyId: family.commercialFamilyId, id: `${family.slug}-${variant.color}`, slug: family.slug, name: family.name, cover: variantPhoto(variant.cover), color: variant.name, variants,
     photos: variant.photos.map(photo => ({ ...photo, src: variantPhoto(photo.id), original: `/images/travel-edition/lifestyle/originals/RAY_${photo.id}.jpg` })) };
 }

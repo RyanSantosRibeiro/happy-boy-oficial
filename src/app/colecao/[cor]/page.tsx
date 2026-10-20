@@ -7,14 +7,16 @@ import "@/components/happy-boy/lifestyle-gallery.css";
 import "@/components/happy-boy/gallery-art-direction.css";
 import { collectionItems, collections, isCollectionSlug } from "@/data/collection";
 import { getLifestyleGallery, lifestyleGalleries } from "@/data/lifestyle-galleries";
+import { getPublishedCollection, isPublishedCatalogEntry } from "@/data/catalog";
 
 export function generateStaticParams() {
-  return [...collectionItems, ...lifestyleGalleries].map(({ slug }) => ({ cor: slug }));
+  return [...collectionItems, ...lifestyleGalleries].filter(entry => isPublishedCatalogEntry(entry)).map(({ slug }) => ({ cor: slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ cor: string }> }): Promise<Metadata> {
   const { cor } = await params;
   const look = getLifestyleGallery(cor);
+  if (look && !isPublishedCatalogEntry(look)) notFound();
   if (look) return {
     title: `${look.name} | Happy Boy`,
     description: `Explore as fotografias oficiais de ${look.name.toLowerCase()} da Happy Boy.`,
@@ -22,9 +24,11 @@ export async function generateMetadata({ params }: { params: Promise<{ cor: stri
   };
   if (!isCollectionSlug(cor)) notFound();
   const collection = collections[cor];
+  if (!isPublishedCatalogEntry(collection)) notFound();
+  const collectionName = getPublishedCollection(collection.collectionId)!.name;
   return {
-    title: `Conjunto ${collection.name.toLowerCase()} — Travel Edition | Happy Boy`,
-    description: `Explore as fotografias do conjunto ${collection.name.toLowerCase()} da coleção Travel Edition Happy Boy.`,
+    title: `Conjunto ${collection.name.toLowerCase()} — ${collectionName} | Happy Boy`,
+    description: `Explore as fotografias do conjunto ${collection.name.toLowerCase()} da coleção ${collectionName} Happy Boy.`,
     openGraph: { title: `Conjunto ${collection.name.toLowerCase()} | Happy Boy`, images: [{ url: collection.cover, alt: collection.altTexts[0] }] },
   };
 }
@@ -34,8 +38,12 @@ export default async function CollectionPage({ params }: { params: Promise<{ cor
   if (cor === "polo-marrom") permanentRedirect("/colecao/polo-essential/marrom");
   if (cor === "polo-verde") permanentRedirect("/colecao/polo-short/verde");
   const look = getLifestyleGallery(cor);
-  if (look) return <LifestyleGallery key={cor} look={look} />;
+  if (look) {
+    if (!isPublishedCatalogEntry(look)) notFound();
+    return <LifestyleGallery key={cor} look={look} />;
+  }
   if (!isCollectionSlug(cor)) notFound();
+  if (!isPublishedCatalogEntry(collections[cor])) notFound();
 
   return <CollectionGallery key={cor} collection={collections[cor]} />;
 }

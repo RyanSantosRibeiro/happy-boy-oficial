@@ -1,24 +1,17 @@
 import { collectionAssets } from "./collection";
+import { getFeaturedCollection } from "./catalog";
+import { commercialContact } from "./commercial";
+import { whatsappHref } from "@/lib/wholesale";
 
 const brandProfileImage = "https://scontent-gig4-2.cdninstagram.com/v/t51.82787-19/830612433_18369901312214025_7224926867452500189_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=103&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=zvEQ8tUAD_0Q7kNvwHuaAu9&_nc_oc=AdplJn71hkyI8pB6uGJo9dY-SkXBXyo6IO5MaFl7G9Whf7REQB0b5AsfahIiD5X8uK0W8oExfL69-helhNPyAPSY&_nc_zt=24&_nc_ht=scontent-gig4-2.cdninstagram.com&_nc_gid=duvZry8L4b4_wlwfSfkt2w&_nc_ss=7b6a8&oh=00_AQOS-hy73ZFUgKD61fuM7G6PfLMlYt9Cnw43zPpkDoGVPw&oe=6ACB74B4";
 
 export const storefront = {
-  hero: {
-    // Paste a direct MP4/WebM URL or a /videos/file.mp4 path here.
-    videoSrc: "/videos/travel-edition/happyboy-beyond-limits-v7-desktop.mp4" as string | null,
-    mobileVideoSrc: "/videos/travel-edition/happyboy-beyond-limits-v7-mobile.mp4",
-    poster: "/videos/travel-edition/happyboy-beyond-limits-v7-desktop-poster.jpg",
-    mobilePoster: "/videos/travel-edition/happyboy-beyond-limits-v7-mobile-poster.jpg",
-    closingStartsAt: 35.24,
-    revealDelaySeconds: 2.5,
-    title: "TRAVEL EDITION",
-    subtitle: "Do cotidiano ao destino, com estilo em cada caminho",
-  },
+  hero: getFeaturedCollection().presentation.hero,
   logo: "/images/happy-boy-logo-black.png",
   whatsapp: {
     // International digits only, including country and area code. No fake number.
-    phone: "558589634064",
-    message: "Olá! Gostaria de conhecer as peças da Happy Boy.",
+    phone: commercialContact.phone,
+    message: commercialContact.generalMessage,
   },
   showcases: [
     {
@@ -76,7 +69,5 @@ export const storefront = {
 };
 
 export function getWhatsAppHref(message = storefront.whatsapp.message): string | null {
-  const phone = storefront.whatsapp.phone.replace(/\D/g, "");
-  if (phone.length < 10 || phone.length > 15) return null;
-  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  return whatsappHref(message, storefront.whatsapp.phone);
 }

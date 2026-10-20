@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { collectionVariantHref, variantPhoto, type CollectionFamily } from "@/data/collection-families";
 import { SiteImage } from "./SiteImage";
+import { PhotoPageHint } from "./PhotoPageHint";
 import "./family-color-card.css";
 
 export function FamilyColorCard({ family }: { family: CollectionFamily }) {
@@ -101,6 +102,7 @@ export function FamilyColorCard({ family }: { family: CollectionFamily }) {
               className="family-color-card__slide" data-color-slide={index} aria-hidden={!selected} tabIndex={selected ? 0 : -1}
               aria-label={`Ver ${variant.label ?? family.name} — ${variant.name}`} draggable={false}>
               <SiteImage src={variantPhoto(variant.cover)} alt={variant.photos[0].alt} fill sizes="(max-width: 700px) 92vw, (max-width: 1100px) 44vw, 23vw" loading="lazy" draggable={false} />
+              <PhotoPageHint />
             </Link>;
           })}
         </div>

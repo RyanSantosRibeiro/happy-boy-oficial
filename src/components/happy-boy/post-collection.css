@@ -46,9 +46,6 @@
 .store-footer__invitation > a:hover { border-color: var(--neon); }
 .store-footer__columns { padding-block: 42px; }
 .store-footer__brand .brand-asset { width: min(100%, 245px); }
-.whatsapp-button[data-collection-view=true] { min-width: 46px; min-height: 46px; padding: 10px; }
-.whatsapp-button[data-collection-view=true] svg { width: 24px; height: 24px; }
-.whatsapp-button[data-collection-view=true] > span { display: none; }
 @media (hover: hover) {
   .collection-story .collection-look:hover { transform: translateY(-4px); }
   .collection-story .collection-look:hover .collection-look__photo img { transform: scale(1.016); }
@@ -128,8 +125,7 @@
 .store-footer .store-footer__invitation > a:hover span { color: #000; }
 .store-footer .store-footer__columns { padding-block: clamp(40px, 4vw, 64px); }
 .store-footer .store-footer__brand .brand-asset { width: min(100%, 260px); }
-.store-footer .store-footer__bottom { padding-right: 72px; }
-.whatsapp-button[data-collection-view=true] { box-shadow: 0 2px 12px #0000000a; }
+.store-footer .store-footer__bottom { padding-right: 240px; }
 @media (max-width: 1100px) {
   .collection-story .collection-editorial__photo { width: 100%; }
   .collection-story .collection-editorial__copy h2 { font-size: clamp(34px, 4.5vw, 52px); }

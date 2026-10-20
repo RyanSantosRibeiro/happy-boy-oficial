@@ -1,19 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { storefront } from "@/data/storefront";
+import type { CampaignHeroData } from "@/data/catalog";
 import { Header } from "./Header";
 import { SiteImage } from "./SiteImage";
+import { WhatsAppHeroContact } from "./WhatsAppButton";
 
 /** A single viewport, looping film and one delayed entrance for header + copy. */
-export function CampaignHero() {
+export function CampaignHero({ hero }: { hero: CampaignHeroData }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const rootRef = useRef<HTMLElement>(null);
   const pausedByUser = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
-  const { hero } = storefront;
 
   useEffect(() => {
     const video = videoRef.current;
@@ -119,12 +119,12 @@ export function CampaignHero() {
         />}
       </div>
       <div className="campaign-hero__header campaign-hero__reveal"><Header /></div>
+      <WhatsAppHeroContact />
       <div className="campaign-hero__copy campaign-hero__reveal">
         <p className="campaign-hero__edition">Happy Boy / Nova coleção</p>
         <h1 id="campaign-heading">{hero.title}</h1>
         <div className="campaign-hero__bottom">
           <p>{hero.subtitle}</p>
-          <a href="#shop">Explore a coleção <span aria-hidden="true">↓</span></a>
         </div>
       </div>
       {hero.videoSrc && !failed && <button className="campaign-hero__play" type="button" onClick={toggleVideo} aria-label={playing ? "Pausar vídeo da campanha" : "Reproduzir vídeo da campanha"}>

@@ -1,0 +1,17 @@
+.navigation-help { margin-top: 14px; color: #536165; font-size: 13px; line-height: 1.65; max-width: 680px; }
+.collection-look__photo { position: relative; }
+.photo-page-hint { position: absolute; z-index: 1; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 12px; max-width: calc(100% - 24px); padding: 9px 12px; border: 1px solid #172c3226; border-radius: 3px; background: #f3f0e8; color: #172c32; font-size: 12px; font-weight: 500; line-height: 1.4; letter-spacing: 0; text-transform: none; pointer-events: none; }
+.photo-page-hint svg { width: 16px; height: 16px; flex: none; }
+.collection-selection > .navigation-help { margin: -12px 0 24px; }
+.editorial-reel > .navigation-help { margin-bottom: -12px; }
+.editorial-reel .editorial-reel__caption { gap: 12px; justify-content: space-between; }
+.editorial-reel__open-page { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; letter-spacing: 0; text-transform: none; }
+.collection-editorial .navigation-help { max-width: 310px; }
+.look-gallery__media > .navigation-help { grid-column: 1 / -1; margin-top: 0; }
+.look-gallery__information > .navigation-help { margin-top: 12px; }
+.about-section .about-section__copy > .navigation-help { color: #c1cbcc; font-size: 13px; }
+.store-footer .store-footer__external-note { display: block; color: #c1cbcc; font-size: 12px; line-height: 1.6; margin-top: 10px; }
+@media (max-width: 760px) {
+  .editorial-reel > .navigation-help { margin: 16px 5vw -10px; text-align: center; }
+  .collection-selection > .navigation-help { margin-top: -12px; }
+}

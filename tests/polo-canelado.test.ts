@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
 import test from "node:test";
-import { getPoloCaneladoGallery, poloCaneladoColors, poloCaneladoName } from "../src/data/polo-canelado.ts";
+import { getPoloCaneladoGallery, poloCaneladoColors } from "../src/data/polo-canelado.ts";
+import { lineConsultationMessage } from "../src/lib/wholesale.ts";
 
 test("each polo set color has separate official photographs and original files", () => {
   const seen = new Set<string>();
@@ -19,7 +20,8 @@ test("each polo set color has separate official photographs and original files",
       assert.ok(existsSync(`public${photo.src}`), photo.src);
       assert.ok(existsSync(`public${photo.original}`), photo.original);
     }
-    assert.equal(gallery.consultationMessage, `Olá! Gostei do ${poloCaneladoName} / ${color.name} e queria saber mais informações, disponibilidade e valor.`);
+    assert.equal(gallery.commercialFamilyId, "polo-canelado");
+    assert.equal(lineConsultationMessage(gallery.commercialFamilyId, "Travel Edition"), lineConsultationMessage("polo-canelado", "Travel Edition"));
   }
   assert.equal(getPoloCaneladoGallery("azul"), undefined);
 });

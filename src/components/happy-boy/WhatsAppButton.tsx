@@ -1,34 +1,76 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { getWhatsAppHref } from "@/data/storefront";
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
+import { commercialContact, thirdCommercialAction } from "@/data/commercial";
+import { catalogRequestMessage, whatsappHref } from "@/lib/wholesale";
+import { CommercialActionIcon } from "./CommercialActionIcon";
+import "./whatsapp-contact.css";
 
-export function WhatsAppButton() {
-  const button = useRef<HTMLAnchorElement>(null);
-  useEffect(() => {
-    const collection = document.querySelector<HTMLElement>(".collection-story");
-    const benefits = document.querySelector<HTMLElement>(".editorial-reel__benefits");
-    if (!collection || !benefits) return;
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const active = String(benefits.getBoundingClientRect().top <= 0);
-      if (button.current && button.current.dataset.collectionView !== active) button.current.dataset.collectionView = active;
-    };
-    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
-    update();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-    };
-  }, []);
-  const href = getWhatsAppHref("Olá! Gostaria de conhecer melhor a coleção Travel Edition da Happy Boy.");
-  if (!href) return null;
-  return <a className="whatsapp-button" ref={button} href={href} target="_blank" rel="noopener noreferrer" aria-label="Conversar com a Happy Boy no WhatsApp — abre em nova aba">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.7 7.4L3 20l1.2-4.6a8.5 8.5 0 1 1 16.3-3.9Z" /><path d="m8.2 7.2 1.4 2.6-.9 1c.9 1.7 1.8 2.6 3.7 3.4l.9-1 2.7 1.4c.2 1.8-1.3 2.2-2.3 2-4.3-.9-6.9-3.4-7.5-7-.2-1.2.7-2.5 2-2.4Z" strokeLinejoin="round" /></svg>
-    <span>WhatsApp</span><span className="whatsapp-button__arrow" aria-hidden="true">↗</span>
-  </a>;
+const ContactContext = createContext<{ open: boolean; show: (trigger: HTMLButtonElement) => void } | null>(null);
+
+/** One accessible contact panel shared by the hero and the persistent site button. */
+export function WhatsAppProvider({ children, collectionName }: { children: ReactNode; collectionName: string }) {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const returnFocus = useRef<HTMLButtonElement | null>(null);
+  const firstAction = useRef<HTMLAnchorElement>(null);
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  useEffect(() => { dialog.current?.close(); }, [pathname]);
+
+  const show = (trigger: HTMLButtonElement) => {
+    returnFocus.current = trigger;
+    dialog.current?.showModal();
+    setOpen(true);
+    firstAction.current?.focus({ preventScroll: true });
+  };
+  const close = () => dialog.current?.close();
+  const catalog = whatsappHref(catalogRequestMessage(collectionName));
+  const seller = whatsappHref(commercialContact.sellerMessage);
+  const visit = thirdCommercialAction.enabled ? whatsappHref(thirdCommercialAction.message, thirdCommercialAction.destination) : null;
+
+  return <ContactContext.Provider value={{ open, show }}>
+    {children}
+    <button type="button" className="whatsapp-contact-trigger" onClick={event => show(event.currentTarget)} aria-haspopup="dialog" aria-expanded={open} aria-controls="whatsapp-contact-panel">
+      <CommercialActionIcon kind="whatsapp" />
+      <span><strong>Fale pelo WhatsApp</strong><small>Clique para ver as opções</small></span>
+    </button>
+    <dialog id="whatsapp-contact-panel" className="whatsapp-contact-panel" ref={dialog} aria-labelledby="whatsapp-contact-title" aria-describedby="whatsapp-contact-help" onClose={() => {
+      setOpen(false);
+      if (returnFocus.current?.isConnected) returnFocus.current.focus({ preventScroll: true });
+    }} onClick={event => {
+      if (event.target !== event.currentTarget) return;
+      const rect = event.currentTarget.getBoundingClientRect();
+      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) close();
+    }}>
+      <header className="whatsapp-contact-panel__header">
+        <p>Happy Boy / Atendimento a lojistas</p>
+        <button type="button" className="whatsapp-contact-panel__close" onClick={close} aria-label="Fechar atendimento"><span>Fechar</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" /></svg></button>
+        <h2 id="whatsapp-contact-title">Como podemos ajudar?</h2>
+        <p id="whatsapp-contact-help">Escolha uma opção abaixo. Você será levado ao WhatsApp com uma mensagem pronta.</p>
+      </header>
+      <nav className="whatsapp-contact-panel__options" aria-label="Opções de atendimento pelo WhatsApp">
+        {catalog && <a href={catalog} target="_blank" rel="noopener noreferrer" ref={firstAction} aria-label="Ver catálogo — abre no WhatsApp">
+          <CommercialActionIcon kind="line" /><span><strong>Ver catálogo</strong><small>Receba o catálogo da nova coleção.</small></span><span className="whatsapp-contact-panel__arrow" aria-hidden="true">↗</span>
+        </a>}
+        {seller && <a href={seller} target="_blank" rel="noopener noreferrer" aria-label="Falar com o vendedor — abre no WhatsApp">
+          <CommercialActionIcon kind="seller" /><span><strong>Falar com o vendedor</strong><small>Tire dúvidas sobre compras no atacado.</small></span><span className="whatsapp-contact-panel__arrow" aria-hidden="true">↗</span>
+        </a>}
+        {visit && <a href={visit} target="_blank" rel="noopener noreferrer" aria-label={`${thirdCommercialAction.title} — abre no WhatsApp`}>
+          <CommercialActionIcon kind="visit" /><span><strong>{thirdCommercialAction.title}</strong><small>Converse com a equipe para agendar.</small></span><span className="whatsapp-contact-panel__arrow" aria-hidden="true">↗</span>
+        </a>}
+      </nav>
+      <p className="whatsapp-contact-panel__note"><CommercialActionIcon kind="whatsapp" /> O WhatsApp abre em outra aba ou no aplicativo.</p>
+    </dialog>
+  </ContactContext.Provider>;
+}
+
+export function WhatsAppHeroContact() {
+  const contact = useContext(ContactContext);
+  if (!contact) return null;
+  return <aside className="campaign-hero__contact campaign-hero__reveal" aria-label="Atendimento para lojistas">
+    <button type="button" onClick={event => contact.show(event.currentTarget)} aria-haspopup="dialog" aria-expanded={contact.open} aria-controls="whatsapp-contact-panel">
+      <CommercialActionIcon kind="whatsapp" /><span>Fale pelo WhatsApp<small>Clique para ver as opções</small></span>
+    </button>
+  </aside>;
 }

@@ -3,10 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { BrandMark } from "./BrandMark";
+import { getFeaturedCollection } from "@/data/catalog";
 
-const links = [{ href: "/#dry-fit", label: "Coleção" }, { href: "/#collection", label: "Outros looks" }, { href: "/#about", label: "Sobre nós" }, { href: "/#contact", label: "Contato" }];
+const links = [{ href: "/colecoes", label: "Coleções" }, { href: "/#collection", label: "Outros looks" }, { href: "/#sobre-nos", label: "Sobre nós" }, { href: "/#contact", label: "Contato" }];
 
-export function Header() {
+export function Header({ tone = "light" }: { tone?: "light" | "dark" }) {
   const [open, setOpen] = useState(false);
   const header = useRef<HTMLElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
@@ -21,7 +22,7 @@ export function Header() {
     return () => { document.removeEventListener("pointerdown", onPointer); document.removeEventListener("keydown", onKey); media.removeEventListener("change", close); };
   }, [open]);
   return <header className="site-header" ref={header}>
-    <Link href="/#top" aria-label="Happy Boy — início" className="brand-link" onClick={() => setOpen(false)}><BrandMark tone="light" /></Link>
+    <Link href="/#top" aria-label="Happy Boy — início" className="brand-link" onClick={() => setOpen(false)}><BrandMark tone={tone} /></Link>
     <nav className="desktop-nav" aria-label="Navegação principal">{links.slice(0, 3).map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}</nav>
     <Link className="header-edition" href="/#contact"><span className="status-dot" aria-hidden="true" /> Contato</Link>
     <button className="menu-button" aria-controls="mobile-navigation" aria-expanded={open} aria-label={open ? "Fechar menu" : "Abrir menu"} onClick={() => setOpen(!open)} ref={trigger}>
@@ -29,7 +30,7 @@ export function Header() {
     </button>
     <nav id="mobile-navigation" className="mobile-nav" aria-label="Navegação mobile" hidden={!open} onBlur={(event) => { if (!header.current?.contains(event.relatedTarget as Node | null)) setOpen(false); }}>
       {links.map((link) => <Link key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}<span aria-hidden="true">↗</span></Link>)}
-      <span className="eyebrow">Happy Boy / Travel Edition / 2026</span>
+      <span className="eyebrow">Happy Boy / {getFeaturedCollection().name} / 2026</span>
     </nav>
   </header>;
 }

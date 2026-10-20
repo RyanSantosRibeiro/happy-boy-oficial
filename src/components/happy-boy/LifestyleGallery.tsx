@@ -6,9 +6,10 @@ import type { LifestyleGalleryData } from "@/data/lifestyle-galleries";
 import { BrandMark } from "./BrandMark";
 import { SiteImage } from "./SiteImage";
 import { ProductConsultationButton } from "./ProductConsultationButton";
+import { collectionReturnHref } from "@/data/catalog";
 
 export function LifestyleGallery({ look }: { look: LifestyleGalleryData }) {
-  const returnHref = look.returnHref ?? "/#collection";
+  const returnHref = collectionReturnHref(look.collectionId, look.returnHref ?? "/#collection");
   const [selected, setSelected] = useState(0);
   const stage = useRef<HTMLDivElement>(null);
   const request = useRef(0);
@@ -86,6 +87,7 @@ export function LifestyleGallery({ look }: { look: LifestyleGalleryData }) {
             <SiteImage src={photo.src} alt="" width={120} height={180} sizes="(max-width: 700px) 18vw, 64px" />
           </button>)}
         </div>
+        <p className="navigation-help">Clique nas fotos pequenas para ver outros ângulos da peça.</p>
       </section>
       <section className="look-gallery__information" aria-labelledby="lifestyle-look-title">
         <p className="collection-eyebrow">Happy Boy</p>
@@ -98,13 +100,14 @@ export function LifestyleGallery({ look }: { look: LifestyleGalleryData }) {
             <span>{variant.name}</span>
           </Link>)}
         </nav>}
-        <ProductConsultationButton name={look.name} color={look.color} message={look.consultationMessage} />
+        {look.variants && <p className="navigation-help">Clique em uma cor para abrir a página com as fotos dessa opção.</p>}
+        <ProductConsultationButton familyId={look.commercialFamilyId} collectionId={look.collectionId} />
         <div className="lifestyle-gallery__navigation" aria-label="Navegar entre fotografias">
           <button type="button" aria-label="Fotografia anterior" disabled={selected === 0} onClick={() => void select(selected - 1)}>←</button>
           <p className="look-gallery__count" aria-live="polite">{String(selected + 1).padStart(2, "0")} <span>/ {String(look.photos.length).padStart(2, "0")}</span></p>
           <button type="button" aria-label="Próxima fotografia" disabled={selected === look.photos.length - 1} onClick={() => void select(selected + 1)}>→</button>
         </div>
-        <a className="lifestyle-gallery__original" href={look.photos[selected].original} target="_blank" rel="noopener noreferrer">Ver em resolução original ↗</a>
+        <a className="lifestyle-gallery__original" href={look.photos[selected].original} target="_blank" rel="noopener noreferrer">Abrir foto original em outra aba ↗</a>
         <Link href={returnHref} className="look-gallery__back lifestyle-gallery__return">← Voltar à coleção</Link>
       </section>
     </div>

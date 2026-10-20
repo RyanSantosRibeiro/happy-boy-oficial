@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
-import { collectionEditorialLooks as looks } from "@/data/editorial-looks";
+import type { EditorialLook } from "@/data/catalog";
 import { SiteImage } from "./SiteImage";
+import { PhotoPageHint } from "./PhotoPageHint";
 
-const slides = [looks[looks.length - 1], ...looks, looks[0]];
-
-export function DryFitEditorialCarousel({ onLookChange }: { onLookChange?: (id: string) => void }) {
+export function DryFitEditorialCarousel({ looks, label, onLookChange }: { looks: EditorialLook[]; label: string; onLookChange?: (id: string) => void }) {
+  const slides = [looks[looks.length - 1], ...looks, looks[0]];
   const [position, setPosition] = useState(1);
   const [animated, setAnimated] = useState(true);
   const [busy, setBusy] = useState(false);
@@ -16,7 +16,7 @@ export function DryFitEditorialCarousel({ onLookChange }: { onLookChange?: (id: 
   const suppressClick = useRef(false);
   const gesture = useRef<{ x: number; y: number; dx: number; horizontal: boolean } | null>(null);
   const active = (position - 1 + looks.length) % looks.length;
-  useEffect(() => { onLookChange?.(looks[active].id); }, [active, onLookChange]);
+  useEffect(() => { onLookChange?.(looks[active].id); }, [active, looks, onLookChange]);
 
   const move = async (direction: -1 | 1) => {
     const element = viewport.current;
@@ -48,7 +48,7 @@ export function DryFitEditorialCarousel({ onLookChange }: { onLookChange?: (id: 
     gesture.current = { x: event.clientX, y: event.clientY, dx: 0, horizontal: false };
   };
 
-  return <div className="editorial-photo-carousel" role="region" aria-roledescription="carrossel" aria-label="Conjunto Polo Dry Fit Canelado Happy Boy" aria-busy={busy} tabIndex={0}
+  return <div className="editorial-photo-carousel" role="region" aria-roledescription="carrossel" aria-label={`${label} Happy Boy`} aria-busy={busy} tabIndex={0}
     onKeyDown={(event) => {
       if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
         event.preventDefault();
@@ -100,14 +100,15 @@ export function DryFitEditorialCarousel({ onLookChange }: { onLookChange?: (id: 
           return <Link key={`${look.id}-${index}`} className="editorial-photo-carousel__slide" href={look.href} prefetch={false} draggable={false}
             data-slide={index} aria-hidden={!selected} tabIndex={selected ? 0 : -1} aria-label={`Ver ${look.label}`}>
             <SiteImage src={look.src} alt={look.alt} fill sizes="(max-width: 760px) 90vw, (max-width: 1100px) 44vw, 600px" preload={index === 1} loading={index === 1 ? undefined : Math.abs(index - position) <= 1 ? "eager" : "lazy"} draggable={false} />
+            <PhotoPageHint />
           </Link>;
         })}
       </div>
     </div>
-    <button className="editorial-photo-carousel__arrow editorial-photo-carousel__arrow--previous" type="button" disabled={busy} aria-label="Anterior — conjunto Polo Dry Fit Canelado" onClick={() => void move(-1)}>
+    <button className="editorial-photo-carousel__arrow editorial-photo-carousel__arrow--previous" type="button" disabled={busy} aria-label={`Anterior — ${label}`} onClick={() => void move(-1)}>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg>
     </button>
-    <button className="editorial-photo-carousel__arrow editorial-photo-carousel__arrow--next" type="button" disabled={busy} aria-label="Próximo — conjunto Polo Dry Fit Canelado" onClick={() => void move(1)}>
+    <button className="editorial-photo-carousel__arrow editorial-photo-carousel__arrow--next" type="button" disabled={busy} aria-label={`Próximo — ${label}`} onClick={() => void move(1)}>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
     </button>
     <span className="sr-only" aria-live="polite">{looks[active].label}, {active + 1} de {looks.length}</span>

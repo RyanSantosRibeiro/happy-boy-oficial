@@ -1,16 +1,18 @@
-import { lifestyleEditorialLooks, shirtShortEditorialLook } from "./editorial-looks";
-import { collectionFamilies, collectionVariantHref } from "./collection-families";
+import { travelCollectionId, type CommercialFamilyId } from "./commercial.ts";
+import { lifestyleEditorialLooks, shirtShortEditorialLook } from "./editorial-looks.ts";
+import { collectionFamilies, collectionVariantHref } from "./collection-families.ts";
 
 export type LifestyleSlug = typeof lifestyleEditorialLooks[number]["slug"];
 export type LookPhoto = { id: string; src: string; original: string; alt: string };
 export type LifestyleGalleryData = {
+  collectionId: string;
+  commercialFamilyId: CommercialFamilyId;
   id: string;
   slug: string;
   name: string;
   cover: string;
   photos: LookPhoto[];
   color?: string;
-  consultationMessage?: string;
   returnHref?: string;
   variants?: LookVariantLink[];
 };
@@ -48,12 +50,15 @@ const photo = ({ id, alt }: { id: string; alt: string }): LookPhoto => ({
 });
 
 export const lifestyleGalleries: LifestyleGalleryData[] = [...lifestyleEditorialLooks.map((look) => ({
+  collectionId: travelCollectionId,
+  commercialFamilyId: ({ "camiseta-bermuda": "camiseta-bermuda", "polo-marrom": "polo-calca", "camisa-clara": "camisa-calca", "polo-verde": "polo-short" } as const)[look.slug],
   id: look.id,
   slug: look.slug,
   name: look.label,
   cover: look.src,
   photos: [photo(look), ...additionalPhotos[look.slug].map(photo)],
 })), {
+  collectionId: travelCollectionId, commercialFamilyId: "camisa-short",
   id: shirtShortEditorialLook.id, slug: shirtShortEditorialLook.slug,
   name: shirtShortEditorialLook.label, cover: shirtShortEditorialLook.src,
   photos: [photo(shirtShortEditorialLook),

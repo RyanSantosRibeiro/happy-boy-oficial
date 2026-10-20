@@ -1,20 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from "react";
+import type { CatalogCollection } from "@/data/catalog";
 
-const benefitItems = ["Happy Boy", "Travel Edition", "Nova coleção"];
-
-const videos = [
-  { file: "01-happyboy-travel-branco", color: "branco" },
-  { file: "02-happyboy-travel-verde", color: "verde" },
-  { file: "03-happyboy-travel-azul", color: "azul" },
-  { file: "04-happyboy-travel-preto", color: "preto" },
-];
-
-const marqueeItems = Array.from({ length: 6 }, () => benefitItems).flat();
-
-export function EditorialVideoCarousel() {
+export function EditorialVideoCarousel({ collection, beforeVideos }: { collection: CatalogCollection; beforeVideos?: ReactNode }) {
+  const videos = collection.presentation.films;
+  const marqueeItems = Array.from({ length: 6 }, () => collection.presentation.benefits).flat();
   const trackRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef({ active: false, startX: 0, startScroll: 0 });
   const suppressClick = useRef(false);
@@ -104,7 +96,7 @@ export function EditorialVideoCarousel() {
   return (
     <section className="editorial-reel" aria-label="Vídeos da coleção">
       <div className="editorial-reel__benefits" aria-label="Informações da coleção">
-        <span className="sr-only">Happy Boy. Travel Edition. Nova coleção.</span>
+        <span className="sr-only">{collection.presentation.benefits.join(". ")}.</span>
         <div className="editorial-reel__marquee" aria-hidden="true">
           <div className="editorial-reel__marquee-track">
             {[0, 1].map((sequence) => (
@@ -120,10 +112,12 @@ export function EditorialVideoCarousel() {
         </div>
       </div>
 
+      {beforeVideos}
       <div className="editorial-reel__heading">
-        <div><p>Happy Boy / Modern Movement</p><h2>Quatro cores. Novos caminhos.</h2></div>
-        <span>Travel Edition / 04 filmes</span>
+        <div><p>{collection.presentation.filmHeading.kicker}</p><h2>{collection.presentation.filmHeading.title}</h2></div>
+        <span>{collection.name} / {String(videos.length).padStart(2, "0")} filmes</span>
       </div>
+      <p className="navigation-help">Clique em um vídeo para abrir a página do conjunto e ver suas fotos e detalhes.</p>
       <div className="editorial-reel__carousel">
         <div className="editorial-reel__track" ref={trackRef} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={endDrag} onPointerCancel={endDrag} onPointerLeave={endDrag}
           onClickCapture={(event) => {
@@ -132,15 +126,15 @@ export function EditorialVideoCarousel() {
             event.stopPropagation();
             suppressClick.current = false;
           }}>
-          {videos.map(({ file, color }, index) => (
-            <Link className="editorial-reel__card" key={file} href={`/colecao/${color}`} prefetch={false} draggable={false} aria-label={`Ver galeria do conjunto ${color} — Travel Edition`}>
-              <video data-src={`/videos/travel-edition/${file}.mp4`} poster={`/videos/travel-edition/${file}-capa.jpg`} autoPlay muted loop playsInline preload="none" disablePictureInPicture disableRemotePlayback draggable={false} aria-label={`Travel Edition — conjunto ${color}`} />
-              <span className="editorial-reel__caption"><span>{String(index + 1).padStart(2, "0")} / {color}</span></span>
+          {videos.map(({ src, poster, color, href }, index) => (
+            <Link className="editorial-reel__card" key={src} href={href} prefetch={false} draggable={false} aria-label={`Ver galeria do conjunto ${color} — ${collection.name}`}>
+              <video data-src={src} poster={poster} autoPlay muted loop playsInline preload="none" disablePictureInPicture disableRemotePlayback draggable={false} aria-label={`${collection.name} — conjunto ${color}`} />
+              <span className="editorial-reel__caption"><span>{String(index + 1).padStart(2, "0")} / {color}</span><span className="editorial-reel__open-page">Ver fotos e detalhes <span aria-hidden="true">→</span></span></span>
             </Link>
           ))}
         </div>
         <div className="editorial-reel__navigation" aria-label="Selecionar vídeo da coleção">
-          <span aria-live="polite">{String(activeVideo + 1).padStart(2, "0")} <span>/ 04</span></span>
+          <span aria-live="polite">{String(activeVideo + 1).padStart(2, "0")} <span>/ {String(videos.length).padStart(2, "0")}</span></span>
           <div>{videos.map(({ color }, index) => <button key={color} type="button" aria-label={`Ver vídeo ${color}`} aria-pressed={index === activeVideo} onClick={() => showVideo(index)}><span /></button>)}</div>
         </div>
       </div>
