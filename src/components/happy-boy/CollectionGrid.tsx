@@ -5,8 +5,9 @@ import { CollectionReveal } from "./CollectionReveal";
 import { DryFitEditorialSection } from "./DryFitEditorialSection";
 import { FamilyColorCard } from "./FamilyColorCard";
 import { PhotoPageHint } from "./PhotoPageHint";
+import { WholesaleLink } from "./WholesaleLink";
 
-export function CollectionGrid({ collection }: { collection: CatalogCollection }) {
+export function CollectionGrid({ collection, wholesale = false }: { collection: CatalogCollection; wholesale?: boolean }) {
   return <CollectionReveal>
     <DryFitEditorialSection collection={collection} />
     <section className="collection-selection" id="collection" aria-labelledby="collection-title">
@@ -29,6 +30,7 @@ export function CollectionGrid({ collection }: { collection: CatalogCollection }
         </div>;
         })}
       </div>
+      {wholesale && <div className="wholesale-collection-closing"><p>Novas possibilidades para a seleção da sua loja.</p><WholesaleLink>Conhecer as condições de atacado</WholesaleLink></div>}
     </section>
   </CollectionReveal>;
 }

@@ -39,6 +39,6 @@ export const thirdCommercialAction: ThirdCommercialAction = {
 
 export const institutionalCopy = {
   title: "Sobre a Happy Boy",
-  text: "A Happy Boy é uma marca de moda masculina que apresenta coleções pensadas para diferentes estilos e momentos. Com uma identidade contemporânea, a marca conecta suas novidades a lojistas e parceiros por meio de um atendimento comercial próximo e direto.",
-  provisional: true,
+  text: "Desde 1998, a Happy Boy atua como fabricante de moda masculina, com fabricação própria, estrutura operacional e equipe comercial. Atendemos compradores de atacado e buscamos construir parcerias de longo prazo com lojistas.",
+  provisional: false,
 };

@@ -1,11 +1,13 @@
 "use client";
+/* eslint-disable @next/next/no-html-link-for-pages -- Native hash navigation selects the commercial form mode, including same-page links. */
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { BrandMark } from "./BrandMark";
 import { getFeaturedCollection } from "@/data/catalog";
+import { EditorialArrow } from "./WholesaleLink";
 
-const links = [{ href: "/colecoes", label: "Coleções" }, { href: "/#collection", label: "Outros looks" }, { href: "/#sobre-nos", label: "Sobre nós" }, { href: "/#contact", label: "Contato" }];
+const links = [{ href: "/colecoes", label: "Coleções" }, { href: "/#sobre-nos", label: "Sobre nós" }, { href: "/#lojas", label: "Nossas lojas" }, { href: "/#atendimento-atacado", label: "Atendimento" }];
 
 export function Header({ tone = "light" }: { tone?: "light" | "dark" }) {
   const [open, setOpen] = useState(false);
@@ -24,12 +26,12 @@ export function Header({ tone = "light" }: { tone?: "light" | "dark" }) {
   return <header className="site-header" ref={header}>
     <Link href="/#top" aria-label="Happy Boy — início" className="brand-link" onClick={() => setOpen(false)}><BrandMark tone={tone} /></Link>
     <nav className="desktop-nav" aria-label="Navegação principal">{links.slice(0, 3).map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}</nav>
-    <Link className="header-edition" href="/#contact"><span className="status-dot" aria-hidden="true" /> Contato</Link>
+    <a className="header-edition" href="/#atendimento-atacado"><span className="status-dot" aria-hidden="true" /> Atacado</a>
     <button className="menu-button" aria-controls="mobile-navigation" aria-expanded={open} aria-label={open ? "Fechar menu" : "Abrir menu"} onClick={() => setOpen(!open)} ref={trigger}>
       <span>{open ? "Fechar" : "Menu"}</span><span className="menu-icon" data-open={open}><i /><i /></span>
     </button>
     <nav id="mobile-navigation" className="mobile-nav" aria-label="Navegação mobile" hidden={!open} onBlur={(event) => { if (!header.current?.contains(event.relatedTarget as Node | null)) setOpen(false); }}>
-      {links.map((link) => <Link key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}<span aria-hidden="true">↗</span></Link>)}
+      {links.map((link) => <a key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}<EditorialArrow /></a>)}
       <span className="eyebrow">Happy Boy / {getFeaturedCollection().name} / 2026</span>
     </nav>
   </header>;

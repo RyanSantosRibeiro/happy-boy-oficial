@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { commercialContact, thirdCommercialAction } from "@/data/commercial";
 import { catalogRequestMessage, whatsappHref } from "@/lib/wholesale";
 import { CommercialActionIcon } from "./CommercialActionIcon";
+import { contactHref } from "@/lib/commercial-lead";
 import "./whatsapp-contact.css";
 
 const ContactContext = createContext<{ open: boolean; show: (trigger: HTMLButtonElement) => void } | null>(null);
@@ -47,7 +48,7 @@ export function WhatsAppProvider({ children, collectionName }: { children: React
         <p>Happy Boy / Atendimento a lojistas</p>
         <button type="button" className="whatsapp-contact-panel__close" onClick={close} aria-label="Fechar atendimento"><span>Fechar</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" /></svg></button>
         <h2 id="whatsapp-contact-title">Como podemos ajudar?</h2>
-        <p id="whatsapp-contact-help">Escolha uma opção abaixo. Você será levado ao WhatsApp com uma mensagem pronta.</p>
+        <p id="whatsapp-contact-help">Catálogo e vendedor abrem no WhatsApp. Para receber um representante, informe os dados da loja no formulário.</p>
       </header>
       <nav className="whatsapp-contact-panel__options" aria-label="Opções de atendimento pelo WhatsApp">
         {catalog && <a href={catalog} target="_blank" rel="noopener noreferrer" ref={firstAction} aria-label="Ver catálogo — abre no WhatsApp">
@@ -56,8 +57,8 @@ export function WhatsAppProvider({ children, collectionName }: { children: React
         {seller && <a href={seller} target="_blank" rel="noopener noreferrer" aria-label="Falar com o vendedor — abre no WhatsApp">
           <CommercialActionIcon kind="seller" /><span><strong>Falar com o vendedor</strong><small>Tire dúvidas sobre compras no atacado.</small></span><span className="whatsapp-contact-panel__arrow" aria-hidden="true">↗</span>
         </a>}
-        {visit && <a href={visit} target="_blank" rel="noopener noreferrer" aria-label={`${thirdCommercialAction.title} — abre no WhatsApp`}>
-          <CommercialActionIcon kind="visit" /><span><strong>{thirdCommercialAction.title}</strong><small>Converse com a equipe para agendar.</small></span><span className="whatsapp-contact-panel__arrow" aria-hidden="true">↗</span>
+        {visit && <a href={contactHref("representante")} onClick={close} aria-label={`${thirdCommercialAction.title} — abrir formulário de visita`}>
+          <CommercialActionIcon kind="visit" /><span><strong>{thirdCommercialAction.title}</strong><small>Informe os dados da loja para solicitar a visita.</small></span><span className="whatsapp-contact-panel__arrow" aria-hidden="true">↗</span>
         </a>}
       </nav>
       <p className="whatsapp-contact-panel__note"><CommercialActionIcon kind="whatsapp" /> O WhatsApp abre em outra aba ou no aplicativo.</p>

@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import Link from "next/link";
 import type { CampaignHeroData } from "@/data/catalog";
 import { Header } from "./Header";
 import { SiteImage } from "./SiteImage";
 import { WhatsAppHeroContact } from "./WhatsAppButton";
+import { EditorialArrow, WholesaleLink } from "./WholesaleLink";
 
 /** A single viewport, looping film and one delayed entrance for header + copy. */
-export function CampaignHero({ hero }: { hero: CampaignHeroData }) {
+export function CampaignHero({ hero, commercial = false }: { hero: CampaignHeroData; commercial?: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const rootRef = useRef<HTMLElement>(null);
   const pausedByUser = useRef(false);
@@ -98,7 +100,7 @@ export function CampaignHero({ hero }: { hero: CampaignHeroData }) {
   };
 
   return (
-    <section id="top" className="campaign-hero" ref={rootRef} aria-labelledby="campaign-heading" style={{ "--hero-reveal-delay": `${hero.revealDelaySeconds}s` } as CSSProperties}>
+    <section id="top" className={`campaign-hero${commercial ? " campaign-hero--wholesale" : ""}`} ref={rootRef} aria-labelledby="campaign-heading" style={{ "--hero-reveal-delay": `${hero.revealDelaySeconds}s` } as CSSProperties}>
       <div className="campaign-hero__media" aria-hidden="true">
         <picture className="campaign-hero__poster">
           <source media="(max-width: 760px)" srcSet={hero.mobilePoster} />
@@ -119,13 +121,14 @@ export function CampaignHero({ hero }: { hero: CampaignHeroData }) {
         />}
       </div>
       <div className="campaign-hero__header campaign-hero__reveal"><Header /></div>
-      <WhatsAppHeroContact />
+      {!commercial && <WhatsAppHeroContact />}
       <div className="campaign-hero__copy campaign-hero__reveal">
-        <p className="campaign-hero__edition">Happy Boy / Nova coleção</p>
-        <h1 id="campaign-heading">{hero.title}</h1>
+        <p className="campaign-hero__edition">{commercial ? "Happy Boy / Fabricante / Atacado" : "Happy Boy / Nova coleção"}</p>
+        <h1 id="campaign-heading">{commercial ? "Sua loja merece uma marca que cresce junto com você." : hero.title}</h1>
         <div className="campaign-hero__bottom">
-          <p>{hero.subtitle}</p>
+          <p>{commercial ? "Moda masculina direto do fabricante, com variedade, estratégia comercial e parceria para lojistas que querem vender mais." : hero.subtitle}</p>
         </div>
+        {commercial && <nav className="wholesale-hero-actions" aria-label="Atendimento ao lojista"><WholesaleLink className="wholesale-hero-actions__primary">Quero comprar no atacado</WholesaleLink><div><WholesaleLink intent="representante">Receber um representante na minha loja</WholesaleLink><WholesaleLink intent="showroom">Agendar visita ao showroom</WholesaleLink></div><Link className="wholesale-hero-actions__stores" href="/#lojas">Conhecer nossas lojas<EditorialArrow /></Link></nav>}
       </div>
       {hero.videoSrc && !failed && <button className="campaign-hero__play" type="button" onClick={toggleVideo} aria-label={playing ? "Pausar vídeo da campanha" : "Reproduzir vídeo da campanha"}>
         <span aria-hidden="true">{playing ? "Ⅱ" : "▷"}</span> {playing ? "Pausar" : "Reproduzir"}
