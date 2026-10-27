@@ -133,6 +133,8 @@
   .campaign-hero--wholesale .campaign-hero__media { height: var(--commercial-film-height); bottom: auto; }
   .campaign-hero--wholesale::after { height: var(--commercial-film-height); bottom: auto; background: linear-gradient(180deg,#0005,transparent 25%,transparent 80%,#172c3233); }
   .campaign-hero--wholesale .campaign-hero__copy { grid-row: 2; display: flex; flex-direction: column; position: relative; inset: auto; width: 100%; max-width: none; padding: 28px 20px 32px; }
+  /* Mobile content is visible on the first paint, independently of video loading. */
+  .campaign-hero--wholesale .campaign-hero__reveal { animation: none; opacity: 1; visibility: visible; }
   .campaign-hero--wholesale .campaign-hero__edition { font-size: 9px; margin-bottom: 18px; }
   .campaign-hero--wholesale h1 { font-size: clamp(31px,8.3vw,42px); line-height: 1.06; max-width: 430px; }
   .campaign-hero--wholesale .campaign-hero__bottom { order: 4; margin-top: 18px; }

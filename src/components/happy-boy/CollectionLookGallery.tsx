@@ -32,6 +32,6 @@ export function CollectionLookGallery({ collection }: { collection: CatalogColle
     <span className="campaign-look-gallery__alias" id="dry-fit" aria-hidden="true" />
     <p className="campaign-look-gallery__help">Navegue pelas cores de cada linha nas setas. Clique na foto para ver outros ângulos e detalhes.</p>
     <div className="campaign-look-gallery__groups">{groups.map(group => <CollectionGroupCard group={group} key={group.id} />)}</div>
-    <div className="campaign-look-gallery__closing"><Link href="/colecoes">Explore o arquivo de coleções</Link><WholesaleLink>Conhecer as condições de atacado</WholesaleLink></div>
+    <div className="campaign-look-gallery__closing"><WholesaleLink>Conhecer as condições de atacado</WholesaleLink></div>
   </section>;
 }

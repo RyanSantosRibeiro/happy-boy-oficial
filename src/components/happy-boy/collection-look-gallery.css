@@ -4,6 +4,7 @@
 .campaign-collection-heading h2,
 .premium-home .editorial-reel--collection-heading .editorial-reel__heading h3 { font-family:inherit; font-size:clamp(29px,3vw,46px); line-height:1.08; letter-spacing:-.04em; font-weight:400; }
 .campaign-collection-heading h2 { margin-top:15px; }
+.campaign-collection-divider { margin:0 var(--gutter); border:0; border-top:1px solid #172c3222; }
 .premium-home .editorial-reel--collection-heading .editorial-reel__heading { padding-top:28px; }
 .premium-home .editorial-reel--collection-heading .editorial-reel__heading h3 { margin:0; }
 .campaign-look-gallery { position:relative; padding:24px var(--gutter) 36px; color:#172c32; scroll-margin-top:32px; }
@@ -19,13 +20,14 @@
 .campaign-look-gallery__details svg { width:18px; height:18px; flex:none; }
 .campaign-look-gallery__details:hover { border-color:#172c32; }
 .campaign-look-gallery a:focus-visible, .campaign-look-gallery button:focus-visible, .campaign-look-gallery .editorial-photo-carousel:focus-visible { outline:2px solid #172c32; outline-offset:-3px; box-shadow:none; }
-.campaign-look-gallery__closing { display:flex; justify-content:space-between; align-items:center; gap:24px; padding-top:26px; font-size:12px; }
+.campaign-look-gallery__closing { display:flex; justify-content:flex-end; align-items:center; gap:24px; padding-top:26px; font-size:12px; }
 @media (max-width:1100px) { .campaign-look-gallery__groups { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (max-width:760px) {
   .campaign-collection-heading { padding:30px 20px 0; }
   .campaign-collection-heading h2,
   .premium-home .editorial-reel--collection-heading .editorial-reel__heading h3 { font-size:30px; }
   .campaign-collection-heading h2 { margin-top:12px; }
+  .campaign-collection-divider { margin-inline:20px; }
   .premium-home .editorial-reel--collection-heading .editorial-reel__heading { display:block; text-align:left; margin:0; padding:24px 20px 0; background:transparent; color:#172c32; }
   .premium-home .editorial-reel.editorial-reel--collection-heading > .navigation-help { background:transparent; color:#536165; padding:16px 20px 0; margin:0; }
   .premium-home .editorial-reel--collection-heading .editorial-reel__carousel { margin-top:24px; }

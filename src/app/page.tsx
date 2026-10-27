@@ -35,6 +35,7 @@ export default function Home() {
         <span className="campaign-look-gallery__alias" id="colecao-atual" aria-hidden="true" />
         <header className="campaign-collection-heading"><p className="wholesale-kicker">01 / {collection.name}</p><h2 id="current-collection-title">Coleção {collection.name}</h2></header>
         <CollectionLookGallery collection={collection} />
+        <hr className="campaign-collection-divider" />
         <EditorialVideoCarousel collection={collection} showMarquee={false} editorialHeading={{ kicker: "", title: "Conjunto Dry Fit" }} headingLevel={3} />
       </section>
       <AboutSection photo={collection.presentation.aboutPhoto} wholesale />
