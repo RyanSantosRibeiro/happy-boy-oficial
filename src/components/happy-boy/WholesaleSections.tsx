@@ -20,7 +20,7 @@ export function OperationSection() {
 
 export function WholesaleServiceSection() {
   return <section className="wholesale-service wholesale-section" id="visitas" aria-labelledby="service-heading">
-    <header><p className="wholesale-kicker">05 / Atendimento ao lojista</p><h2 id="service-heading">A Happy Boy mais perto<br />do seu negócio.</h2></header>
+    <header><p className="wholesale-kicker">06 / Atendimento ao lojista</p><h2 id="service-heading">A Happy Boy mais perto<br />do seu negócio.</h2></header>
     <div className="wholesale-service__panels"><article><span className="wholesale-service__index"><span className="wholesale-service__number">01 / </span>Na sua loja</span><h3>Receba um representante na sua loja</h3><p>Conheça a coleção, converse com nossa equipe e avalie as opções para abastecer seu negócio.</p><WholesaleLink intent="representante">Solicitar visita comercial</WholesaleLink></article><article><span className="wholesale-service__index"><span className="wholesale-service__number">02 / </span>Na fábrica</span><h3>Agende um atendimento no showroom da fábrica</h3><p>Conheça as peças presencialmente, veja a estrutura e converse com nosso time comercial.</p><WholesaleLink intent="showroom">Agendar visita ao showroom</WholesaleLink><small>O dia e o horário serão confirmados pela equipe.</small></article></div>
   </section>;
 }

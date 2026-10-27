@@ -11,6 +11,7 @@ import { PhysicalStores } from "@/components/happy-boy/PhysicalStores";
 import { getFeaturedCollection } from "@/data/catalog";
 import { CollectionMarquee } from "@/components/happy-boy/CollectionMarquee";
 import { TemporaryPresentation } from "@/components/happy-boy/TemporaryPresentation";
+import { RetailerFeedbacks } from "@/components/happy-boy/RetailerFeedbacks";
 import "@/components/happy-boy/campaign.css";
 import "@/components/happy-boy/editorial.css";
 import "@/components/happy-boy/collection.css";
@@ -40,6 +41,7 @@ export default function Home() {
       </section>
       <AboutSection photo={collection.presentation.aboutPhoto} wholesale />
       <OperationSection />
+      <RetailerFeedbacks />
       <WholesaleServiceSection />
       <CommercialLeadForm />
       <PhysicalStores />

@@ -95,6 +95,12 @@
   .premium-home .editorial-reel__heading { margin-top:24px; padding-top:20px; }
   .premium-home .editorial-reel { padding-bottom:32px; }
   .premium-home .editorial-reel__navigation { display:none; }
+  .premium-home .editorial-reel__arrow { display:grid; place-items:center; position:absolute; z-index:1; top:calc(50% - 24px); transform:translateY(-50%); width:44px; height:44px; padding:0; border:0; border-radius:50%; background:#ffffffd9; color:#242424; }
+  .premium-home .editorial-reel__arrow--previous { left:32px; }
+  .premium-home .editorial-reel__arrow--next { right:32px; }
+  .premium-home .editorial-reel__arrow svg { width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round; }
+  .premium-home .editorial-reel__arrow:hover { background:#fff; }
+  .premium-home .editorial-reel__arrow:focus-visible { outline:2px solid #172c32; outline-offset:3px; }
   .premium-home .editorial-reel__card { background:#f3f1ec; color:#172c32; }
   .premium-home .editorial-reel__caption { justify-content:space-between; padding:12px 0; border-color:#172c3233; }
   .premium-home .about-section { grid-template-columns:minmax(0,1fr); padding:32px 0 0; gap:0; background:#e6e0d3; color:#172c32; border-top:1px solid #172c3222; }

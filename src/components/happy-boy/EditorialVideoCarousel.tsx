@@ -121,6 +121,12 @@ export function EditorialVideoCarousel({ collection, beforeVideos, showMarquee =
             </Link>
           ))}
         </div>
+        <button className="editorial-reel__arrow editorial-reel__arrow--previous" type="button" aria-label="Vídeo anterior da coleção" onClick={() => showVideo((activeVideo - 1 + videos.length) % videos.length)}>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg>
+        </button>
+        <button className="editorial-reel__arrow editorial-reel__arrow--next" type="button" aria-label="Próximo vídeo da coleção" onClick={() => showVideo((activeVideo + 1) % videos.length)}>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
+        </button>
         <div className="editorial-reel__navigation" aria-label="Selecionar vídeo da coleção">
           <span aria-live="polite">{String(activeVideo + 1).padStart(2, "0")} <span>/ {String(videos.length).padStart(2, "0")}</span></span>
           <div>{videos.map(({ color }, index) => <button key={color} type="button" aria-label={`Ver vídeo ${color}`} aria-pressed={index === activeVideo} onClick={() => showVideo(index)}><span /></button>)}</div>
