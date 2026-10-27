@@ -34,7 +34,7 @@
   .retailer-feedbacks__heading > p { font-size:13px; line-height:1.75; }
   .retailer-feedbacks__carousel { margin-top:28px; }
   .retailer-feedbacks__track { gap:16px; }
-  .retailer-feedbacks__card { flex-basis:88%; }
+  .retailer-feedbacks__card { flex-basis:100%; scroll-snap-align:center; scroll-snap-stop:always; }
   .retailer-feedbacks__arrow--previous { left:-12px; }
   .retailer-feedbacks__arrow--next { right:-12px; }
   .retailer-feedbacks .retailer-feedbacks__contact { width:100%; margin-top:28px; }
