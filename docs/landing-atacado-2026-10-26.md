@@ -11,7 +11,7 @@
 3. Travel Edition, carrosséis, cores, fotografias, vídeos, galerias e histórico mantidos. Foram acrescentados caminhos discretos para condições de atacado. As consultas nas páginas internas continuam sendo por família comercial, sem cor isolada.
 4. “Muito além de uma peça de roupa.” reúne a apresentação da operação e os futuros depoimentos. Os módulos de mídia ficam inativos até a chegada dos materiais reais.
 5. Dois painéis comerciais: representante na loja e showroom da fábrica.
-6. Formulário final adaptado às quatro modalidades, seguido pelas três unidades de Fortaleza e pelo rodapé azul-petróleo.
+6. Formulário final adaptado às quatro modalidades, seguido pelas unidades de Fortaleza e pelo rodapé azul-petróleo. O cadastro atual contém Pátio Central e Shopping Fortaleza Sul.
 
 ## Navegação comercial
 
@@ -60,7 +60,7 @@ Os links de formulário usam navegação nativa por âncora para funcionar tamb�
 - Formulário vazio: mensagens de erro e foco no primeiro campo inválido. Formulários válidos: revisão das quatro modalidades, revendedor sem nome de loja, intenção de conhecer a operação e uso do número configurado.
 - Navegação do hero, painéis de visita, menu mobile, “Sobre nós”, retorno pelo logotipo e acesso ao formulário de representante a partir da página interna verificados.
 - Swipe dos vídeos, seleção de vídeo, troca de cor do Polo, abertura de página interna e mudança de ângulo da galeria verificados.
-- Os três mapas reais carregaram e apontaram para os centros comerciais correspondentes.
+- Os mapas reais carregaram e apontaram para os centros comerciais correspondentes na revisão original.
 - Console sem erros ou avisos introduzidos na conferência final. O HTML do build confirmou a ausência do espaço provisório do vídeo e de módulos vazios de depoimentos.
 - Após uma tentativa inválida, trocar a modalidade remove os erros dos campos anteriores e invalida a mensagem preparada.
 - Arquivos de mídia, dados de produtos, hooks de reprodução e lógica das galerias/carrosséis não foram alterados.
@@ -78,11 +78,10 @@ Os links de formulário usam navegação nativa por âncora para funcionar tamb�
 
 Os endereços foram mantidos conforme a orientação do proprietário. Não havia cadastro de unidades no código anterior.
 
-- Maraponga: rua e número conferidos em [Como chegar — Maraponga Mart Moda](https://marapongamartmoda.com.br/como-chegar/).
 - Fortaleza Sul: avenida, número e bairro conferidos no [site oficial do shopping](https://www.shoppingfortalezasul.com.br/). Uma página institucional antiga do mesmo domínio usa outro nome de bairro; a prévia conserva “Fátima”, conforme o briefing e a página inicial atual.
 - Pátio Central: rua e número também aparecem no [contato de uma lojista do shopping](https://www.larifloroficial.com.br/contato/). O mapa real carregou o Pátio Central na região indicada. Não foi localizada uma referência local anterior da unidade Happy Boy.
 
-Os mapas apontam para os centros comerciais; não foram inventados números de loja, fachadas ou coordenadas internas. Confirmar a identificação exata das unidades e “Acesso 2” com a marca antes da publicação final.
+Os mapas apontam para os centros comerciais; não foram inventados números de loja, fachadas ou coordenadas internas. Os complementos de localização podem ser atualizados quando a marca fornecer a identificação exata das unidades.
 
 ## Materiais e definições pendentes
 

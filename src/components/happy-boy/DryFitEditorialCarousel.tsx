@@ -6,7 +6,7 @@ import type { EditorialLook } from "@/data/catalog";
 import { SiteImage } from "./SiteImage";
 import { PhotoPageHint } from "./PhotoPageHint";
 
-export function DryFitEditorialCarousel({ looks, label, onLookChange }: { looks: EditorialLook[]; label: string; onLookChange?: (id: string) => void }) {
+export function DryFitEditorialCarousel({ looks, label, onLookChange, prioritizeFirst = true, imageSizes, showPageHint = true }: { looks: EditorialLook[]; label: string; onLookChange?: (id: string) => void; prioritizeFirst?: boolean; imageSizes?: string; showPageHint?: boolean }) {
   const slides = [looks[looks.length - 1], ...looks, looks[0]];
   const [position, setPosition] = useState(1);
   const [animated, setAnimated] = useState(true);
@@ -99,8 +99,8 @@ export function DryFitEditorialCarousel({ looks, label, onLookChange }: { looks:
           const selected = !clone && index === active + 1;
           return <Link key={`${look.id}-${index}`} className="editorial-photo-carousel__slide" href={look.href} prefetch={false} draggable={false}
             data-slide={index} aria-hidden={!selected} tabIndex={selected ? 0 : -1} aria-label={`Ver ${look.label}`}>
-            <SiteImage src={look.src} alt={look.alt} fill sizes="(max-width: 760px) 90vw, (max-width: 1100px) 44vw, 600px" preload={index === 1} loading={index === 1 ? undefined : Math.abs(index - position) <= 1 ? "eager" : "lazy"} draggable={false} />
-            <PhotoPageHint />
+            <SiteImage src={look.src} alt={look.alt} fill sizes={imageSizes ?? "(max-width: 760px) 90vw, (max-width: 1100px) 44vw, 600px"} preload={prioritizeFirst && index === 1} loading={!prioritizeFirst ? "lazy" : index === 1 ? undefined : Math.abs(index - position) <= 1 ? "eager" : "lazy"} draggable={false} />
+            {showPageHint && <PhotoPageHint />}
           </Link>;
         })}
       </div>

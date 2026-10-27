@@ -1,0 +1,40 @@
+.current-collection { position:relative; background:#f3f1ec; color:#172c32; scroll-margin-top:32px; }
+.campaign-look-gallery__alias { position:absolute; top:0; scroll-margin-top:32px; }
+.campaign-collection-heading { padding:38px var(--gutter) 0; }
+.campaign-collection-heading h2,
+.premium-home .editorial-reel--collection-heading .editorial-reel__heading h3 { font-family:inherit; font-size:clamp(29px,3vw,46px); line-height:1.08; letter-spacing:-.04em; font-weight:400; }
+.campaign-collection-heading h2 { margin-top:15px; }
+.premium-home .editorial-reel--collection-heading .editorial-reel__heading { padding-top:28px; }
+.premium-home .editorial-reel--collection-heading .editorial-reel__heading h3 { margin:0; }
+.campaign-look-gallery { position:relative; padding:24px var(--gutter) 36px; color:#172c32; scroll-margin-top:32px; }
+.campaign-look-gallery__help { margin:0 0 26px; font-size:12px; line-height:1.7; color:#536165; }
+.campaign-look-gallery__groups { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:22px; }
+.campaign-look-gallery__card { min-width:0; }
+.campaign-look-gallery__card .editorial-photo-carousel { --collection-ease:cubic-bezier(.22,1,.36,1); }
+.campaign-look-gallery__card .editorial-photo-carousel__slide img { object-fit:contain; }
+.campaign-look-gallery__card .editorial-photo-carousel__arrow { width:38px; height:38px; }
+.campaign-look-gallery__card .editorial-photo-carousel__arrow--previous { left:9px; }
+.campaign-look-gallery__card .editorial-photo-carousel__arrow--next { right:9px; }
+.campaign-look-gallery__details { display:flex; justify-content:space-between; align-items:center; gap:12px; min-height:44px; margin-top:12px; border-bottom:1px solid #172c3233; font-size:11px; }
+.campaign-look-gallery__details svg { width:18px; height:18px; flex:none; }
+.campaign-look-gallery__details:hover { border-color:#172c32; }
+.campaign-look-gallery a:focus-visible, .campaign-look-gallery button:focus-visible, .campaign-look-gallery .editorial-photo-carousel:focus-visible { outline:2px solid #172c32; outline-offset:-3px; box-shadow:none; }
+.campaign-look-gallery__closing { display:flex; justify-content:space-between; align-items:center; gap:24px; padding-top:26px; font-size:12px; }
+@media (max-width:1100px) { .campaign-look-gallery__groups { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:760px) {
+  .campaign-collection-heading { padding:30px 20px 0; }
+  .campaign-collection-heading h2,
+  .premium-home .editorial-reel--collection-heading .editorial-reel__heading h3 { font-size:30px; }
+  .campaign-collection-heading h2 { margin-top:12px; }
+  .premium-home .editorial-reel--collection-heading .editorial-reel__heading { display:block; text-align:left; margin:0; padding:24px 20px 0; background:transparent; color:#172c32; }
+  .premium-home .editorial-reel.editorial-reel--collection-heading > .navigation-help { background:transparent; color:#536165; padding:16px 20px 0; margin:0; }
+  .premium-home .editorial-reel--collection-heading .editorial-reel__carousel { margin-top:24px; }
+  .campaign-look-gallery { padding:22px 20px 28px; }
+  .campaign-look-gallery__help { margin-bottom:22px; }
+  .campaign-look-gallery__groups { grid-template-columns:minmax(0,1fr); gap:28px; }
+  .campaign-look-gallery__card .editorial-photo-carousel__arrow { width:44px; height:44px; }
+  .campaign-look-gallery__card .editorial-photo-carousel__arrow--previous { left:12px; }
+  .campaign-look-gallery__card .editorial-photo-carousel__arrow--next { right:12px; }
+  .campaign-look-gallery__details { min-height:48px; font-size:12px; }
+  .campaign-look-gallery__closing { flex-direction:column; align-items:stretch; gap:16px; }
+}

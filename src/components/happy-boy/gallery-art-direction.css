@@ -5,7 +5,16 @@
 .look-gallery .look-gallery__back { font-size: 10px; min-height: 44px; display: inline-flex; align-items: center; }
 .look-gallery .look-gallery__layout { max-width: 1500px; gap: clamp(40px, 5vw, 80px); grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); }
 .look-gallery .look-gallery__media { gap: 16px; }
-.look-gallery .look-gallery__track, .look-gallery .lifestyle-gallery__stage { background: #eae7e0; height: max(480px, calc(100svh - 166px)); }
+.look-gallery .look-gallery__track, .look-gallery .lifestyle-gallery__stage { background: transparent; height: max(480px, calc(100svh - 166px)); }
+@media (min-width: 901px) {
+  .look-gallery .look-gallery__track, .look-gallery .lifestyle-gallery__stage {
+    width: min(100%, calc(clamp(480px, calc(100svh - 166px), 1120px) * 2 / 3));
+    height: auto;
+    max-height: none;
+    aspect-ratio: 2 / 3;
+    justify-self: center;
+  }
+}
 .look-gallery .look-gallery__thumbnails { gap: 14px; }
 .look-gallery .look-gallery__thumbnail { opacity: .6; padding: 3px; border: 1px solid transparent; transition: opacity .2s, border-color .2s; }
 .look-gallery .look-gallery__thumbnail[aria-pressed=true] { opacity: 1; border-color: #000; background: #fff; }

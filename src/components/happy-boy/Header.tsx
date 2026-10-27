@@ -1,13 +1,13 @@
 "use client";
-/* eslint-disable @next/next/no-html-link-for-pages -- Native hash navigation selects the commercial form mode, including same-page links. */
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { BrandMark } from "./BrandMark";
 import { getFeaturedCollection } from "@/data/catalog";
 import { EditorialArrow } from "./WholesaleLink";
+import "./navigation-editorial.css";
 
-const links = [{ href: "/colecoes", label: "Coleções" }, { href: "/#sobre-nos", label: "Sobre nós" }, { href: "/#lojas", label: "Nossas lojas" }, { href: "/#atendimento-atacado", label: "Atendimento" }];
+const links = [{ href: "/#collection", label: "Coleções" }, { href: "/#fabrica", label: "Fábrica" }, { href: "/#visitas", label: "Atendimento" }, { href: "/#lojas", label: "Lojas" }];
 
 export function Header({ tone = "light" }: { tone?: "light" | "dark" }) {
   const [open, setOpen] = useState(false);
@@ -23,10 +23,9 @@ export function Header({ tone = "light" }: { tone?: "light" | "dark" }) {
     media.addEventListener("change", close);
     return () => { document.removeEventListener("pointerdown", onPointer); document.removeEventListener("keydown", onKey); media.removeEventListener("change", close); };
   }, [open]);
-  return <header className="site-header" ref={header}>
+  return <header className="site-header site-header--sections" ref={header}>
     <Link href="/#top" aria-label="Happy Boy — início" className="brand-link" onClick={() => setOpen(false)}><BrandMark tone={tone} /></Link>
-    <nav className="desktop-nav" aria-label="Navegação principal">{links.slice(0, 3).map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}</nav>
-    <a className="header-edition" href="/#atendimento-atacado"><span className="status-dot" aria-hidden="true" /> Atacado</a>
+    <nav className="desktop-nav" aria-label="Navegação principal">{links.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}</nav>
     <button className="menu-button" aria-controls="mobile-navigation" aria-expanded={open} aria-label={open ? "Fechar menu" : "Abrir menu"} onClick={() => setOpen(!open)} ref={trigger}>
       <span>{open ? "Fechar" : "Menu"}</span><span className="menu-icon" data-open={open}><i /><i /></span>
     </button>

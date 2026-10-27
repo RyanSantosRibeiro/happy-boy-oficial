@@ -4,10 +4,12 @@ import Link from "next/link";
 import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from "react";
 import type { CatalogCollection } from "@/data/catalog";
 import { MobileEditorialArrow } from "./MobileEditorialArrow";
+import { CollectionMarquee } from "./CollectionMarquee";
 
-export function EditorialVideoCarousel({ collection, beforeVideos }: { collection: CatalogCollection; beforeVideos?: ReactNode }) {
+export function EditorialVideoCarousel({ collection, beforeVideos, showMarquee = true, editorialHeading, headingLevel = 2 }: { collection: CatalogCollection; beforeVideos?: ReactNode; showMarquee?: boolean; editorialHeading?: { kicker: string; title: string }; headingLevel?: 2 | 3 }) {
   const videos = collection.presentation.films;
-  const marqueeItems = Array.from({ length: 6 }, () => collection.presentation.benefits).flat();
+  const Heading = headingLevel === 3 ? "h3" : "h2";
+  const kicker = editorialHeading?.kicker ?? collection.presentation.filmHeading.kicker;
   const trackRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef({ active: false, startX: 0, startScroll: 0 });
   const suppressClick = useRef(false);
@@ -95,27 +97,12 @@ export function EditorialVideoCarousel({ collection, beforeVideos }: { collectio
   };
 
   return (
-    <section className="editorial-reel" aria-label="Vídeos da coleção">
-      <div className="editorial-reel__benefits" aria-label="Informações da coleção">
-        <span className="sr-only">{collection.presentation.benefits.join(". ")}.</span>
-        <div className="editorial-reel__marquee" aria-hidden="true">
-          <div className="editorial-reel__marquee-track">
-            {[0, 1].map((sequence) => (
-              <div className="editorial-reel__marquee-sequence" key={sequence}>
-                {marqueeItems.map((item, index) => (
-                  <span className="editorial-reel__marquee-item" key={`${sequence}-${item}-${index}`}>
-                    {item}<i aria-hidden="true" />
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+    <section className={`editorial-reel${editorialHeading ? " editorial-reel--collection-heading" : ""}`} aria-label="Vídeos da coleção">
+      {showMarquee && <CollectionMarquee collection={collection} />}
 
       {beforeVideos}
       <div className="editorial-reel__heading">
-        <div><p>{collection.presentation.filmHeading.kicker}</p><h2>{collection.presentation.filmHeading.title}</h2></div>
+        <div>{kicker && <p>{kicker}</p>}<Heading>{editorialHeading?.title ?? collection.presentation.filmHeading.title}</Heading></div>
         <span>{collection.name} / {String(videos.length).padStart(2, "0")} filmes</span>
       </div>
       <p className="navigation-help">Clique em um vídeo para abrir a página do conjunto e ver suas fotos e detalhes.</p>

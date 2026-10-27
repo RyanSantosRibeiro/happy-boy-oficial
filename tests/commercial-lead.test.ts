@@ -54,7 +54,7 @@ test("a showroom preference and representative location are required only for th
   assert.deepEqual(validateCommercialLead({...lead,preference:"",address:""}),{});
 });
 test("store maps use the real addresses and pending credibility media stays empty", () => {
-  assert.equal(physicalStores.length,3);
+  assert.deepEqual(physicalStores.map(store=>store.id),["patio-central","fortaleza-sul"]);
   for(const store of physicalStores) { const url=new URL(storeMapHref(store.query)); assert.equal(url.hostname,"www.google.com"); assert.equal(url.searchParams.get("query"),store.query); }
   assert.equal(wholesaleStory.founderVideo,null);
   assert.equal(wholesaleStory.testimonials.length,0);
